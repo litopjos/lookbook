@@ -10,7 +10,7 @@
     "live-server": "live-server ./public",
     "babel": "babel ./src/playground/destructuring.js --plugins transform-object-rest-spread --out-file=./public/dist/bundle.js --presets=env,react",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node /server/server.js",
+    "start": "node ./server/server.js",
     "heroku-postbuild": "yarn run build:prod"
   },
   "author": "",
