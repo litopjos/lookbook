@@ -27,7 +27,8 @@ class OutfitPage extends React.Component {
         this.state = {
             id :            props.defaultOutfit ? props.defaultOutfit.id : "default id",
             title:          props.defaultOutfit ? props.defaultOutfit.title : "default title",
-            notes:          props.defaultOutfit ? props.defaultOutfit.notes : "default notes"
+            notes:          props.defaultOutfit ? props.defaultOutfit.notes : "default notes",
+            imageUrls:      props.defaultOutfit ? props.defaultOutfit.imageUrls : []
         };
     }
 
@@ -43,38 +44,46 @@ class OutfitPage extends React.Component {
     }
 
     render () {
+        return (
+            <div>
+                <form 
+                    onSubmit = {this.onSubmit} >
+                
+                    <input
+                        type= "text"
+                        placeholder = "id"
+                        value = {this.state.id}
+                    />
 
-    return (
-        <div>
-            <form 
-                onSubmit = {this.onSubmit} >
-            
-                <input
-                    type= "text"
-                    placeholder = "id"
-                    value = {this.state.id}
-                />
+                    {
+                        this.state.imageUrls.length > 0  ?
+                            this.state.imageUrls.map ((imgUrl)=>{
+                                console.log(`img url: ${imgUrl}`);
+                                return (<img src={imgUrl}/>);
+                            }) :
+                            (<p>no images </p>)
+                    }
 
-                <input 
-                    type = "text"
-                    placeholder = "title"
-                    value = {this.state.title}
-                    onChange = {this.onChangeTitle}
-                />
+                    <input 
+                        type = "text"
+                        placeholder = "title"
+                        value = {this.state.title}
+                        onChange = {this.onChangeTitle}
+                    />
 
-                <textarea
-                    placeholder = "notes"
-                    value = {this.state.notes}
-                />
+                    <textarea
+                        placeholder = "notes"
+                        value = {this.state.notes}
+                    />
 
-                <button> Submit </button>
-            >
-            
-            </form>
-        </div>
-        )
+                    <button> Submit </button>
+                >
+                
+                </form>
+            </div>
+            )
 
-    }
+        }
 
 }
 
