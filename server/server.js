@@ -35,16 +35,16 @@ app.use(middleware);
 // For get requests having URLs other than route, send back the
 // html file. By doing this, you are reloading the app after which
 // the specified URL will be dealt with by the app at the client-side.
-
 app.get("*", 
     (req, resp) => resp.sendFile(path_index_html_file)
 );
+
 
 // Run express, passing to it the IP port it should be listening to.
 app.listen(
     port,
     ()=>{
-       console.log(`express server is up on port ${port} (public folder: ${path_index_html_file})`); 
+       console.log(`express server is up on port ${port} (public folder: ${path_public})`); 
     }
 );
 

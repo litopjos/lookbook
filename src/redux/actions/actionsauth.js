@@ -21,7 +21,7 @@ const loadGuestOutfits = () => {
             imageUrls: 
                 [
                     "https://blog.keycdn.com/blog/wp-content/uploads/2014/04/custom-ssl-768x384.png",
-                    "/public/images/image2.jpg"   
+                    "/images/image2.jpg"   
                 ]                  
     
         }
@@ -34,8 +34,8 @@ const loadGuestOutfits = () => {
             notes: 'business casual',
             imageUrls: 
             [
-                "/public/images/image3.jpg",
-                "/public/images/image4.jpg"                 
+                "/images/image3.jpg",
+                "/images/image4.jpg"                 
             ]           
         }
     )
