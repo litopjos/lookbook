@@ -14,6 +14,7 @@ import React from "react";
 
 import {startDeleteOutfit,deleteOutfit} from "../redux/actions/actionsoutfits";
 
+
 class AllOutfitsPage extends React.Component {
 
     onDeleteOutfit = (outfit_id)=>{
@@ -27,6 +28,8 @@ class AllOutfitsPage extends React.Component {
         return (
             <div>
                 <h2>All Outfits Page </h2>
+
+
                 <h3>Number of outfits: {this.props.outfits.length}</h3>
 
                 {this.props.outfits.map((outfit)=>{

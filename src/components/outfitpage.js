@@ -15,9 +15,9 @@ value when the component is first rendered.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 
-
 import React from "react";
 
+import Images from "./images";
 
 class OutfitPage extends React.Component {
 
@@ -55,14 +55,7 @@ class OutfitPage extends React.Component {
                         value = {this.state.id}
                     />
 
-                    {
-                        this.state.imageUrls.length > 0  ?
-                            this.state.imageUrls.map ((imgUrl)=>{
-                                console.log(`img url: ${imgUrl}`);
-                                return (<img src={imgUrl}/>);
-                            }) :
-                            (<p>no images </p>)
-                    }
+                    <Images imageUrls = {this.state.imageUrls} />
 
                     <input 
                         type = "text"

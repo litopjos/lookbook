@@ -12,6 +12,8 @@ import React from "react";
 
 import {history} from "../routes/routes";
 import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
+
+import Images from "./images";
 import OutfitPage from "./outfitpage";
 
 const EditOutfitPage = (props)=>{
