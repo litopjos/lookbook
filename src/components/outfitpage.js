@@ -21,21 +21,43 @@ import Images from "./images";
 
 class OutfitPage extends React.Component {
 
+    // This is called by the Images component every time there is a change
+    // to the outfit image URLS.
+    onOutfitImageUrlsChanged = (images)=>{
+  //      alert('onOutfitImageUrlsChanged');           
+  //      console.log(images);
+
+        this.outfitImageUrls = [...images];
+  //      console.log(this.imageUrls);
+     
+    }
+
     constructor(props) {
         super(props);
 
+//        alert('OutfitPage constructor');
+
+        // Non-creactive state.
+        this.outfitImageUrls = props.defaultOutfit ? props.defaultOutfit.outfitImageUrls : [];
+
+        // Reactive State
         this.state = {
             id :            props.defaultOutfit ? props.defaultOutfit.id : "default id",
             title:          props.defaultOutfit ? props.defaultOutfit.title : "default title",
             notes:          props.defaultOutfit ? props.defaultOutfit.notes : "default notes",
-            imageUrls:      props.defaultOutfit ? props.defaultOutfit.imageUrls : []
         };
     }
 
     onSubmit = (e)=> {
-       alert('OutfitPage onSubmit()');
         e.preventDefault();
-        this.props.onSubmit(this.state);
+
+        let outfit = {...this.state};
+        outfit.outfitImageUrls = this.outfitImageUrls;
+
+//        console.log(outfit);
+//        alert('OutfitPage onSubmit()');
+
+        this.props.onSubmit(outfit);
     } 
 
     onChangeTitle = (e)=> {
@@ -50,7 +72,10 @@ class OutfitPage extends React.Component {
             <div>
 
                 <h3> Outfit Images </h3>
-                <Images imageUrls = {this.state.imageUrls} />
+                <Images
+                    imageUrls = {this.outfitImageUrls} 
+                    onImageUrlsChanged = {this.onOutfitImageUrlsChanged}
+                />
 
                 <form
                     onSubmit = {this.onSubmit} >                   

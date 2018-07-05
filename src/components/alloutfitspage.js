@@ -18,13 +18,13 @@ import {startDeleteOutfit,deleteOutfit} from "../redux/actions/actionsoutfits";
 class AllOutfitsPage extends React.Component {
 
     onDeleteOutfit = (outfit_id)=>{
-        console.log(outfit_id);
-        alert(outfit_id);
+//        console.log(outfit_id);
+//        alert(outfit_id);
     } 
 
     render() {
-        console.log(this.props.outfits);
-        alert('render');
+//        console.log(this.props.outfits);
+//        alert('render');
         return (
             <div>
                 <h2>All Outfits Page </h2>
@@ -53,8 +53,8 @@ class AllOutfitsPage extends React.Component {
                             </p>
 
 
-                            { outfit.imageUrls.length > 0 && 
-                             <img src = {outfit.imageUrls[0]} />}
+                            { outfit.outfitImageUrls.length > 0 && 
+                             <img src = {outfit.outfitImageUrls[0]} />}
 
                             <p>{outfit.title}</p>                        
                             <p>{outfit.notes}</p>
@@ -69,8 +69,8 @@ class AllOutfitsPage extends React.Component {
 };
 
 const MapStateToProps = (state)=>{
-    console.log(state);
-    alert(`MapStateToProps AllOutfitsPage`);
+//    console.log(state);
+//    alert(`MapStateToProps AllOutfitsPage`);
     return {
         outfits: state.outfits
     }

@@ -17,14 +17,26 @@ import FilePicker from "./filepicker";
 
 class Images extends React.Component {
 
-
+    // This is called by FilePicker everytime a new image is added.
     onAddImage = (imageUrl)=>{
-        alert (imageUrl);
-        this.setState((prevState)=>(
-            {
+ //       alert (imageUrl);
+
+        let newState = {};
+
+        this.setState((prevState)=>{
+            newState = {
                 imageUrls: [...prevState.imageUrls,imageUrl]
-            }
-        ));
+            };
+
+            // Inform the parent of the change.
+//            console.log(newState.imageUrls);
+//            alert("imageUrls");
+            this.props.onImageUrlsChanged (newState.imageUrls);           
+
+            return newState;
+        });
+
+
     }
 
     constructor (props) {
@@ -38,8 +50,8 @@ class Images extends React.Component {
     render() {
         const imageUrls = this.state.imageUrls;
 
-        console.log (imageUrls);
-        alert ('here');
+ //       console.log (imageUrls);
+ //       alert ('here');
         
         return (
             <div>

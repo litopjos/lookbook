@@ -14,8 +14,8 @@ const FilePicker = ({onPickedImage,children})=> {
         <Dropzone 
             className = "ignore"
             onDrop = {(files)=>{
-                console.log(files);
-                alert('file dropped');
+//                console.log(files);
+//                alert('file dropped');
                 onPickedImage(files[0].preview);
 
             }}

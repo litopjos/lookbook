@@ -17,8 +17,9 @@ import {login,startLoginAsGuest} from "../redux/actions/actionsauth";
 
 
 
-const renderLoginPage = (props) => {
-
+const LoginPage = (props)=>{
+//    console.log(props);
+//    alert('render of LoginPage');
     return (
         <div>
 
@@ -30,17 +31,6 @@ const renderLoginPage = (props) => {
         </button>
         </div>        
     )
-
-}
-
-
-
-const LoginPage = (props)=>{
-//    console.log(props);
-//    alert('render of LoginPage');
-    return renderLoginPage(props);
-
-
 }
 
 const MapStateToProps = (state)=>{

@@ -22,6 +22,7 @@ const EditOutfitPage = (props)=>{
 
         <div>
             <h2> Edit Outfit Pages </h2>
+            
             <OutfitPage 
                 defaultOutfit={props.defaultOutfit}
 

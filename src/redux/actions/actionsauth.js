@@ -18,7 +18,7 @@ const loadGuestOutfits = () => {
             id: "1",
             title: 'formal wear',
             notes: "wore april 2005",
-            imageUrls: []                  
+            outfitImageUrls: []                  
     
         }
     )
@@ -28,7 +28,7 @@ const loadGuestOutfits = () => {
             id: "2",
             title: 'favorite lineup',
             notes: 'business casual',
-            imageUrls: 
+            outfitImageUrls: 
             [
                 "/images/image3.jpg",
                 "/images/image4.jpg"                 
