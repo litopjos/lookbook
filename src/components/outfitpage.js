@@ -23,13 +23,12 @@ class OutfitPage extends React.Component {
 
     // This is called by the Images component every time there is a change
     // to the outfit image URLS.
-    onOutfitImageUrlsChanged = (images)=>{
-  //      alert('onOutfitImageUrlsChanged');           
-  //      console.log(images);
+    onOutfitImageUrlsChanged = (images)=>{         
+ //       console.log(images);
 
         this.outfitImageUrls = [...images];
-  //      console.log(this.imageUrls);
-     
+//        console.log(this.outfitImageUrls);
+//        alert('onOutfitImageUrlsChanged'); 
     }
 
     constructor(props) {

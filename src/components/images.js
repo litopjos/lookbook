@@ -17,6 +17,12 @@ import FilePicker from "./filepicker";
 
 class Images extends React.Component {
 
+    // This is called when a selected image is to be removed.
+    onRemoveImage = (url)=>{
+        console.log(url)
+        alert('remove image');
+    }
+
     // This is called by FilePicker everytime a new image is added.
     onAddImage = (imageUrl)=>{
  //       alert (imageUrl);
@@ -61,7 +67,34 @@ class Images extends React.Component {
                         <div>
                             <img src={url} />
                             <button>Replace</button>
-                            <button>Delete</button>
+
+                            <button
+                                onClick = {()=>{
+                                    this.setState ( (prevState)=> {
+
+                                        const arr = prevState.imageUrls.filter(
+                                            (url2)=>{
+                                                return (url2 !== url);
+                                            }
+                                        );
+
+ //                                       console.log (arr);
+ //                                       alert("new state");
+
+                                        // Inform the parent of the change.
+                                        //            console.log(newState.imageUrls);
+                                        //            alert("imageUrls");
+                                        this.props.onImageUrlsChanged (arr);
+
+                                        return {
+                                            imageUrls: arr
+                                        }
+                                    })
+                                }}
+                            >
+                                Remove
+                            </button>
+
                         </div>
                     )
                 })} 
