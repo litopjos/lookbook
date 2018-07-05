@@ -15,11 +15,15 @@ import {connect} from "react-redux";
 import {history} from "../routes/routes"
 import {login,startLoginAsGuest} from "../redux/actions/actionsauth";
 
+
+
 const renderLoginPage = (props) => {
 
     return (
         <div>
+
         <button>Login Using Google</button>
+
 
         <button onClick = {props.LoginAsGuest} >
             Login As Guest

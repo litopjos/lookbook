@@ -24,7 +24,7 @@ const store = createStore();
 store.subscribe(()=>{
     const state = store.getState();
     console.log(state);
-    alert("redux store state change");
+ //   alert("redux store state change");
 });
 
 

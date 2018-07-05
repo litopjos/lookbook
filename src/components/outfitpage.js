@@ -33,7 +33,7 @@ class OutfitPage extends React.Component {
     }
 
     onSubmit = (e)=> {
-  //      alert('OutfitPage onSubmit()');
+       alert('OutfitPage onSubmit()');
         e.preventDefault();
         this.props.onSubmit(this.state);
     } 
@@ -43,19 +43,22 @@ class OutfitPage extends React.Component {
         this.setState(()=>({title}));
     }
 
+
+
     render () {
         return (
             <div>
-                <form 
-                    onSubmit = {this.onSubmit} >
-                
+
+                <h3> Outfit Images </h3>
+                <Images imageUrls = {this.state.imageUrls} />
+
+                <form
+                    onSubmit = {this.onSubmit} >                   
                     <input
                         type= "text"
                         placeholder = "id"
                         value = {this.state.id}
                     />
-
-                    <Images imageUrls = {this.state.imageUrls} />
 
                     <input 
                         type = "text"
@@ -69,7 +72,9 @@ class OutfitPage extends React.Component {
                         value = {this.state.notes}
                     />
 
-                    <button> Submit </button>
+                    <button> 
+                        Submit 
+                    </button>
                 >
                 
                 </form>

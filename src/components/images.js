@@ -3,18 +3,35 @@ FILE: images.js
 
 DESCRIPTION:
 
+Abstracts the logic needed to render a collection of images along with the ability
+to replace or delete a specific image. When an image is replaced or a new image is added, the new/edited image must be uploaded to the app's
+Express server's images folder. User will also be given the option to optimize the image for size before uploading
+to the server.
+
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 
 import React from "react";
 
+import FilePicker from "./filepicker";
+
 class Images extends React.Component {
+
+
+    onAddImage = (imageUrl)=>{
+        alert (imageUrl);
+        this.setState((prevState)=>(
+            {
+                imageUrls: [...prevState.imageUrls,imageUrl]
+            }
+        ));
+    }
 
     constructor (props) {
         super(props);
 
         this.state = {
-            imageUrls: props.imageUrls
+            imageUrls: [...props.imageUrls]
         }
     }
 
@@ -25,7 +42,8 @@ class Images extends React.Component {
         alert ('here');
         
         return (
-            imageUrls.length > 0 ?
+            <div>
+                {imageUrls.length > 0 &&
                 imageUrls.map((url)=>{
                     return (
                         <div>
@@ -34,8 +52,17 @@ class Images extends React.Component {
                             <button>Delete</button>
                         </div>
                     )
-                }) :
-            <button>Add Image </button>
+                })} 
+
+                <FilePicker
+                    onPickedImage = {this.onAddImage}
+                    >
+                    <button>
+                        Add Image
+                    </button>
+                </FilePicker>
+
+            </div>
 
         );
     }

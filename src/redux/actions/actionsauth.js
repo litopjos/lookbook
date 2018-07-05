@@ -18,11 +18,7 @@ const loadGuestOutfits = () => {
             id: "1",
             title: 'formal wear',
             notes: "wore april 2005",
-            imageUrls: 
-                [
-                    "https://blog.keycdn.com/blog/wp-content/uploads/2014/04/custom-ssl-768x384.png",
-                    "/images/image2.jpg"   
-                ]                  
+            imageUrls: []                  
     
         }
     )
