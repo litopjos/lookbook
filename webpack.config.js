@@ -41,7 +41,16 @@ module.exports = (env) => {
                     test: /\.(jpe?g|png|giv|svg)$/i,
                     include : path_public_img,
                     loader: 'url-loader?limit=5000000&name=images/[name].[ext]'
-                }            
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'sass-loader'
+                    ]
+
+                }                            
             ]   
         },
         
