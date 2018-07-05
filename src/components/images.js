@@ -66,7 +66,43 @@ class Images extends React.Component {
                     return (
                         <div>
                             <img src={url} />
-                            <button>Replace</button>
+
+                            <FilePicker
+                                onPickedImage = {
+                                    (newImageUrl)=>{
+                                        this.setState(
+                                            (prevState) => {
+
+                                                const arr = prevState.imageUrls.map (
+                                                    (item)=>{
+                                                        if(item!==url)
+                                                            return item;
+                                                        else
+                                                            return newImageUrl;
+                                                    }
+                                                )
+
+//                                                console.log(url);
+//                                                console.log(arr);
+//                                                alert('replace url');
+
+                                                // Inform the parent of the change.
+                                                //            console.log(newState.imageUrls);
+                                                //            alert("imageUrls");
+                                                this.props.onImageUrlsChanged (arr);
+
+                                                return {
+                                                    imageUrls: arr
+                                                }
+                                            }
+                                        )
+                                    }
+                                }                            
+                            >
+                                <button>
+                                    Replace
+                                </button>
+                            </FilePicker>
 
                             <button
                                 onClick = {()=>{
