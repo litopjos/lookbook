@@ -31,6 +31,7 @@
     "liveserver": "^0.1.20",
     "node": "^10.5.0",
     "node-sass": "^4.9.1",
+    "normalize.css": "^8.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",

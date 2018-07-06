@@ -1,0 +1,25 @@
+/* -----------------------------------------------
+FILE: _base.scss
+
+DESCRIPTION:
+
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
+
+// Given that 1rem = 16px, this selector makes it so that
+// 1rem = 0.625 * 16 = 10 px thereby making converting to
+// and from rems much easier.
+// ie- 2rem = 20 pixels.
+// Likewise, 25 pixels = 2.5rem.
+html {
+    font-size:62.5%;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+}

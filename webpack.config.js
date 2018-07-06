@@ -43,7 +43,7 @@ module.exports = (env) => {
                     loader: 'url-loader?limit=5000000&name=images/[name].[ext]'
                 },
                 {
-                    test: /\.scss$/,
+                    test: /\.s?css$/,
                     use: [
                         'style-loader',
                         'css-loader',

@@ -24,7 +24,7 @@ const PrivateRoute = ({isAuthenticated, component:Component, ...rest}) => (
                 isAuthenticated ?
                 (
                     <div>
-                        <Header/>
+                        <Header subtitle="Your curated wardrobe at your fingertips."/>
                         <Component {...props}/>
                     </div>
                  ) :

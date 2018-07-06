@@ -15,9 +15,12 @@ import {Provider} from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./styles/styles.scss"
 import createStore from "./redux/createstore";
 import Routes from "./routes/routes";
+
+// styles
+import "normalize.css/normalize.css";   // Used to reset the styles of all the btowsers.
+import "./styles/styles.scss";
 
 // Create the redux store
 const store = createStore();

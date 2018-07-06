@@ -17,11 +17,10 @@ import {Link} from "react-router-dom";
 import {startLogoutAsGuest} from "../redux/actions/actionsauth";
 
 const Header = (props)=>{
-    console.log(props);
     return (
-
-        <div>
-            <h1> Lookbook </h1>
+        <div className='header'>
+            <h1 className="header__title"> Lookbook </h1>
+            {props.subtitle && <h2 className="header_subtitle">{props.subtitle}</h2>}
             <p> 
                 <Link to="/">Home</Link> 
                 <Link to="/addnewoutfit">Add New Outfit</Link> 
