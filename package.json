@@ -29,7 +29,7 @@
     "history": "4.7.2",
     "live-server": "^1.2.0",
     "liveserver": "^0.1.20",
-    "node": "^10.5.0",
+    "node": "8.9.0",
     "node-sass": "^4.9.1",
     "normalize.css": "^8.0.0",
     "react": "^16.4.1",

@@ -3668,9 +3668,9 @@ node-sass@^4.9.1:
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
 
-node@^10.5.0:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/node/-/node-10.5.0.tgz#e9c539d04e8a1532921b7f54c01c6330f55fd5be"
+node@8.9.0:
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-8.9.0.tgz#a1c01baf1a7e21942872a7ed5421e5cc8065297b"
   dependencies:
     node-bin-setup "^1.0.0"
 
