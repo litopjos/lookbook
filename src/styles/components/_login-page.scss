@@ -1,0 +1,33 @@
+/* -----------------------------------------------
+FILE: _login-page.scss
+
+DESCRIPTION:
+This is the partial SCSS file containing all the 
+selectors used to style the login page.
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
+
+.login-page {
+    background: url('/images/closet.jpg');
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+
+    display:flex;
+    align-items: center; // vertical alignment
+    justify-content: center; // horizontal alignment.
+
+
+}
+
+.login-page__login-box {
+    background: fade-out(white, 0.25);
+    border-radius: 3px;
+    width: 25rem;
+    text-align: center;
+}
+
+.login-page__title {
+    margin: 0 0 $m-size 0;
+}

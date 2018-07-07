@@ -21,14 +21,24 @@ const LoginPage = (props)=>{
 //    console.log(props);
 //    alert('render of LoginPage');
     return (
-        <div>
+        <div className='login-page'>
 
-        <button>Login Using Google</button>
+            <div className='login-page__login-box'>
+                <h1 className = 'login-page__title'>Lookbook</h1>
+                <h3>Your curated wardrobe at your fingertips.</h3>
 
+                <p>
+                   <button>Login Using Google</button>
+                </p>
 
-        <button onClick = {props.LoginAsGuest} >
-            Login As Guest
-        </button>
+                <p>
+                    <button onClick = {props.LoginAsGuest} >
+                        Login As Guest
+                    </button>
+                </p>
+
+            </div>
+
         </div>        
     )
 }
