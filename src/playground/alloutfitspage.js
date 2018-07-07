@@ -45,21 +45,28 @@ class AllOutfitsPage extends React.Component {
                             console.log(outfit);
                             const outfit_id = outfit.id;
                             return(
-                                <div className="image-item">
-                                    <Link to={`/editoutfit/${outfit.id}`}>                                  
-                                        <img src = {outfit.outfitImageUrls[0]} />
-                                    </Link>
-                                    
-                                    <button 
-                                        onClick = {
-                                            ()=>{
-                                                alert(outfit.id);
-                                                this.props.DeleteOutfit(outfit.id);
-                                            }
-                                        } 
-                                    >
-                                        Delete Outfit
-                                    </button>
+                                <div>
+                                    <h3>Outfit</h3>
+                                    <p> 
+                                        <Link to={`/editoutfit/${outfit.id}`}> {outfit.id} </Link> 
+                                        <button 
+                                            onClick = {
+                                                ()=>{
+                                                    alert(outfit.id);
+                                                    this.props.DeleteOutfit(outfit.id);
+                                                }
+                                            } 
+                                        >
+                                            Delete Outfit
+                                        </button>
+                                    </p>
+
+
+                                    { outfit.outfitImageUrls.length > 0 && 
+                                    <img src = {outfit.outfitImageUrls[0]} />}
+
+                                    <p>{outfit.title}</p>                        
+                                    <p>{outfit.notes}</p>
 
                                 </div>
                                 );

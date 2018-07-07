@@ -1,0 +1,16 @@
+.image-container {
+    display:flex;
+    border: 1px solid red;
+    flex-wrap: wrap;
+
+    
+}
+
+.image-item {
+    width: 150px;
+    
+    img {
+        width: 150px;
+        height: 200px;
+    }
+}
