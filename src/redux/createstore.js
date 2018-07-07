@@ -10,7 +10,7 @@ tool can be used to analyze the store using dev tools.
 
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import thunk from "redux-thunk";
 
 import authReducer from "./reducers/authreducer";
