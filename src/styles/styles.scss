@@ -12,8 +12,10 @@ webpack to transpile all of them to CSS.
 @import "./settings";
 @import "./base";
 
+@import "./components/button";
 @import "./components/container";
 @import "./components/header";
 @import "./components/login-page";
+@import "./components/page-spec-header";
 
 

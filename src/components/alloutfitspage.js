@@ -27,42 +27,49 @@ class AllOutfitsPage extends React.Component {
 //        alert('render');
         return (
             <div>
-                <h2>All Outfits Page </h2>
+                <div className="page-spec-header">
+                    <div className = "container">
+                        <Link className="button" to="/addnewoutfit">Add New Outfit</Link> 
+                    </div>
+                </div>
+
+                <div>
+                    <h2>All Outfits Page </h2>
+
+                    <h3>Number of outfits: {this.props.outfits.length}</h3>
+
+                    {this.props.outfits.map((outfit)=>{
+                        console.log(outfit);
+                        const outfit_id = outfit.id;
+                        return(
+                            <div>
+                                <h3>Outfit</h3>
+                                <p> 
+                                    <Link to={`/editoutfit/${outfit.id}`}> {outfit.id} </Link> 
+                                    <button 
+                                        onClick = {
+                                            ()=>{
+                                                alert(outfit.id);
+                                                this.props.DeleteOutfit(outfit.id);
+                                            }
+                                        } 
+                                    >
+                                        Delete Outfit
+                                    </button>
+                                </p>
 
 
-                <h3>Number of outfits: {this.props.outfits.length}</h3>
+                                { outfit.outfitImageUrls.length > 0 && 
+                                <img src = {outfit.outfitImageUrls[0]} />}
 
-                {this.props.outfits.map((outfit)=>{
-                    console.log(outfit);
-                    const outfit_id = outfit.id;
-                    return(
-                        <div>
-                            <h3>Outfit</h3>
-                            <p> 
-                                <Link to={`/editoutfit/${outfit.id}`}> {outfit.id} </Link> 
-                                <button 
-                                    onClick = {
-                                        ()=>{
-                                            alert(outfit.id);
-                                            this.props.DeleteOutfit(outfit.id);
-                                        }
-                                    } 
-                                >
-                                    Delete Outfit
-                                </button>
-                            </p>
+                                <p>{outfit.title}</p>                        
+                                <p>{outfit.notes}</p>
 
+                            </div>
+                            );
+                    })}
 
-                            { outfit.outfitImageUrls.length > 0 && 
-                             <img src = {outfit.outfitImageUrls[0]} />}
-
-                            <p>{outfit.title}</p>                        
-                            <p>{outfit.notes}</p>
-
-                        </div>
-                        );
-                })}
-
+                </div>
             </div>
         )
     }
