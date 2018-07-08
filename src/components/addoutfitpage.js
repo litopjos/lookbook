@@ -21,15 +21,24 @@ const AddNewOutfitPage = (props)=>{
     return (
 
         <div>
-            <h2> Add New Outfit Pages </h2>
-            <Outfit 
-                onSubmit = {(outfit)=>{
- //                   console.log(outfit);
- //                   alert('submit');
-                    props.AddOutfit(outfit);
-                    history.push('/');    // Redirect to root which should redirect to AllOutfits page.
-                }} 
-            />
+
+            <div className="page-spec-header">
+                <div className = "container">
+                    <h2>Add New Outfit</h2>                    
+                </div>
+            </div>
+
+            <div className = "container">
+                <Outfit 
+                    onSubmit = {(outfit)=>{
+    //                   console.log(outfit);
+    //                   alert('submit');
+                        props.AddOutfit(outfit);
+                        history.push('/');    // Redirect to root which should redirect to AllOutfits page.
+                    }} 
+                />
+            </div>
+            
         </div>
     );
 }

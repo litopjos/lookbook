@@ -10,6 +10,33 @@ pertaining to authtication.
 import {history} from "../../routes/routes";
 import {loadOutfitsAction} from "./actionsoutfits"
 
+const loadGuestFootwear = ()=>{
+    const footwear = [];
+
+    footwear.push (
+        {
+            id: "footwear_1",
+            notes: "",
+            imageUrls: 
+            [
+                "/images/image1.jpg",
+                "/images/image2.jpg"                 
+            ]             
+        },
+
+        {
+            id: "footwear_2",
+            notes: "",
+            imageUrls: 
+            [
+                "/images/image1.jpg",
+                "/images/image2.jpg"                 
+            ]             
+        }        
+
+    )
+}
+
 const loadGuestOutfits = () => {
     const outfits = [];
 
@@ -22,7 +49,12 @@ const loadGuestOutfits = () => {
             [
                 "/images/image1.jpg",
                 "/images/image2.jpg"                 
-            ]                         
+            ],          
+            
+            outfitFootwear:
+            [
+                "footwear_1"
+            ]
     
         }
     )
@@ -32,11 +64,18 @@ const loadGuestOutfits = () => {
             id: "2",
             title: 'favorite lineup',
             notes: 'business casual',
+            
             outfitImageUrls: 
             [
                 "/images/image3.jpg",
                 "/images/image4.jpg"                 
-            ]           
+            ],
+ 
+            outfitFootwear:
+            [
+                "footwear_1"
+            ]            
+            
         }
     )
 
