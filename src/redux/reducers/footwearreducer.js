@@ -1,8 +1,8 @@
 /* -----------------------------------------------
-FILE: authReducer.js
+FILE: footwarereducer.js
 
 DESCRIPTION:
-This file exports the authReducer() function which
+This file exports the footwareReducer() function which
 is called by Redux to determine if the specified
 Redux action object is to be processed by this reducer
 (to be determined by action.type). If so, the reducer
@@ -11,23 +11,18 @@ values reflect the new state.
 
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
-const authReducer =  (state = {},action)=>{
+const footwearReducer =  (state = {},action)=>{
     switch (action.type) {
-        case "LOGIN":
-//            alert(`ACTION REDUCER: LOGIN ${action.uid}`);
-            return {
-                uid: action.uid
-            }
+        case "LOAD_FOOTWEAR":
+ //           alert(`REDUCER: LOAD_FOOTWEAR`);
+            return action.footwear;
         break;
 
-        case "LOGOUT":
- //           alert(`ACTION REDUCER: LOGOUT`);
-            return {};
-        break;
 
         default:
             return state;
     }
+
 }
 
-export default authReducer;
+export default footwearReducer;

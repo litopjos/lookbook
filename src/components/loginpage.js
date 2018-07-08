@@ -28,10 +28,6 @@ const LoginPage = (props)=>{
                 <h3>Your curated wardrobe at your fingertips.</h3>
 
                 <p>
-                   <button className="button" >Login Using Google</button>
-                </p>
-
-                <p>
                     <button 
                         className="button"
                         onClick = {props.LoginAsGuest} >

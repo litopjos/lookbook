@@ -8,7 +8,8 @@ pertaining to authtication.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 import {history} from "../../routes/routes";
-import {loadOutfitsAction} from "./actionsoutfits"
+import {loadFootwearAction} from "./actionsfootwear";
+import {loadOutfitsAction} from "./actionsoutfits";
 
 const loadGuestFootwear = ()=>{
     const footwear = [];
@@ -33,8 +34,9 @@ const loadGuestFootwear = ()=>{
                 "/images/image2.jpg"                 
             ]             
         }        
-
     )
+
+    return footwear;
 }
 
 const loadGuestOutfits = () => {
@@ -64,7 +66,7 @@ const loadGuestOutfits = () => {
             id: "2",
             title: 'favorite lineup',
             notes: 'business casual',
-            
+
             outfitImageUrls: 
             [
                 "/images/image3.jpg",
@@ -102,9 +104,11 @@ export const startLoginAsGuest = () => {
     return (dispatch) => {
         dispatch(login('guest'));   
 
-        let outfits= loadGuestOutfits();
+        let outfits = loadGuestOutfits();
+        let footwear = loadGuestFootwear();
         
         dispatch(loadOutfitsAction(outfits));
+        dispatch(loadFootwearAction(footwear));        
 
         history.push('/alloutfits');
     }

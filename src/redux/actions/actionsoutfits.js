@@ -13,7 +13,7 @@ export const loadOutfitsAction = (outfits)=>{
  //   alert('ACTION OUTFITS: LOAD_OUTFITS');
     return {
         type: 'LOAD_OUTFITS',
-        outfits
+        outfits,
     }
 }
 
