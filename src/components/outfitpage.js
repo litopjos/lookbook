@@ -17,7 +17,7 @@ value when the component is first rendered.
 
 import React from "react";
 
-import Images from "./images";
+import Images from "./imagesslider";
 
 class OutfitPage extends React.Component {
 
@@ -69,6 +69,22 @@ class OutfitPage extends React.Component {
     render () {
         return (
             <div>
+                <button 
+                    class="button"
+                    onClick = {
+                        ()=>{
+                            let outfit = {...this.state};
+                            outfit.outfitImageUrls = this.outfitImageUrls;
+                    
+                    //        console.log(outfit);
+                    //        alert('OutfitPage onSubmit()');
+                    
+                            this.props.onSubmit(outfit);                           
+                        }
+                    }
+                >
+                    Save Outfit
+                </button>
 
                 <h3> Outfit Images </h3>
                 <Images
@@ -76,8 +92,7 @@ class OutfitPage extends React.Component {
                     onImageUrlsChanged = {this.onOutfitImageUrlsChanged}
                 />
 
-                <form
-                    onSubmit = {this.onSubmit} >                   
+                <form>                   
                     <input
                         type= "text"
                         placeholder = "id"
@@ -96,9 +111,7 @@ class OutfitPage extends React.Component {
                         value = {this.state.notes}
                     />
 
-                    <button> 
-                        Submit 
-                    </button>
+
                 >
                 
                 </form>

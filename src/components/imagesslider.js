@@ -60,12 +60,12 @@ class Images extends React.Component {
  //       alert ('here');
         
         return (
-            <div>
+            <div className="image-slider-container">
                 {imageUrls.length > 0 &&
                 imageUrls.map((url)=>{
                     return (
-                        <div>
-                            <img src={url} />
+                        <div className="image-slider-item">
+                            <img  src={url} />
 
                             <FilePicker
                                 onPickedImage = {

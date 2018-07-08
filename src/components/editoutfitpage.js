@@ -13,26 +13,30 @@ import React from "react";
 import {history} from "../routes/routes";
 import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
 
-import Images from "./images";
+import Images from "./imagesslider";
 import OutfitPage from "./outfitpage";
 
 const EditOutfitPage = (props)=>{
     console.log(props);
     return (
-
         <div>
-            <h2> Edit Outfit Pages </h2>
-            
-            <OutfitPage 
-                defaultOutfit={props.defaultOutfit}
+            <div className="page-spec-header">
+                <div className = "container">
+                    <h2>Edit Outfit</h2>
+                </div>
+            </div>
 
-                onSubmit = {(outfit)=>{
+            <div className="container">
+                <OutfitPage 
+                    defaultOutfit={props.defaultOutfit}
 
-                    props.EditOutfit(props.match.params.id,outfit);
-                    history.push('/');    // Redirect to root which should redirect to AllOutfits page.
-                    }}                
+                    onSubmit = {(outfit)=>{
 
-            />
+                        props.EditOutfit(props.match.params.id,outfit);
+                        history.push('/');    // Redirect to root which should redirect to AllOutfits page.
+                        }}                
+                />
+            </div>
         </div>
     );
 }

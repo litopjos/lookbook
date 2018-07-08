@@ -1,21 +1,21 @@
 /* -----------------------------------------------
-FILE: _login-gallery.scss
+FILE: _login-slider.scss
 
 DESCRIPTION:
-
+This file contains the SCSS selectors used by the 
+<ImageSlider> component.
 
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 
-.image-container {
+.image-slider-container {
     display:flex;
     border: 1px solid red;
-    flex-wrap: wrap;
-
+    height: 250px;
     
 }
 
-.image-item {
+.image-slider-item {
     width: 150px;
     
     img {
