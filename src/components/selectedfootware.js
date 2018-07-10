@@ -40,7 +40,6 @@ class SelectedFootware extends React.Component {
     render() {
         return (
             <div>
-                <h2>Selected Footwear</h2>
                 <button className="button">Select Footwear</button>
                 <OutfitPartSlider outfitParts = {this.state.actualFootwear} />
             </div>

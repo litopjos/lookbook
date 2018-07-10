@@ -88,14 +88,16 @@ class OutfitPage extends React.Component {
                     Save Outfit
                 </button>
 
-                <h3> Outfit Images </h3>
+                <div class = "page-section-header"> Outfit Images </div>
                 <Images
                     imageUrls = {this.outfitImageUrls} 
                     onImageUrlsChanged = {this.onOutfitImageUrlsChanged}
                 />
 
+                <div class = "page-section-header"> Selected Footware </div>
                 <SelectedFootware ids = {this.selFootwareIds} />
 
+                <div class = "page-section-header"> Outfit Details </div>
                 <div className="input-group">
                     <div className="input-group__item">
                     <input
