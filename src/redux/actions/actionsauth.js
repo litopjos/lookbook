@@ -20,8 +20,7 @@ const loadGuestFootwear = ()=>{
             notes: "",
             imageUrls: 
             [
-                "/images/image1.jpg",
-                "/images/image2.jpg"                 
+                "/images/footwear/20180711_044454.jpg"             
             ]             
         },
 
@@ -30,8 +29,7 @@ const loadGuestFootwear = ()=>{
             notes: "",
             imageUrls: 
             [
-                "/images/image1.jpg",
-                "/images/image2.jpg"                 
+                "/images/footwear/20180711_051515.jpg"    
             ]             
         }        
     )
@@ -49,8 +47,7 @@ const loadGuestOutfits = () => {
             notes: "wore april 2005",
             outfitImageUrls: 
             [
-                "/images/image1.jpg",
-                "/images/image2.jpg"                 
+                "/images/outfits/20180516_152108.jpg"               
             ],          
             
             outfitFootwear:
@@ -69,13 +66,12 @@ const loadGuestOutfits = () => {
 
             outfitImageUrls: 
             [
-                "/images/image3.jpg",
-                "/images/image4.jpg"                 
+                "/images/outfits/20180423_122730.jpg"                    
             ],
  
             outfitFootwear:
             [
-                "footwear_1"
+                "footwear_2"
             ]            
             
         }

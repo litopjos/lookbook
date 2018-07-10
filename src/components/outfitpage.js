@@ -1,5 +1,5 @@
 /* -----------------------------------------------
-FILE: Outfit.js
+FILE: outfit.js
 
 DESCRIPTION:
 This file implements the OutfitPage component as a
