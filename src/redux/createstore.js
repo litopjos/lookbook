@@ -26,7 +26,7 @@ const create_store = ()=>{
             {
                 auth: authReducer,
                 outfits: outfitsReducer,
-                footware: footwearReducer
+                footwear: footwearReducer
             }
         ),
         composeEnhancers(applyMiddleware(thunk))

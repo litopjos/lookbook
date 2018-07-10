@@ -1,0 +1,27 @@
+/* -----------------------------------------------
+FILE: _input-group.scss
+
+DESCRIPTION:
+
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
+
+.input-group {
+    display:flex;
+    flex-direction: column;
+
+    @media(min-width:$desktop-threshold) {
+        flex-direction: row;
+    }
+}
+
+.input-group__item {
+    margin-bottom: $s-size;
+
+    @media(min-width:$desktop-threshold) {
+        margin-left: $m-size;
+
+    }
+
+}

@@ -22,7 +22,7 @@ const EditOutfitPage = (props)=>{
         <div>
             <div className="page-spec-header">
                 <div className = "container">
-                    <h2>Edit Outfit</h2>
+                    <h2>Edit Outfit <span>{`(ID: ${props.match.params.id})`} </span> </h2>
                 </div>
             </div>
 

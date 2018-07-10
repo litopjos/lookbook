@@ -18,6 +18,7 @@ value when the component is first rendered.
 import React from "react";
 
 import Images from "./imagesslider";
+import SelectedFootware from "./selectedfootware";
 
 class OutfitPage extends React.Component {
 
@@ -38,6 +39,7 @@ class OutfitPage extends React.Component {
 
         // Non-creactive state.
         this.outfitImageUrls = props.defaultOutfit ? props.defaultOutfit.outfitImageUrls : [];
+        this.selFootwareIds =  props.defaultOutfit ? props.defaultOutfit.outfitFootwear : [];
 
         // Reactive State
         this.state = {
@@ -92,29 +94,35 @@ class OutfitPage extends React.Component {
                     onImageUrlsChanged = {this.onOutfitImageUrlsChanged}
                 />
 
-                <form>                   
+                <SelectedFootware ids = {this.selFootwareIds} />
+
+                <div className="input-group">
+                    <div className="input-group__item">
                     <input
                         type= "text"
                         placeholder = "id"
                         value = {this.state.id}
                     />
+                    </div>
 
+                    <div className="input-group__item">                    
                     <input 
                         type = "text"
                         placeholder = "title"
                         value = {this.state.title}
                         onChange = {this.onChangeTitle}
                     />
+                    </div>
 
+                    <div className="input-group__item">                    
                     <textarea
                         placeholder = "notes"
                         value = {this.state.notes}
                     />
+                    </div>
 
+                </div>
 
-                >
-                
-                </form>
             </div>
             )
 
