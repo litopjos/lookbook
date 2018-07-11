@@ -10,13 +10,130 @@ to the server.
 
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
-
 import React from "react";
 
 import FilePicker from "./filepicker";
+import ModalImageViewer from "./modalimageviewer";
 
-class Images extends React.Component {
+class ImagesSlider extends React.Component {
 
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            imageUrls: [...props.imageUrls],
+            showModalViewer: false,
+            imgToView: undefined
+        }
+    }
+
+    render() {
+        const imageUrls = this.state.imageUrls;
+ //       console.log (imageUrls);
+ //       alert ('here');
+        
+        return (
+            <div>
+                <ModalImageViewer 
+                    showModalViewer={this.state.showModalViewer}
+                    handleHideOutfitsImageViewer = {this.handleHideOutfitsImageViewer}
+                    imgToView = {this.state.imgToView}
+                />
+
+                <div className="image-slider-container">
+                    {imageUrls.length > 0 &&
+                    imageUrls.map((url)=>{
+                        return (
+                                
+                            <div className="image-slider-item">
+
+                                <img 
+                                    src={url} 
+                                    onDoubleClick = {()=>this.setState(()=>({showModalViewer:true, imgToView:url}))}
+                                    onClick = {()=>this.setState(()=>({showModalViewer:true, imgToView:url}))}
+                                />
+
+                                <FilePicker
+                                    onPickedImage = {
+                                        (newImageUrl)=>{
+                                            this.setState(
+                                                (prevState) => {
+
+                                                    const arr = prevState.imageUrls.map (
+                                                        (item)=>{
+                                                            if(item!==url)
+                                                                return item;
+                                                            else
+                                                                return newImageUrl;
+                                                        }
+                                                    )
+
+    //                                                console.log(url);
+    //                                                console.log(arr);
+    //                                                alert('replace url');
+
+                                                    // Inform the parent of the change.
+                                                    //            console.log(newState.imageUrls);
+                                                    //            alert("imageUrls");
+                                                    this.props.onImageUrlsChanged (arr);
+
+                                                    return {
+                                                        imageUrls: arr
+                                                    }
+                                                }
+                                            )
+                                        }
+                                    }                            
+                                >
+                                    <button>
+                                        Replace
+                                    </button>
+                                </FilePicker>
+
+                                <button
+                                    onClick = {()=>{
+                                        this.setState ( (prevState)=> {
+
+                                            const arr = prevState.imageUrls.filter(
+                                                (url2)=>{
+                                                    return (url2 !== url);
+                                                }
+                                            );
+
+    //                                       console.log (arr);
+    //                                       alert("new state");
+
+                                            // Inform the parent of the change.
+                                            //            console.log(newState.imageUrls);
+                                            //            alert("imageUrls");
+                                            this.props.onImageUrlsChanged (arr);
+
+                                            return {
+                                                imageUrls: arr
+                                            }
+                                        })
+                                    }}
+                                >
+                                    Remove
+                                </button>
+
+                            </div>
+                            
+                        )
+                    })} 
+
+                    <FilePicker
+                        onPickedImage = {this.onAddImage}
+                        >
+                        <button>
+                            Add Image
+                        </button>
+                    </FilePicker>
+                </div>
+            </div>
+        );
+    }
+    
     // This is called when a selected image is to be removed.
     onRemoveImage = (url)=>{
         console.log(url)
@@ -41,112 +158,24 @@ class Images extends React.Component {
 
             return newState;
         });
-
-
     }
 
-    constructor (props) {
-        super(props);
-
-        this.state = {
-            imageUrls: [...props.imageUrls]
-        }
+    //
+    launchImageViewer = ()=>{
+//        alert('double click');
+//        alert(url);
+        this.setState(()=>({showModalViewer:true, imgToView:url}));
     }
 
-    render() {
-        const imageUrls = this.state.imageUrls;
-
- //       console.log (imageUrls);
- //       alert ('here');
-        
-        return (
-            <div className="image-slider-container">
-                {imageUrls.length > 0 &&
-                imageUrls.map((url)=>{
-                    return (
-                        <div className="image-slider-item">
-                            <img  src={url} />
-
-                            <FilePicker
-                                onPickedImage = {
-                                    (newImageUrl)=>{
-                                        this.setState(
-                                            (prevState) => {
-
-                                                const arr = prevState.imageUrls.map (
-                                                    (item)=>{
-                                                        if(item!==url)
-                                                            return item;
-                                                        else
-                                                            return newImageUrl;
-                                                    }
-                                                )
-
-//                                                console.log(url);
-//                                                console.log(arr);
-//                                                alert('replace url');
-
-                                                // Inform the parent of the change.
-                                                //            console.log(newState.imageUrls);
-                                                //            alert("imageUrls");
-                                                this.props.onImageUrlsChanged (arr);
-
-                                                return {
-                                                    imageUrls: arr
-                                                }
-                                            }
-                                        )
-                                    }
-                                }                            
-                            >
-                                <button>
-                                    Replace
-                                </button>
-                            </FilePicker>
-
-                            <button
-                                onClick = {()=>{
-                                    this.setState ( (prevState)=> {
-
-                                        const arr = prevState.imageUrls.filter(
-                                            (url2)=>{
-                                                return (url2 !== url);
-                                            }
-                                        );
-
- //                                       console.log (arr);
- //                                       alert("new state");
-
-                                        // Inform the parent of the change.
-                                        //            console.log(newState.imageUrls);
-                                        //            alert("imageUrls");
-                                        this.props.onImageUrlsChanged (arr);
-
-                                        return {
-                                            imageUrls: arr
-                                        }
-                                    })
-                                }}
-                            >
-                                Remove
-                            </button>
-
-                        </div>
-                    )
-                })} 
-
-                <FilePicker
-                    onPickedImage = {this.onAddImage}
-                    >
-                    <button>
-                        Add Image
-                    </button>
-                </FilePicker>
-
-            </div>
-
-        );
+    handleHideOutfitsImageViewer = ()=>{
+ //       alert('clicked parent');
+        this.setState(()=>({showModalViewer:false}))
     }
+
+
+
 }
 
-export default Images;
+
+
+export default ImagesSlider;

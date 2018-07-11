@@ -17,7 +17,7 @@ value when the component is first rendered.
 
 import React from "react";
 
-import Images from "./imagesslider";
+import ImagesSlider from "./imagesslider";
 import SelectedFootware from "./selectedfootware";
 
 class OutfitPage extends React.Component {
@@ -89,7 +89,7 @@ class OutfitPage extends React.Component {
                 </button>
 
                 <div class = "page-section-header"> Outfit Images </div>
-                <Images
+                <ImagesSlider
                     imageUrls = {this.outfitImageUrls} 
                     onImageUrlsChanged = {this.onOutfitImageUrlsChanged}
                 />
