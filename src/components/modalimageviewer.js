@@ -9,11 +9,18 @@ DESCRIPTION:
 import Modal from "react-modal";
 import React from "react";
 
+//import ImageViewer from 'react-image-viewer-zoom';
+//import 'react-image-viewer-zoom/dist/style.css'; 
+
 class ModalImageViewer extends React.Component {
 
     render () {
         console.log(this.props);
 //        alert(this.props.imgToView);
+
+        let images = [];
+        if (this.props.imgToView)
+            images.push(this.props.imgToView);
 
         return (
 
@@ -29,7 +36,9 @@ class ModalImageViewer extends React.Component {
                     Back
                 </button>
 
-                {this.props.imgToView && <p>{this.props.imgToView}</p>}
+                {this.props.imgToView && 
+                    <img src={this.props.imgToView}/>
+                }
 
             </Modal>
         )
