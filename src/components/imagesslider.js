@@ -49,8 +49,8 @@ class ImagesSlider extends React.Component {
 
                                 <img 
                                     src={url} 
-                                    onDoubleClick = {()=>this.setState(()=>({showModalViewer:true, imgToView:url}))}
-                                    onClick = {()=>this.setState(()=>({showModalViewer:true, imgToView:url}))}
+                                    onDoubleClick = {()=>this.launchImageViewer(url)}
+                                    onClick = {()=>this.launchImageViewer(url)}
                                 />
 
                                 <FilePicker
@@ -161,7 +161,8 @@ class ImagesSlider extends React.Component {
     }
 
     //
-    launchImageViewer = ()=>{
+
+    launchImageViewer = (url)=>{
 //        alert('double click');
 //        alert(url);
         this.setState(()=>({showModalViewer:true, imgToView:url}));

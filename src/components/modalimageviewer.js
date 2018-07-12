@@ -12,15 +12,21 @@ import React from "react";
 //import ImageViewer from 'react-image-viewer-zoom';
 //import 'react-image-viewer-zoom/dist/style.css'; 
 
+import ImageGallery from 'react-image-gallery';
+
 class ModalImageViewer extends React.Component {
 
     render () {
         console.log(this.props);
 //        alert(this.props.imgToView);
 
-        let images = [];
-        if (this.props.imgToView)
-            images.push(this.props.imgToView);
+
+        const imgs = [
+                {
+                    original: this.props.imgToView,
+                    thumbnail: this.props.imgToView,
+                }
+            ]
 
         return (
 
@@ -36,9 +42,10 @@ class ModalImageViewer extends React.Component {
                     Back
                 </button>
 
-                {this.props.imgToView && 
-                    <img src={this.props.imgToView}/>
-                }
+               
+                <ImageGallery items={imgs} useBrowserFullscreen={true}/>
+ 
+
 
             </Modal>
         )
