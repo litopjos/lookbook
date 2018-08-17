@@ -15,6 +15,7 @@ import thunk from "redux-thunk";
 
 import authReducer from "./reducers/authreducer";
 import outfitsReducer from "./reducers/outfitsreducer";
+import outfitPartsReducer from "./reducers/outfitPartsReducer";
 import footwearReducer from "./reducers/footwearreducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -26,6 +27,7 @@ const create_store = ()=>{
             {
                 auth: authReducer,
                 outfits: outfitsReducer,
+                outfit_parts: outfitPartsReducer,
                 footwear: footwearReducer
             }
         ),

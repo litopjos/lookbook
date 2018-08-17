@@ -10,6 +10,7 @@ DESCRIPTION:
 .input-group {
     display:flex;
     flex-direction: column;
+    margin-top: $m-size;
 
     @media(min-width:$desktop-threshold) {
         flex-direction: row;
@@ -17,6 +18,7 @@ DESCRIPTION:
 }
 
 .input-group__item {
+
     margin-bottom: $s-size;
 
     @media(min-width:$desktop-threshold) {
@@ -25,3 +27,18 @@ DESCRIPTION:
     }
 
 }
+
+.input-group__item-flex {
+    margin-top: $s-size;
+    margin-bottom: $s-size;
+
+    flex: 1;
+
+    @media(min-width:$desktop-threshold) {
+        margin-top: 0;
+        margin-left: $m-size;
+
+    }
+
+}
+

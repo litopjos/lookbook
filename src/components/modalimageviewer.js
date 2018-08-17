@@ -14,6 +14,8 @@ import React from "react";
 
 import ImageGallery from 'react-image-gallery';
 
+import Gallery from 'react-grid-gallery';
+
 class ModalImageViewer extends React.Component {
 
     render () {
@@ -25,8 +27,17 @@ class ModalImageViewer extends React.Component {
                 {
                     original: this.props.imgToView,
                     thumbnail: this.props.imgToView,
+                    orientation: 4
                 }
-            ]
+            ];
+
+        const img2 = [
+            {
+            src: this.props.imgToView,
+            thumbnail:this.props.imgToView,
+            orientation: 5
+            }
+        ]
 
         return (
 
@@ -43,9 +54,9 @@ class ModalImageViewer extends React.Component {
                 </button>
 
                
-                <ImageGallery items={imgs} useBrowserFullscreen={true}/>
+                <ImageGallery items={imgs} useBrowserFullscreen={true} orientation={4}/>
  
-
+                <Gallery images={img2}/>
 
             </Modal>
         )

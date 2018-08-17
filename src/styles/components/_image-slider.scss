@@ -12,12 +12,18 @@ This file contains the SCSS selectors used by the
     display:flex;
     border: 1px solid red;
     height: 250px;
+    overflow-x: auto;
+    overflow-y: hidden;
     
 }
 
 .image-slider-item {
     width: 150px;
-    
+    padding: 1rem;
+    box-shadow: 1px 2px 40px 2px rgba(160,160,160,.5);
+    margin: $s-size;
+
+
     img {
         width: 150px;
         height: 200px;

@@ -30,6 +30,7 @@ class AllOutfitsPage extends React.Component {
                 <div className="page-spec-header">
                     <div className = "container">
                         <Link className="button" to="/addnewoutfit">Add New Outfit</Link> 
+                        <Link className="button" to="/addtop">Add Top</Link> 
                     </div>
                 </div>
 

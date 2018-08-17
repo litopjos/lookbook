@@ -4,7 +4,7 @@ FILE: images.js
 DESCRIPTION:
 
 Abstracts the logic needed to render a collection of images along with the ability
-to replace or delete a specific image. When an image is replaced or a new image is added, the new/edited image must be uploaded to the app's
+to add, replace or delete a specific image. When an image is replaced or a new image is added, the new/edited image must be uploaded to the app's
 Express server's images folder. User will also be given the option to optimize the image for size before uploading
 to the server.
 
@@ -14,6 +14,59 @@ import React from "react";
 
 import FilePicker from "./filepicker";
 import ModalImageViewer from "./modalimageviewer";
+import axios from "axios";
+
+const uuid = require('uuid/v1');
+
+
+
+class ColImgObjs {
+    constructor (arrImgObjs = []) {
+        this.arrImgObjs = arrImgObjs;
+    }
+
+    addImgUrl =  (img, filename = "") => {
+        const imgObj = this.genImgObj(img,filename,true);
+
+        this.arrImgObjs.push(imgObjs);
+    }
+
+    addImgBlob = (img, filename = "") =>{
+        alert(`addImgBlob()`);
+
+        const imgObj = this.genImgObj(img,filename,false);
+  
+        this.arrImgObjs.push(imgObj);
+
+    //    console.log(imgObjs);
+    //    console.log(this.arrImgObjs);
+    //    alert(`addImgBlob(): ${imgObjs}`);
+    }
+
+    addFileObj = (fileObj)=>{
+        let imgObj = this.genImgObj  (fileObj.preview, fileObj.name, fileObj);
+        
+        this.arrImgObjs.push(imgObj);    
+    }
+
+    genImgObj = (preview = "", filename = "", fileObj = undefined, isUploaded=false, fileUrl = undefined) =>{
+
+        let imgObj = {
+            id:  uuid(),
+            img: preview,
+            filename,
+            fileObj,
+            isUploaded,
+            fileUrl
+        };
+
+       return imgObj;
+    }
+
+    getArrImgObjs = ()=>this.arrImgObjs;
+
+
+}
 
 class ImagesSlider extends React.Component {
 
@@ -22,13 +75,18 @@ class ImagesSlider extends React.Component {
 
         this.state = {
             imageUrls: [...props.imageUrls],
+            colImgObjs: new ColImgObjs,        
             showModalViewer: false,
             imgToView: undefined
         }
     }
 
+
+
     render() {
+        const arrImgObjs = this.state.colImgObjs.getArrImgObjs();
         const imageUrls = this.state.imageUrls;
+
  //       console.log (imageUrls);
  //       alert ('here');
         
@@ -41,120 +99,194 @@ class ImagesSlider extends React.Component {
                 />
 
                 <div className="image-slider-container">
-                    {imageUrls.length > 0 &&
-                    imageUrls.map((url)=>{
+
+                    {/* Iterate through the arrImgObj */}
+                    {arrImgObjs.length > 0 &&arrImgObjs.map((imgObj)=>{
+
+                        const imgUrl = imgObj.isUploaded ? imgObj.fileUrl : imgObj.img;
+                        alert(`imgUrl: ${imgUrl}`);
+
                         return (
                                 
                             <div className="image-slider-item">
 
                                 <img 
-                                    src={url} 
-                                    onDoubleClick = {()=>this.launchImageViewer(url)}
-                                    onClick = {()=>this.launchImageViewer(url)}
+                                    src={imgUrl} 
+                                    onDoubleClick = {()=>this.launchImageViewer(imgUrl)}
+                                    onClick = {()=>this.launchImageViewer(imgUrl)}
                                 />
 
-                                <FilePicker
-                                    onPickedImage = {
-                                        (newImageUrl)=>{
-                                            this.setState(
-                                                (prevState) => {
-
-                                                    const arr = prevState.imageUrls.map (
-                                                        (item)=>{
-                                                            if(item!==url)
-                                                                return item;
-                                                            else
-                                                                return newImageUrl;
-                                                        }
-                                                    )
-
-    //                                                console.log(url);
-    //                                                console.log(arr);
-    //                                                alert('replace url');
-
-                                                    // Inform the parent of the change.
-                                                    //            console.log(newState.imageUrls);
-                                                    //            alert("imageUrls");
-                                                    this.props.onImageUrlsChanged (arr);
-
-                                                    return {
-                                                        imageUrls: arr
-                                                    }
-                                                }
-                                            )
-                                        }
-                                    }                            
-                                >
+                                <FilePicker onPickedImage = { (fileObj) => this.onReplaceImg(fileObj, imgObj.id) }>
                                     <button>
                                         Replace
                                     </button>
                                 </FilePicker>
 
-                                <button
-                                    onClick = {()=>{
-                                        this.setState ( (prevState)=> {
-
-                                            const arr = prevState.imageUrls.filter(
-                                                (url2)=>{
-                                                    return (url2 !== url);
-                                                }
-                                            );
-
-    //                                       console.log (arr);
-    //                                       alert("new state");
-
-                                            // Inform the parent of the change.
-                                            //            console.log(newState.imageUrls);
-                                            //            alert("imageUrls");
-                                            this.props.onImageUrlsChanged (arr);
-
-                                            return {
-                                                imageUrls: arr
-                                            }
-                                        })
-                                    }}
-                                >
+                                <button onClick = {()=>this.onRemoveImg(imgObj.id)} >
                                     Remove
                                 </button>
+
+                                { !imgObj.isUploaded &&
+                                    <button
+                                        onClick = {()=>this.onUploadImg(imgObj)}
+                                    >
+                                        Upload
+                                    </button>   
+                                }
 
                             </div>
                             
                         )
                     })} 
 
-                    <FilePicker
-                        onPickedImage = {this.onAddImage}
-                        >
+                    <FilePicker onPickedImage = {this.onAddImage} >
                         <button>
                             Add Image
                         </button>
                     </FilePicker>
+
                 </div>
             </div>
         );
     }
+
+    onUploadImg = (imgObj)=>{
+        console.log(imgObj);
+        alert(`Upload Img (id=${imgObj}`);
+
+        const fd = new FormData();
+        fd.append ("avatar", imgObj.fileObj, imgObj.filename);
+        fd.append ("UploadFolderQualifier", "tops");
+
+        axios.post('http://localhost:8080/images/top',fd)
+            .then (
+                (res)=>{
+                    const fileUrl = res.data.fileUrl;
+
+                    this.setState ( 
+                        (prevState)=> {
+                            const arr = prevState.colImgObjs.getArrImgObjs();
+                            console.log(arr);
+                            console.log('pe');
+                            const newArr = arr.map(
+                                (img)=>{
     
-    // This is called when a selected image is to be removed.
-    onRemoveImage = (url)=>{
-        console.log(url)
-        alert('remove image');
+                                    console.log(img);
+                                    console.log('lito');
+                                    alert('yo');
+
+                                    if (img.id !== imgObj.id)
+                                        return img;
+    
+                                    // This means that this imgObj is to be replaced with a new one
+                                    // containing the img described by fileObj.
+                                    const newImgObj = prevState.colImgObjs.genImgObj("", "", imgObj,true, fileUrl);
+                        
+                                    return newImgObj;
+                                }
+                            );
+
+                            // Inform the parent that the array of uploaded images
+                            // has changed.
+                            // Build the array.
+                            const arrImgUrls = [];
+                            newArr.forEach(
+                                (obj)=>{
+                                    if (obj.isUploaded)
+                                        arrImgUrls.push(obj.fileUrl);
+                                }
+                            )
+                            console.log(arrImgUrls);
+                            alert('ALMOST');
+                            this.props.onImageUrlsChanged (arrImgUrls);
+
+                            // Update the state
+                            return {
+                                colImgObjs: new ColImgObjs(newArr)
+                            }
+    
+                        }     
+                    )              
+                }
+            )
+            .catch (
+                (e) => {
+                    alert(`Error: ${e}`);
+                }
+            )            
+    }
+     
+
+
+
+    onReplaceImg = (fileObj, id) => {
+        console.log (fileObj);
+//        alert(id);
+
+        this.setState ( (prevState)=> {
+
+            const arr = prevState.colImgObjs.getArrImgObjs();
+            const newArr = arr.map(
+                (imgObj)=>{
+
+                    if (imgObj.id !== id)
+                        return imgObj;
+
+                    // This means that this imgObj is to be replaced with a new one
+                    // containing the img described by fileObj.
+                    const newImgObj = prevState.colImgObjs.genImgObj(fileObj.preview, fileObj.name);
+                    return newImgObj;
+                }
+            );
+
+
+            return {
+                colImgObjs: new ColImgObjs(newArr)
+            }
+        })        
+    }
+
+    onRemoveImg = (id)=>{
+//        alert(id);
+                
+        this.setState ( (prevState)=> {
+
+            const arr = prevState.colImgObjs.getArrImgObjs();
+            const newArr = arr.filter(
+                (imgObj)=>{
+                    return (imgObj.id !== id);
+                }
+            );
+
+
+            return {
+                colImgObjs: new ColImgObjs(newArr)
+            }
+        })
+                                
     }
 
     // This is called by FilePicker everytime a new image is added.
-    onAddImage = (imageUrl)=>{
- //       alert (imageUrl);
+    onAddImage = (fileObj)=>{
+        console.log(fileObj);
+        console.log (`PICKED NEW IMAGE: ${fileObj}`);
+ //       alert (`PICKED NEW IMAGE: ${fileObj}`);
 
         let newState = {};
 
         this.setState((prevState)=>{
-            newState = {
-                imageUrls: [...prevState.imageUrls,imageUrl]
-            };
+            let col = new ColImgObjs(prevState.colImgObjs.arrImgObjs);
+ //           col.addImgBlob(fileObj.preview, fileObj.name);
+            col.addFileObj(fileObj);
 
-            // Inform the parent of the change.
-//            console.log(newState.imageUrls);
-//            alert("imageUrls");
-            this.props.onImageUrlsChanged (newState.imageUrls);           
+            newState = {
+ //               imageUrls: [...prevState.imageUrls,"/images/footwear/20180711_044454.jpg"]
+ //               arrImgObjs: new ArrayImgObjs(prevState.arrImgObjs.arrImgObjs).addImgBlob(fileObj.preview,fileObj.filename),
+                colImgObjs: col,        
+                imageUrls: [...prevState.imageUrls,fileObj.preview]
+
+
+            }
 
             return newState;
         });

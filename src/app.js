@@ -22,6 +22,8 @@ import Routes from "./routes/routes";
 import "normalize.css/normalize.css";   // Used to reset the styles of all the btowsers.
 import "./styles/styles.scss";
 
+import "./firebase/firebase";
+
 // Create the redux store
 const store = createStore();
 

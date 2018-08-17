@@ -10,12 +10,14 @@ that shall be rendered.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 
+
 import {Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
 import React from "react";
 import createHistory from "history/createBrowserHistory";
 
 import AddNewOutfitPage from  "../components/addoutfitpage";
+import AddTopPage from "../components/addtoppage";
 import AllOutfitsPage from "../components/alloutfitspage";
 import EditOutfitPage from "../components/editoutfitpage";
 import Header from "../components/header";
@@ -50,6 +52,12 @@ const routes = ()=>{
             <PrivateRoute 
                 path="/addnewoutfit" 
                 component={AddNewOutfitPage}
+                exact={true} 
+            />      
+
+            <PrivateRoute 
+                path="/addtop" 
+                component={AddTopPage}
                 exact={true} 
             />      
 
