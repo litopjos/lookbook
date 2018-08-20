@@ -14,6 +14,7 @@ This file contains the SCSS selectors used by the
     height: 250px;
     overflow-x: auto;
     overflow-y: hidden;
+    align-items:center;
     
 }
 
@@ -22,10 +23,37 @@ This file contains the SCSS selectors used by the
     padding: 1rem;
     box-shadow: 1px 2px 40px 2px rgba(160,160,160,.5);
     margin: $s-size;
-
+    position: relative;
 
     img {
         width: 150px;
         height: 200px;
+
+
     }
+}
+
+.image-slider-item-icon-trash {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+
+}   
+
+.image-slider-item-icon-upload {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+} 
+
+.image-slider-item-icon-exchange {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+
+} 
+
+.icon-color-red {
+    color: red;
 }

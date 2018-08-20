@@ -12,6 +12,9 @@ to the server.
 -------------------------------------------------- */
 import React from "react";
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faPlusCircle, faTrash, faUpload, faExchangeAlt, faInverse, faCircle} from "@fortawesome/free-solid-svg-icons";
+
 import FilePicker from "./filepicker";
 import ModalImageViewer from "./modalimageviewer";
 import axios from "axios";
@@ -116,23 +119,27 @@ class ImagesSlider extends React.Component {
                                     onClick = {()=>this.launchImageViewer(imgUrl)}
                                 />
 
-                                <FilePicker onPickedImage = { (fileObj) => this.onReplaceImg(fileObj, imgObj.id) }>
-                                    <button>
-                                        Replace
-                                    </button>
-                                </FilePicker>
 
-                                <button onClick = {()=>this.onRemoveImg(imgObj.id)} >
-                                    Remove
-                                </button>
+                                <div className='image-slider-item-icon-exchange'>
+                                <FilePicker onPickedImage = { (fileObj) => this.onReplaceImg(fileObj, imgObj.id) }>
+                                    <a >
+                                        <FontAwesomeIcon className="fa-3x" color="#1c88bf" icon={faExchangeAlt} />
+                                    </a>                                    
+                                </FilePicker>
+                                </div>
+
+                                <a className="image-slider-item-icon-trash" onClick = {()=>this.onRemoveImg(imgObj.id)}>
+                                    <FontAwesomeIcon className="fa-3x" color="#1c88bf"  icon={faTrash} />
+                                </a>
 
                                 { !imgObj.isUploaded &&
-                                    <button
-                                        onClick = {()=>this.onUploadImg(imgObj)}
-                                    >
-                                        Upload
-                                    </button>   
+                                    <a className='image-slider-item-icon-upload' onClick = {()=>this.onUploadImg(imgObj)}>
+                                            <FontAwesomeIcon className="fa-3x" color="#1c88bf" icon={faUpload} />
+                                    </a>
+
                                 }
+
+                                
 
                             </div>
                             
@@ -140,9 +147,9 @@ class ImagesSlider extends React.Component {
                     })} 
 
                     <FilePicker onPickedImage = {this.onAddImage} >
-                        <button>
-                            Add Image
-                        </button>
+                        <div className="image-slider-item-icon">
+                            <a><FontAwesomeIcon className="fa-3x" icon={faPlusCircle} /></a>
+                        </div>
                     </FilePicker>
 
                 </div>
