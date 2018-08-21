@@ -31,6 +31,7 @@ class AllOutfitsPage extends React.Component {
                     <div className = "container">
                         <Link className="button" to="/addnewoutfit">Add New Outfit</Link> 
                         <Link className="button" to="/addtop">Add Top</Link> 
+                        <Link className="button" to="/addbottom">Add Bottom</Link> 
                     </div>
                 </div>
 

@@ -18,6 +18,7 @@ import createHistory from "history/createBrowserHistory";
 
 import AddNewOutfitPage from  "../components/addoutfitpage";
 import AddTopPage from "../components/addtoppage";
+import AddBottomPage from "../components/addbottompage";
 import AllOutfitsPage from "../components/alloutfitspage";
 import EditOutfitPage from "../components/editoutfitpage";
 import Header from "../components/header";
@@ -61,6 +62,11 @@ const routes = ()=>{
                 exact={true} 
             />      
 
+            <PrivateRoute 
+                path="/addbottom" 
+                component={AddBottomPage}
+                exact={true} 
+            />      
 
             <PrivateRoute path="/editoutfit/:id" component={EditOutfitPage} />
             <Route component={PageNotFoundPage} />                
