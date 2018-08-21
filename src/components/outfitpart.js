@@ -36,21 +36,6 @@ class OutfitPart extends React.Component {
 
     render() {
 
-        const topCategoryOptions = [
-            {label:'Dress Shirt', value: 'dress shirt'},
-            {label:'Polo', value: 'polo'},
-            {label:'T-Shirt', value: 't-shirt'},
-            {label:'Tank Top', value: 'tank top'},
-            { label:'short sleeves', value: 'shirt sleeves'},
-            {label:'long sleeves', value: 'long sleeves'}
-        ];
-
-        const fabricDesignOptions = [
-            {label:'Solid', value: 'solid'},
-            {label:'Pattern', value: 'pattern'},
-            {label:'Graphic', value: 'graphic'}
-        ];
-
         return (
             <div>
                 <div className="page-spec-header">
@@ -87,7 +72,7 @@ class OutfitPart extends React.Component {
                         <div class = "input-group__item-flex">
                             <Select
                                 onChange = {this.handleCategoryChange}
-                                options = {topCategoryOptions}
+                                options = {this.props.categoryOptions}
                                 isMulti = {true}
                             />
                         </div>
@@ -99,7 +84,7 @@ class OutfitPart extends React.Component {
                         <div class = "input-group__item-flex">
                             <Select
                                 onChange = {this.handleFabricDesignChange}
-                                options = {fabricDesignOptions}
+                                options = {this.props.materialOptions}
                             />    
                         </div>
                     </div>               
@@ -150,14 +135,13 @@ class OutfitPart extends React.Component {
     // This handler is called when the user clicks on the 'Save' button.
     // It kicks off the Redux process of saving the newly defined outfit part.
     handleSaveOutfitPart = ()=>{
-        alert('clicked on Save button');
-
-        this.props.addOutfitPart(this.state);
+        alert('clicked on Save button in outfitPart.');
+        this.props.handleSaveButtonClick(this.state);
     }
 
-    handleCancelOutfitPart() {
-        alert ('clicked on Cancel button');
-        history.push('/');
+    handleCancelOutfitPart = ()=>{
+        alert ('clicked on Cancel button in outfitParts.');
+        this.props.handleCancelButtonClick();
     }
 
     // This handler is called when the selects a new category from the list.
