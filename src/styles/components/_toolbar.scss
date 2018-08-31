@@ -1,0 +1,59 @@
+.toolbar {
+
+    width: 100%;
+    position: fixed;
+    background-color: $dark-blue;  
+    height: 56px;
+    flex-wrap: wrap;
+
+}
+
+.toolbar__logo {
+    height:56px;
+}
+
+.toolbar__logo h1 {
+    color: white;
+
+}
+
+.toolbar__navigation {
+    display: flex;
+    height:100%;
+    align-items: center;
+    color:white;    
+    flex-wrap: wrap;
+
+}
+
+.toolbar__spacer {
+//   flex-grow: 1;
+}
+
+.toolbar__linebreak {
+    width: 100%;
+}
+
+.toolbar__nav-items ul{
+    list-style: none;
+    display: flex;
+}
+
+.toolbar__nav-items li{
+    margin-left: 2rem;
+        
+}
+
+// Screen size less than or equal to 500px
+@media only screen and (max-width:500px){
+    .toolbar__nav-items {
+        display: none;
+    }
+}
+
+// Screen size greater than or equal to 501px
+@media only screen and (min-width:501px){
+    .toolbar__hamburger {
+        display:none;
+    }
+}

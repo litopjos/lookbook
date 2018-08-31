@@ -16,6 +16,7 @@ webpack to transpile all of them to CSS.
 
 @import "./components/button";
 @import "./components/container";
+@import "./components/hamburger";
 @import "./components/header";
 @import "./components/image-gallery";
 @import "./components/image-slider";
@@ -23,5 +24,6 @@ webpack to transpile all of them to CSS.
 @import "./components/login-page";
 @import "./components/page-section";
 @import "./components/page-spec-header";
-
+@import "./components/sidedrawer.scss";
+@import "./components/toolbar";
 

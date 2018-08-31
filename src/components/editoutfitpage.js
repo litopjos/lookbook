@@ -9,6 +9,7 @@ that renders the EditOutfitPage page.
 -------------------------------------------------- */
 import {connect} from "react-redux";
 import React from "react";
+import {Button} from "react-bootstrap";
 
 import {history} from "../routes/routes";
 import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
@@ -20,6 +21,7 @@ const EditOutfitPage = (props)=>{
     console.log(props);
     return (
         <div>
+            <Button>Bootstrap</Button>
             <div className="page-spec-header">
                 <div className = "container">
                     <h2>Edit Outfit <span>{`(ID: ${props.match.params.id})`} </span> </h2>

@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import React from "react";
 
+
 import {startDeleteOutfit,deleteOutfit} from "../redux/actions/actionsoutfits";
 import FlexBox from "../playground/flexbox";
 

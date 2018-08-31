@@ -20,6 +20,7 @@ export const outfitPartObj  = {
     type: "top",
     category: [],
     fabricDesign: "",
+    fabricType: "",
     description: "",
     imgUrls:[]
 };
@@ -85,6 +86,16 @@ class OutfitPart extends React.Component {
                             <Select
                                 onChange = {this.handleFabricDesignChange}
                                 options = {this.props.materialOptions}
+                            />    
+                        </div>
+                    </div>     
+
+                    <div class = "input-group">
+                        <label>Fabric Type:</label>
+                        <div class = "input-group__item-flex">
+                            <Select
+                                onChange = {this.handleFabricTypeChange}
+                                options = {this.props.fabricTypeOptions}
                             />    
                         </div>
                     </div>               
@@ -208,6 +219,18 @@ class OutfitPart extends React.Component {
             }
         )        
     }       
+
+    handleFabricTypeChange = (event) =>{
+        console.log(`event onChanged FabricType: ${event.value}`)
+
+        this.setState (
+            (prevState)=> {
+                return {
+                    fabricType: event.value
+                }
+            }
+        )        
+    }        
 
 
     handleDescriptionChange = (event) =>{

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Joselito Pe\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @fortawesome/fontawesome-svg-icons
+  C:\Program Files\nodejs\node.exe C:\Users\Joselito Pe\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-bootstrap
 
 PATH: 
   C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Brackets\command;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Users\Joselito Pe\AppData\Local\Microsoft\WindowsApps;C:\Users\Joselito Pe\AppData\Local\atom\bin;C:\Users\Joselito Pe\AppData\Local\GitHub\PortableGit_f02737a78695063deace08e96d5042710d3e32db\cmd;C:\Users\Joselito Pe\AppData\Roaming\npm;C:\Program Files\Heroku\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\Joselito Pe\AppData\Local\Microsoft\WindowsApps;C:\Users\Joselito Pe\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;
@@ -34,6 +34,8 @@ npm manifest:
     "license": "ISC",
     "dependencies": {
       "@fortawesome/fontawesome-svg-core": "^1.2.2",
+      "@fortawesome/free-solid-svg-icons": "^5.2.0",
+      "@fortawesome/react-fontawesome": "^0.1.2",
       "@mapbox/react-colorpickr": "^8.1.2",
       "axios": "^0.18.0",
       "babel-cli": "^6.26.0",
@@ -157,6 +159,19 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.2.tgz#b431e7efb3e3a1887e596daa6ed0d241d2d1aea5"
     dependencies:
       "@fortawesome/fontawesome-common-types" "^0.2.2"
+  
+  "@fortawesome/free-solid-svg-icons@^5.2.0":
+    version "5.2.0"
+    resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.2.0.tgz#b51c1d49278ef538a97c0ce9575a1b54cc1a52dc"
+    dependencies:
+      "@fortawesome/fontawesome-common-types" "^0.2.2"
+  
+  "@fortawesome/react-fontawesome@^0.1.2":
+    version "0.1.2"
+    resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.2.tgz#baad4a6508867567aea20c1551bf62ff090d8121"
+    dependencies:
+      humps "^2.0.1"
+      prop-types "^15.5.10"
   
   "@mapbox/react-colorpickr@^8.1.2":
     version "8.1.2"
@@ -3166,6 +3181,10 @@ Lockfile:
   https-browserify@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
+  
+  humps@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
   
   hyphenate-style-name@^1.0.1:
     version "1.0.2"
@@ -6719,14 +6738,6 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@fortawesome%2ffontawesome-svg-icons: Not found
-      at Request.params.callback [as _callback] (C:\Users\Joselito Pe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:62098:18)
-      at Request.self.callback (C:\Users\Joselito Pe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:123085:22)
-      at emitTwo (events.js:125:13)
-      at Request.emit (events.js:213:7)
-      at Request.<anonymous> (C:\Users\Joselito Pe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:124068:10)
-      at emitOne (events.js:115:13)
-      at Request.emit (events.js:210:7)
-      at IncomingMessage.<anonymous> (C:\Users\Joselito Pe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:123988:12)
-      at Object.onceWrapper (events.js:314:30)
-      at emitNone (events.js:110:20)
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at errnoException (dns.js:50:10)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:91:26)

@@ -14,13 +14,25 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
+import {NavBar} from "./navbar.js";
 import {startLogoutAsGuest} from "../redux/actions/actionsauth";
 
 const Header = (props)=>{
+
+ 
+    return (
+        <div className="header">
+        <div className="container">
+        <NavBar/>
+        </div>
+        </div>
+    );
+
+
+/*
     return (
         <div className='header'>
             <div className="container">
-
                 <div className="header__content">
                     <Link className="header__title" to="/">
                         <h1> Lookbook </h1>
@@ -31,6 +43,9 @@ const Header = (props)=>{
             </div>
         </div>
     );
+
+*/
+
 }
 
 const MapStateToProps = (state)=>{
