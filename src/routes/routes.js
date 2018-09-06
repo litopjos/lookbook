@@ -20,6 +20,7 @@ import AddNewOutfitPage from  "../components/addoutfitpage";
 import AddTopPage from "../components/addtoppage";
 import AddBottomPage from "../components/addbottompage";
 import AllOutfitsPage from "../components/alloutfitspage";
+import AllPartsPage from "../components/allpartspage";
 import EditOutfitPage from "../components/editoutfitpage";
 import Header from "../components/header";
 import LoginPage from "../components/loginpage";
@@ -31,10 +32,15 @@ import PublicRoute from "./publicroute";
 // Exporting history which will enable redirection to any page.
 export const history = createHistory();
 
-// Declaring an arrou function that returns the React-Router routes
+// Declaring an arrow function that returns the React-Router routes
 const routes = ()=>{
 //    alert(`route props ${props}`);
     return (
+
+    //NB We are using <Router> instead of <BrowserRouter> so that we can
+    //manually associate <history> to <Router>, enabling us to re-direct
+    //(using <history>) from wherever we choose to import history.
+    //If we didnt do this, re-direct is only possible from within a component.
     <Router history= {history}>
         <Switch>
 
@@ -50,6 +56,11 @@ const routes = ()=>{
                 exact={true} 
             />                
 
+            <PrivateRoute 
+                path="/allparts"
+                component={AllPartsPage}
+                exact={true} 
+            />       
             <PrivateRoute 
                 path="/addnewoutfit" 
                 component={AddNewOutfitPage}

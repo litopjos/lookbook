@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import {NavBar} from "./navbar.js";
-import {startLogoutAsGuest} from "../redux/actions/actionsauth";
+import {startLogout} from "../redux/actions/actionsauth";
 
 const Header = (props)=>{
 
@@ -59,7 +59,7 @@ const MapStateToProps = (state)=>{
     
 const MapDispatchToProps = (dispatch)=>(
     {
-        LogoutAsGuest: ()=>{dispatch(startLogoutAsGuest())}
+        LogoutAsGuest: ()=>{dispatch(startLogout())}
     }
 )
 

@@ -22,6 +22,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const create_store = ()=>{
 
+    const initState = {
+        auth: [],
+        outfits: [],
+        outfit_parts: [],
+        footwear: []
+    };
+
     return createStore(
         combineReducers( 
             {
@@ -31,6 +38,7 @@ const create_store = ()=>{
                 footwear: footwearReducer
             }
         ),
+        initState,
         composeEnhancers(applyMiddleware(thunk))
     );
 

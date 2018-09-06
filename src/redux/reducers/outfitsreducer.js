@@ -15,6 +15,10 @@ const outfitsReducer =  (state = {},action)=>{
     let allOutfits = [];
 
     switch (action.type) {
+        case 'CLEAR_OUTFITS':
+            return [];
+        break;
+
         case "LOAD_OUTFITS":
  //           console.log(action.outfits);
  //           alert(`OUTFITS REDUCER: SET_OUTFITS ${action.outfits}`);

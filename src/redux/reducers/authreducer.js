@@ -12,17 +12,19 @@ values reflect the new state.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 const authReducer =  (state = {},action)=>{
-    switch (action.type) {
+    switch (action.provider,action.type) {
         case "LOGIN":
 //            alert(`ACTION REDUCER: LOGIN ${action.uid}`);
             return {
+                provider: action.provider,
                 uid: action.uid
             }
         break;
 
         case "LOGOUT":
  //           alert(`ACTION REDUCER: LOGOUT`);
-            return {};
+            // Reset the authetication credentials
+            return {auth:[]};
         break;
 
         default:

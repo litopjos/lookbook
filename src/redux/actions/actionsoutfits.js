@@ -9,6 +9,13 @@ pertaining to outfits
 -------------------------------------------------- */
 import {history} from "../../routes/routes";
 
+export const clearOutfits = ()=>{
+    //   alert('ACTION OUTFITS: CLEAR_OUTFITS');
+       return {
+           type: 'CLEAR_OUTFITS'
+       }
+   }
+
 export const loadOutfitsAction = (outfits)=>{
  //   alert('ACTION OUTFITS: LOAD_OUTFITS');
     return {

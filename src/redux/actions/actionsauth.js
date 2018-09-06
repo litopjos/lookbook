@@ -7,7 +7,11 @@ pertaining to authtication.
 
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
+import {firebase,googleAuthProvider} from "../../firebase/firebase";
 import {history} from "../../routes/routes";
+
+import {clearOutfits} from "../../redux/actions/actionsoutfits.js";
+import {clearOutfitParts} from "../../redux/actions/actionsoutfitpart.js";
 import {loadFootwearAction} from "./actionsfootwear";
 import {loadOutfitsAction} from "./actionsoutfits";
 
@@ -80,10 +84,11 @@ const loadGuestOutfits = () => {
     return outfits
 }
 
-export const login = (uid) =>{
-//    alert('ACTION GENERATOR: LOGIN');
+export const login = (provider,uid) =>{
+    alert(`ACTION GENERATOR: LOGIN provider:${provider}, uid:${uid}`);
     return {
         type: 'LOGIN',
+        provider,
         uid
     }
 }
@@ -97,8 +102,9 @@ export const logout = ()=>{
 
 
 export const startLoginAsGuest = () => {
+    alert(`ACTION GENERATOR: Start Login As Guest`);
     return (dispatch) => {
-        dispatch(login('guest'));   
+        dispatch(login('guest','guest'));   
 
         let outfits = loadGuestOutfits();
         let footwear = loadGuestFootwear();
@@ -110,9 +116,59 @@ export const startLoginAsGuest = () => {
     }
 }
 
-export const startLogoutAsGuest = () => {
+export const startLogout = (provider) => {
+    alert(`AUTH Action Generator: startLogout provider:${provider}`);
     return (dispatch) => {
-        dispatch(logout());   
-        history.push('/');
+        switch(provider) {
+
+            case 'guest': 
+                // This means the user logged in as 'guest which
+                // further means that no authentication mechanism was used.
+                dispatch(logout());
+                history.push('/');
+
+                // Clear outfits from redux store
+                dispatch(clearOutfits()); 
+
+                // Clear outfit parts from redux store
+                dispatch(clearOutfitParts()); 
+            break;
+
+            case 'google':
+                // This means the authentication mechanism was firebase-google.
+                //NB Call to 'dispatch(logout())' and redirect to login page will be done by 
+                //firebase onAuthStateChanged() handler.
+                firebase.auth()
+                    .signOut()
+                    .catch(
+                        (e)=>{
+                            alert(e);
+                        }
+                    )
+            break;
+
+        }
+        
+
+    }
+}
+
+export const startLoginViaGoogle = () => {
+    alert(`AUTH Action Generator: startLoginViaGoogle`);
+    return (dispatch)=>{
+        firebase.auth()
+            .signInWithPopup(googleAuthProvider)
+            .then(
+                ()=>{
+                    alert(`startLoginViaGoogle() ok`);
+                    // NB: Auth login redux action will be dispatched
+                    // in firebase onAuthStateChanged() handler.
+                }
+            )
+            .catch(
+                (e)=>{
+                    alert(e);
+                }
+            )
     }
 }

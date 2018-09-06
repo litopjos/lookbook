@@ -12,7 +12,7 @@ import React from "react";
 import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions} from "./outfitpartoptions.js"
 import {outfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
-import {startAddOutfitPart} from "../redux/actions/actionsoutfitpart.js";
+import {startAddOutfitPart,startShowOutfitParts} from "../redux/actions/actionsoutfitpart.js";
 
 
 class AddTopPage extends React.Component {
@@ -26,6 +26,8 @@ class AddTopPage extends React.Component {
 
         return (
             <div>
+              {this.props.ShowOutfitParts(undefined)}
+
                 <OutfitPart 
                     outfitPartObj = {outfitPartObj}
                     pageTitle = "Add Top"
@@ -57,7 +59,8 @@ class AddTopPage extends React.Component {
 
 const MapDispatchToProps = (dispatch)=>{
     return {
-        addOutfitPart: (outfitPart)=>dispatch(startAddOutfitPart(outfitPart))
+        addOutfitPart: (outfitPart)=>dispatch(startAddOutfitPart(outfitPart)),
+        ShowOutfitParts: (filter)=>dispatch(startShowOutfitParts(filter))
     }
 
 }

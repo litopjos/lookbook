@@ -13,7 +13,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {history} from "../routes/routes"
-import {login,startLoginAsGuest} from "../redux/actions/actionsauth";
+import {login,startLoginAsGuest,startLoginViaGoogle} from "../redux/actions/actionsauth";
 
 
 
@@ -32,6 +32,11 @@ const LoginPage = (props)=>{
                         className="button"
                         onClick = {props.LoginAsGuest} >
                         Login As Guest
+                    </button>
+                    <button 
+                        className="button"
+                        onClick = {props.LoginViaGoogle} >
+                        Login Via Google
                     </button>
                 </p>
 
@@ -52,7 +57,8 @@ const MapStateToProps = (state)=>{
 
 const MapDispatchToProps = (dispatch)=>(
     {
-        LoginAsGuest: ()=>{dispatch(startLoginAsGuest('guest'))}
+        LoginAsGuest: ()=>{dispatch(startLoginAsGuest('guest'))},
+        LoginViaGoogle: ()=>{dispatch(startLoginViaGoogle())}
     }
 )
 

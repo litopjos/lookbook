@@ -1,14 +1,24 @@
 import React from "react";
+import {connect} from "react-redux";
+
+
 import {Link} from "react-router-dom";
 
 import {HamburgerButton} from "./hamburgerbutton.js";
 
-import {Navbar, Nav,  NavDropdown, MenuItem, NavItem} from "react-bootstrap";
+import {startLogout} from "../redux/actions/actionsauth";
 import SideDrawer from "./sidedrawer.js";
 //import { render } from "../../node_modules/@types/react-dom";
 
+import Dropdown, { DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
 
-export class NavBar extends React.Component {
+/*
+var Dropdown = require("react-simple-dropdown");
+var DropdownTrigger = Dropdown.DropdownTrigger;
+var DropdownContent = Dropdown.DropdownContent;
+*/
+
+class NavBar extends React.Component {
 
     constructor (props) {
         super (props);
@@ -39,10 +49,36 @@ export class NavBar extends React.Component {
 
                     <div className="toolbar__nav-items">
                         <ul>
+                            <Dropdown>
+                                <DropdownTrigger>Profile</DropdownTrigger>
+                                <DropdownContent>
+                                    <ul>
+                                        <li>Lito</li>
+                                        <li>Lito</li>
+                                        <li>Lito</li>
+                                    </ul>
+                                </DropdownContent>
+                                <DropdownContent>
+                                    <ul>
+                                        <li>Lito</li>
+                                        <li>Lito</li>
+                                        <li>Lito</li>
+                                    </ul>
+                                </DropdownContent>                                
+                            </Dropdown>
+
                             <li>Outfits</li>
                             <li>Outfit Parts</li> 
                             <li>Search</li>
-                            <li>Logouts</li>
+                            <li>
+                                <button 
+                                    className="button button--link" 
+                                    onClick={()=>this.props.Logout(this.props.authProvider)}
+                                >
+                                    Logout
+                                </button>
+                            </li>
+
                         </ul>
                     </div>
 
@@ -68,6 +104,26 @@ export class NavBar extends React.Component {
         this.setState( () => ({showSideDrawer: true}) );
     }
 }
+
+const MapStateToProps = (state)=>{
+    //    alert("MapStateToProps call in LoginPage");
+    //    alert(!! state.auth.uid);
+        return {
+            isAuthenticated: !! state.auth.uid,
+            authProvider: state.auth.provider,
+            uid: state.auth.uid
+        }
+    }
+    
+const MapDispatchToProps = (dispatch)=>(
+    {
+        Logout: (provider)=>{dispatch(startLogout(provider))}
+    }
+)
+
+const connectedNavBar = connect(MapStateToProps,MapDispatchToProps)(NavBar);
+
+export {connectedNavBar as NavBar};
 
 
 /*

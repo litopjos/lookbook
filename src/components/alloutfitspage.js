@@ -17,6 +17,14 @@ import {startDeleteOutfit,deleteOutfit} from "../redux/actions/actionsoutfits";
 import FlexBox from "../playground/flexbox";
 
 class AllOutfitsPage extends React.Component {
+ 
+    componentDidMount() {
+        console.log(`componentdidmount wtf to hell`);
+        alert(`componentdidmount`);
+    }
+    componentWillUnmount(){
+        alert(`componentwillunmount`);
+    }
 
     onDeleteOutfit = (outfit_id)=>{
 //        console.log(outfit_id);
@@ -78,6 +86,8 @@ class AllOutfitsPage extends React.Component {
 const MapStateToProps = (state)=>{
 //    console.log(state);
 //    alert(`MapStateToProps AllOutfitsPage`);
+
+    // Reads the store for the outfits and maps it to props.outfits.
     return {
         outfits: state.outfits
     }
