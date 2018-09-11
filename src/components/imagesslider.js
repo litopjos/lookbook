@@ -169,7 +169,7 @@ class ImagesSlider extends React.Component {
             .then (
                 (res)=>{
                     const fileUrl = res.data.fileUrl;
-
+                    alert(fileUrl);
                     this.setState ( 
                         (prevState)=> {
                             const arr = prevState.colImgObjs.getArrImgObjs();

@@ -4,13 +4,21 @@ const outfitPartsReducer =  (state = {},action)=>{
     let outfitParts = [];
 
     switch (action.type) {
+
+        case 'LOAD_OUTFIT_PARTS':
+            alert(`OUTFITS_PARTS REDUCER: LOAD_OUTFIT_PARTS`); 
+            // This action was caused by a db read during startup.
+            outfitParts = [...action.parts];
+            return outfitParts;
+        break;
+
         case 'CLEAR_OUTFITPARTS':
             return [];
         break;
 
         case 'SHOW_ALL_PARTS':
-        alert(`OUTFITS_PARTS REDUCER: SHOW_ALL_PARTS`); 
-        return state;   
+            alert(`OUTFITS_PARTS REDUCER: SHOW_ALL_PARTS`); 
+            return state;   
         break;
         
         case "ADD_OUTFIT_PART":   

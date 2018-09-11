@@ -23,7 +23,19 @@ class AllPartsPage extends React.Component {
 
                 <div className="container">
 
-                    <h1> All Outfit Parts Page </h1>
+                    <h1> Num. Parts: {this.props.outfitParts.length} </h1>
+
+                    <div className="image-gallery-container">
+                        { this.props.outfitParts.map(
+                            (part)=>{
+                                return (
+                                    <div className="image-gallery-item">
+                                        <img src={part.imgUrls[0]}/>
+                                    </div>
+                                )
+                            }
+                        )}
+                    </div>
 
                     {this.props.ShowOutfitParts(undefined)}
 
@@ -34,6 +46,13 @@ class AllPartsPage extends React.Component {
     }
 }
 
+const MapStateToProps = (state)=>{
+    return {
+        outfitParts: state.outfit_parts
+        }
+    
+}
+
 const MapDispatchToProps = (dispatch)=>{
     return {
         ShowOutfitParts: (filter)=>{
@@ -42,7 +61,7 @@ const MapDispatchToProps = (dispatch)=>{
     }
 }
 
-const connectedAllPartsPage = connect(undefined,MapDispatchToProps)(AllPartsPage);
+const connectedAllPartsPage = connect(MapStateToProps,MapDispatchToProps)(AllPartsPage);
 
 export default connectedAllPartsPage;
 

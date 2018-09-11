@@ -15,6 +15,7 @@ import {connect} from "react-redux";
 import {Route,Redirect} from "react-router-dom";
 import React from "react";
 import Header from "../components/header";
+import {NavBar} from "../components/navbar";
 
 const PrivateRoute = ({isAuthenticated, component:Component, ...rest}) => (
     <Route
@@ -24,7 +25,7 @@ const PrivateRoute = ({isAuthenticated, component:Component, ...rest}) => (
                 isAuthenticated ?
                 (
                     <div>
-                        <Header subtitle="Your curated wardrobe at your fingertips."/>
+                        <NavBar/>
                         <Component {...props}/>
                     </div>
                  ) :

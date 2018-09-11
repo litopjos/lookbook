@@ -29,67 +29,140 @@ class NavBar extends React.Component {
     }
  
     render() {
+
         return (
-            <header className="toolbar">
+            <header className="navbar">
+                <nav className="container">
 
-                <nav className="toolbar__navigation">
+                    <ul>
 
-                    <div className="toolbar__hamburger">
-                        <HamburgerButton handlerOnClick = {this.handlerHamburgerButtonClick} />
-                    </div>
+                        <div className="navbar__logo">
+                            <Link to="/">Lookbook</Link>  
+                        </div>      
 
-                    <div className="toolbar__logo">
-                        <Link to="/">
-                            <h1> Lookbook </h1>
-                        </Link>            
-                    </div>
-                    
-                    <div className="toolbar__spacer" />
+                        <div className="navbar__spacer" />
 
+                        <li className="navbar__navitem"><Link to='#'>Outfits</Link>
+                            <ul className='dropdown-1'>
+                                <li><Link to='/alloutfits'>Show All</Link></li>
+                                <li><Link to='/addnewoutfit'>Add Outfit</Link></li>
+                            </ul>                        
+                        </li>
 
-                    <div className="toolbar__nav-items">
-                        <ul>
-                            <Dropdown>
-                                <DropdownTrigger>Profile</DropdownTrigger>
-                                <DropdownContent>
-                                    <ul>
-                                        <li>Lito</li>
-                                        <li>Lito</li>
-                                        <li>Lito</li>
-                                    </ul>
-                                </DropdownContent>
-                                <DropdownContent>
-                                    <ul>
-                                        <li>Lito</li>
-                                        <li>Lito</li>
-                                        <li>Lito</li>
-                                    </ul>
-                                </DropdownContent>                                
-                            </Dropdown>
-
-                            <li>Outfits</li>
-                            <li>Outfit Parts</li> 
-                            <li>Search</li>
-                            <li>
-                                <button 
-                                    className="button button--link" 
-                                    onClick={()=>this.props.Logout(this.props.authProvider)}
-                                >
-                                    Logout
-                                </button>
-                            </li>
-
-                        </ul>
-                    </div>
-
-
-                    <div className="toolbar__linebreak" />
-
-                    {this.state.showSideDrawer&& <SideDrawer clickedOutsideHandler = {this.handlerClickedOutsideSideDrawer}/>}
-
+                        <li className="navbar__navitem"><Link to='#'>Outfit Parts</Link>
+                            <ul className='dropdown-1'>
+                                <li><Link to='/allparts'>Show All</Link></li>
+                                <li><Link to='/addtop'>Add Top</Link></li>
+                                <li><Link to='#'>Add Bottom</Link></li>
+                                <li><Link to='#'>Add Footwear</Link></li>
+                                <li><Link to='#'>Add Accessories</Link></li>
+                            </ul>    
+                        </li>           
+                        
+                        <li className="navbar__navitem"><Link to='#'>Search</Link></li>
+                        <li className="navbar__navitem"><Link to='#'>Logout</Link></li>
+                    </ul>
                 </nav>
+                
             </header>
         );
+/*
+        return (
+            <header className="navbar">
+        
+                    <nav className="navbar__navigation">
+
+                        <div className="navbar__spacer" />
+
+                        <div className="navbar__nav-items">
+                            <ul>
+                                <li><Link to='#'>Outfits</Link></li>
+
+                                <li><Link to='#'>Outfit Parts</Link>
+                                    <ul className='dropdown-1'>
+                                        <li><Link to='/allparts'>Show All Outfit Parts</Link></li>
+                                        <li><Link to='/addtop'>Add Top</Link></li>
+                                        <li><Link to='#'>Add Bottom</Link></li>
+                                        <li><Link to='#'>Add Footwear</Link></li>
+                                        <li><Link to='#'>Add Accessories</Link></li>
+                                    </ul>    
+                                </li>           
+                                
+                                <li><Link to='#'>Search</Link></li>
+                                <li><Link to='#'>Logout</Link></li>
+                            </ul>
+                        </div>                        
+
+
+                    </nav>
+                
+            </header>
+        );
+*?
+
+
+ /*   
+            return (
+            <header className="navbar">
+                <div className="container">
+                    <nav className="navbar__navigation">
+                        <div className="toolbar__hamburger">
+                            <HamburgerButton handlerOnClick = {this.handlerHamburgerButtonClick} />
+                        </div>
+
+                        <div className="toolbar__logo">
+                            <Link to="/">
+                                <h1> Lookbook </h1>
+                            </Link>            
+                        </div>
+                        
+                        <div className="navbar__spacer" />
+
+
+                        <div className="toolbar__nav-items">
+                            <ul>
+                                <Dropdown>
+                                    <DropdownTrigger>Profile</DropdownTrigger>
+                                    <DropdownContent>
+                                        <ul>
+                                            <li>Lito</li>
+                                            <li>Lito</li>
+                                            <li>Lito</li>
+                                        </ul>
+                                    </DropdownContent>
+                                    <DropdownContent>
+                                        <ul>
+                                            <li>Lito</li>
+                                            <li>Lito</li>
+                                            <li>Lito</li>
+                                        </ul>
+                                    </DropdownContent>                                
+                                </Dropdown>
+
+                                <li>Outfits</li>
+                                <li>Outfit Parts</li> 
+                                <li>Search</li>
+                                <li>
+                                    <button 
+                                        className="button button--link" 
+                                        onClick={()=>this.props.Logout(this.props.authProvider)}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div className="toolbar__linebreak" />
+
+                       {this.state.showSideDrawer&& <SideDrawer clickedOutsideHandler = {this.handlerClickedOutsideSideDrawer}/>}
+
+                    </nav>
+                </div>
+            </header>
+        );
+    */
     }
 
 

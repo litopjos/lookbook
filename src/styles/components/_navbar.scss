@@ -1,0 +1,279 @@
+/* -----------------------------------------------
+FILE: _navbar.scss
+
+DESCRIPTION:
+This is the partial SCSS file containing all the 
+selectors used to style the horizontal navigation bar.
+
+Algorithm:
+
+1- Set all anchors to be flexbox and center the
+   anchor's content in its bounding box both horizontally
+   and vertically.
+   The only purpose of the flexbox at this stage is to be able
+   to center the anchor labels.
+   Since <li> are display:blocks, the whole screen width
+   will be occupied with vertically stacked <a> elements.
+2- Set all <ul> to be flexboxes which means that all <li> 
+   will be stacked horizontally.
+3- Set a hover affect to every <a> tags.
+4- Set every <li> to be position:relative. This will not do
+   anything except set things up for the dropdown to be positioned
+   under it.
+   Let every <li> occupy every horizontal space available.
+5- Let the dropdown-1 class be a flexbox container with its contents
+   being stacked horizontally.
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+.navbar{
+
+    width: 100%;
+//    height: 50px;
+    background:#cb3529;
+   
+}
+
+.navbar a {
+    display: flex;
+     align-items: center;
+    justify-content: center;
+    color: #fff;
+    background:#cb3529;
+    height: 50px;
+    text-decoration: none;
+
+
+}
+
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    
+}
+
+.navbar a:hover {
+    background: tomato;
+    color: #fff;
+}
+
+.navbar ul li {
+    position: relative;
+
+}
+
+.dropdown-1 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.navbar li:hover .dropdown-1 li {
+    top: 0px;
+    display: block;
+}
+
+.navbar__spacer {
+    flex-grow: 1;
+}
+
+.navbar__navitem {
+    padding: 0 10px;
+}
+.dropdown-1 li {
+    display: none;
+    position: relative;
+}
+
+.navbar__logo{
+    color: white;
+    font-size: 20px;
+    text-transform:none;
+
+}
+
+
+
+/*
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.navbar{
+
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    background:#cb3529;
+}
+
+.navbar__navigation {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 $m-size;
+
+    display: flex;
+    align-items: center;    
+}
+
+.navbar__nav-items  ul {
+    display: flex;
+    height: 100%;
+    align-items:center;
+}
+
+.navbar__nav-items ul li {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.navbar__spacer {
+    flex-grow: 1;
+}
+.navbar__navigation, .navbar__navigation container, .navbar__nav-items, .navbar a {
+    height: 100%;
+}
+
+.navbar ul {
+    list-style: none; // Gets rid of bullets in <ul> <li>
+}
+
+.navbar a {
+    text-decoration: none; // get rid of underline in <a>
+ 
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar a:hover {
+    background: tomato;
+    color: #fff;
+}
+
+.navbarq .dropdown-1 li {
+    display: none;  // Hide the drowpdown menu
+}
+
+.navbar__nav-items ul li {
+    // Making all li position:relative just in case immediately
+    // adjacent to the right of it is a dropdown.
+    position: relative;
+    width: 100%;
+}
+
+.navbar__nav-items li:hover .dropdown-1 li {
+    display:block;
+    width:100%;
+    position:absolute;
+    top: 50px;
+}
+*/
+
+/*
+.navbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    
+
+    color: #fff;
+    background:#cb3529;
+
+}
+
+.navbar a:hover {
+    background: tomato;
+    color: #fff;
+}
+
+.navbar ul {
+    list-style:none;
+    display: flex;
+}
+
+.navbar ul li {
+    position: relative;
+    width: 100%;
+}
+*/
+
+/*
+.navbar li:hover .dropdown-1 li{
+    top:50px;
+    display: block;
+}
+
+.dropdown-1 ul li {
+    display:none;
+    position: relative;
+}
+
+.dropdown-1 {
+ //   position:absolute;
+    display:none;
+    flex-direction:column;
+    top:50px;
+}
+*/
+/*
+.navbar a:hover {
+
+    width: 100%;
+    position: fixed;
+    background-color: $dark-blue;  
+    height: 56px;
+
+}
+
+
+.navbar__div {
+    flex-grow: 1
+}
+.navbar__navigation {
+    display: flex;
+    height:100%;
+}
+
+.navbar__spacer {
+
+    flex-grow: 1;
+}
+
+.navbar__nav-items ul{
+    list-style: none;
+    display: flex;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+.navbar__nav-items li{
+    width:100%;
+    text-align: center;
+    position: relative;
+}
+
+
+.navbar a:hover {
+    background: #305753;
+}
+
+*/

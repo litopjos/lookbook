@@ -2,7 +2,7 @@ import React from "react";
 
 const FlexBox = ()=>{
     return (
-        <div className="container image-container">
+        <div className="container image-gallery-container">
 
             <div className= "image-item">
                 <img src="/images/image2.jpg" />

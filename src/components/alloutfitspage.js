@@ -19,11 +19,10 @@ import FlexBox from "../playground/flexbox";
 class AllOutfitsPage extends React.Component {
  
     componentDidMount() {
-        console.log(`componentdidmount wtf to hell`);
-        alert(`componentdidmount`);
+        alert(`AllOutfitsPage: componentdidmount`);
     }
     componentWillUnmount(){
-        alert(`componentwillunmount`);
+        alert(`AllOutfitsPage: componentWillUnmount`);
     }
 
     onDeleteOutfit = (outfit_id)=>{
@@ -50,13 +49,13 @@ class AllOutfitsPage extends React.Component {
 
                     <h3>Number of outfits: {this.props.outfits.length}</h3>
 
-                    <div className="image-container">
+                    <div className="image-gallery-container">
 
                         {this.props.outfits.map((outfit)=>{
                             console.log(outfit);
                             const outfit_id = outfit.id;
                             return(
-                                <div className="image-item">
+                                <div className="image-gallery-item">
                                     <Link to={`/editoutfit/${outfit.id}`}>                                  
                                         <img src = {outfit.outfitImageUrls[0]} />
                                     </Link>
