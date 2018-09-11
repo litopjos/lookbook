@@ -37,9 +37,11 @@ Algorithm:
 .navbar{
 
     width: 100%;
-//    height: 50px;
+    height: 50px;
     background:#cb3529;
-   
+    position: fixed;
+    top:0px;
+    overflow:visible;
 }
 
 .navbar a {
@@ -76,6 +78,7 @@ Algorithm:
     display: flex;
     flex-direction: column;
     width: 100%;
+    z-index: 2147483647;
 }
 
 
@@ -103,6 +106,9 @@ Algorithm:
 
 }
 
+.navbar__offset {
+    margin-top: 50px;
+}
 
 
 /*

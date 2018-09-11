@@ -35,6 +35,7 @@ class AllOutfitsPage extends React.Component {
 //        alert('render');
         return (
             <div>
+                <div className="navbar__offset"/>
                 <div className="page-spec-header">
                     <div className = "container">
                         <Link className="button" to="/addnewoutfit">Add New Outfit</Link> 
