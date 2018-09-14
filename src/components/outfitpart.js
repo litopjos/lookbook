@@ -12,9 +12,13 @@ import React from "react";
 import Select from "react-select";
 
 import {history} from "../routes/routes.js";
+import {PageTitleHeader} from "./pagetitleheader.js";
 import {startAddOutfitPart} from "../redux/actions/actionsoutfitpart.js";
 import ImagesSlider from "./imagesslider.js";
 import axios from "axios";
+
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheck, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
 export const outfitPartObj  = {
     type: "top",
@@ -39,26 +43,30 @@ class OutfitPart extends React.Component {
 
         return (
             <div>
-                <div className="page-spec-header">
-                    <div className = "container">
-                        <h2>{this.props.pageTitle}</h2>
+                <div className="navbar__offset"/>
+                <div className="container">
+
+
+                    <div className="toolbar">
+                        <div className="container">
+                            <div className="toolbar__flexcontainer">
+                                <div className='toolbar__flexgrow'/>
+                                <div>
+                                    <a href='#' onClick={this.handleSaveOutfitPart}>
+                                        <FontAwesomeIcon className="fa-3x" color="green"  icon={faCheck} />
+                                    </a>
+
+                                    <a href='#' onClick={this.handleCancelOutfitPart}>
+                                        <FontAwesomeIcon className="fa-3x" color="red"  icon={faTimesCircle} />
+                                    </a>                       
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div className = "container">
-                    <button
-                        class="button"
-                        onClick={this.handleSaveOutfitPart}
-                    >
-                        Save
-                    </button>
+                    <PageTitleHeader  title={this.props.pageTitle}/>
 
-                    <button
-                        class="button"
-                        onClick={this.handleCancelOutfitPart}
-                    >
-                        Cancel
-                    </button>  
+
 
                     <div class = "page-section-header"> Top Images </div>
 
@@ -77,8 +85,18 @@ class OutfitPart extends React.Component {
                                 isMulti = {true}
                             />
                         </div>
-                        
                     </div>
+
+                    <div class = "input-group">
+                    <label>Brand:</label>
+                    <div class = "input-group__item-flex">
+                        <Select
+                            onChange = {this.handleBrandChange}
+                            options = {this.props.brandOptions}
+                            isMulti = {false}
+                        />
+                    </div>
+                </div>
 
                     <div class = "input-group">
                         <label>Fabric Design:</label>
@@ -120,21 +138,7 @@ class OutfitPart extends React.Component {
                         />
                     </div>
 
-                    <div class = "input-group">
-                        <button 
-                            class="input-group-item button"
-                            onClick={this.handleSaveOutfitPart}
-                        > 
-                            Save 
-                        </button>
 
-                        <button 
-                            class="button"
-                            onClick={this.handleCancelOutfitPart}
-                        > 
-                            Cancel 
-                        </button>
-                    </div>
 
                 </div>              
 
@@ -142,7 +146,22 @@ class OutfitPart extends React.Component {
         )
     }
 
+/*
+                    <div class = "input-group">
+                    <button
+                        class="button"
+                        onClick={this.handleSaveOutfitPart}
+                    >
+                        Save
+                    </button>
 
+                    <button
+                        class="button"
+                        onClick={this.handleCancelOutfitPart}
+                    >
+                        Cancel
+                    </button>  
+*/
     // This handler is called when the user clicks on the 'Save' button.
     // It kicks off the Redux process of saving the newly defined outfit part.
     handleSaveOutfitPart = ()=>{
@@ -219,6 +238,18 @@ class OutfitPart extends React.Component {
             }
         )        
     }       
+
+    handleBrandChange = (event) =>{
+        console.log(`event onChanged Brand: ${event.value}`)
+
+        this.setState (
+            (prevState)=> {
+                return {
+                    brand: event.value
+                }
+            }
+        )        
+    } 
 
     handleFabricTypeChange = (event) =>{
         console.log(`event onChanged FabricType: ${event.value}`)

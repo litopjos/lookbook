@@ -17,7 +17,7 @@ class AddBottomPage extends React.Component {
             <div>
                 <OutfitPart 
                     outfitPartObj = {outfitPartObj}
-                    pageTitle = "Add Bottom"
+                    pageTitle = "Add Outfit Part: Bottom"
                     handleSaveButtonClick = {this.handleSaveOutfitPart}
                     handleCancelButtonClick = {this.handleCancelOutfitPart}
                     categoryOptions = {bottomCategoryOptions}

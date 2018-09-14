@@ -12,8 +12,9 @@ import React from "react";
 import {Button} from "react-bootstrap";
 
 import {history} from "../routes/routes";
-import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
 
+import {PageTitleHeader} from "./pagetitleheader.js";
+import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
 import Images from "./imagesslider";
 import OutfitPage from "./outfitpage";
 

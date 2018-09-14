@@ -93,7 +93,7 @@ export const showOutfitParts = () => {
 }
 
 export const startShowOutfitParts = (filter) => {
-    alert('startShowoutfitParts');
+//    alert('startShowoutfitParts');
 
     return (dispatch) => {
 

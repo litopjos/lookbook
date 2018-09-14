@@ -2,8 +2,17 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import React from "react";
 
+import EditPartPage from "./editpartpage";
+import ImageGallery from "./imagegallery";
+import {history} from "../routes/routes";
+import {PageTitleHeader} from "./pagetitleheader.js";
 import {startShowOutfitParts,showOutfitParts} from "../redux/actions/actionsoutfitpart.js";
 class AllPartsPage extends React.Component {
+
+    handlerEditOutfitPart=(itemId)=>{
+        alert(`AllPartsPage:handlerEditOutfitPart(${itemId})`);
+        history.push(`/editpart/${itemId}`);
+    }
 
     constructor (props) {
         super (props);
@@ -11,39 +20,29 @@ class AllPartsPage extends React.Component {
 
     render () {
         return (
-
             <div>
-                <div className="page-spec-header">
-                    <div className = "container">
-                        <Link className="button" to="/addnewoutfit">Add New Outfit</Link> 
-                        <Link className="button" to="/addtop">Add Top</Link> 
-                        <Link className="button" to="/addbottom">Add Bottom</Link> 
-                    </div>
-                </div>
+                <div className="navbar__offset"/>
 
                 <div className="container">
 
+                    <PageTitleHeader  title='Show All Outfit Parts'/>
+
                     <h1> Num. Parts: {this.props.outfitParts.length} </h1>
 
-                    <div className="image-gallery-container">
-                        { this.props.outfitParts.map(
-                            (part)=>{
-                                return (
-                                    <div className="image-gallery-item">
-                                        <img src={part.imgUrls[0]}/>
-                                    </div>
-                                )
-                            }
-                        )}
-                    </div>
-
-                    {this.props.ShowOutfitParts(undefined)}
+                    <ImageGallery 
+                        galleryItems = {this.props.outfitParts}
+                        handlerOnDoubleClick = {this.handlerEditOutfitPart}
+                    />
 
                 </div>
             </div>
 
         )
     }
+
+    //                     {this.props.ShowOutfitParts(undefined)}
+
+
 }
 
 const MapStateToProps = (state)=>{

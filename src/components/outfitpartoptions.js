@@ -22,6 +22,8 @@ export const bottomCategoryOptions = [
 
 export const fabricDesignOptions = [
     {label:'Solid', value: 'solid'},
+    {label:'Stripes', value: 'stripes'},
+    {label:'Polkadots', value: 'polkadots'},
     {label:'Pattern', value: 'pattern'},
     {label:'Graphic', value: 'graphic'}
 ];
@@ -31,4 +33,13 @@ export const fabricTypeOptions = [
     {label:'Polyester Blend', value: 'polyester blend'},
     {label:'Denim', value: 'denim'},
     {label:'Linen ', value: 'linen'},
+];
+
+export const brandOptions = [
+    {label:'n/a', value: 'not_available'},
+    {label:'Gap', value: 'Gap'},
+    {label:'Levis', value: 'Levis'},
+    {label:'Eddie Bauer', value: 'Eddie Bauer'},
+    {label:'Uniclo', value: 'Uniclo'},
+    {label:'L.L.Bean', value: 'L.L.Bean'},
 ];

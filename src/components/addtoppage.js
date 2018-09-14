@@ -9,11 +9,12 @@ DESCRIPTION:
 import {connect} from "react-redux";
 import React from "react";
 
-import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions} from "./outfitpartoptions.js"
+import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions} from "./outfitpartoptions.js"
 import {outfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
 import {startAddOutfitPart,startShowOutfitParts} from "../redux/actions/actionsoutfitpart.js";
 
+import {history} from "../routes/routes.js";
 
 class AddTopPage extends React.Component {
 
@@ -30,12 +31,13 @@ class AddTopPage extends React.Component {
 
                 <OutfitPart 
                     outfitPartObj = {outfitPartObj}
-                    pageTitle = "Add Top"
+                    pageTitle = "Add Outfit Part: Top"
                     handleSaveButtonClick = {this.handleSaveOutfitPart}
                     handleCancelButtonClick = {this.handleCancelOutfitPart}
                     categoryOptions = {topCategoryOptions}
                     materialOptions = {fabricDesignOptions}
                     fabricTypeOptions = {fabricTypeOptions}
+                    brandOptions = {brandOptions}
                 />
             </div>
         )
@@ -51,8 +53,8 @@ class AddTopPage extends React.Component {
     }
 
     handleCancelOutfitPart() {
-        alert ('clicked on Cancel button in AddToPage');
-        history.push('/');
+        alert ('clicked on Cancel button in AddTopPage');
+        history.push('/alloutfits');
     }
 
 }

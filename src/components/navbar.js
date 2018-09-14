@@ -33,11 +33,9 @@ class NavBar extends React.Component {
         return (
             <header className="navbar">
                 <nav className="container">
-
                     <ul>
-
                         <div className="navbar__logo">
-                            <Link to="/">Lookbook</Link>  
+                            <Link to="/"><h1>Lookbook</h1></Link>  
                         </div>      
 
                         <div className="navbar__spacer" />
@@ -60,7 +58,7 @@ class NavBar extends React.Component {
                         </li>           
                         
                         <li className="navbar__navitem"><Link to='#'>Search</Link></li>
-                        <li className="navbar__navitem"><Link to='#'>Logout</Link></li>
+                        <li className="navbar__navitem"><Link to='#' onClick={()=>this.props.Logout(this.props.authProvider)}>Logout</Link></li>
                     </ul>
                 </nav>
                 

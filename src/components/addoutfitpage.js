@@ -21,7 +21,7 @@ const AddNewOutfitPage = (props)=>{
     return (
 
         <div>
-
+            <div className="navbar__offset"/>   
             <div className="page-spec-header">
                 <div className = "container">
                     <h2>Add New Outfit</h2>                    

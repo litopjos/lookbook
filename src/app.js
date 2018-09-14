@@ -13,6 +13,7 @@ it reads.
 -------------------------------------------------- */
 import {Provider} from "react-redux";
 import React from "react";
+
 import ReactDOM from "react-dom";
 
 import createStore from "./redux/createstore";
@@ -25,7 +26,6 @@ import {login,logout} from "./redux/actions/actionsauth";
 // styles
 import "normalize.css/normalize.css";   // Used to reset the styles of all the btowsers.
 import "./styles/styles.scss";
-
 
 
 // Create the redux store

@@ -1,14 +1,29 @@
+/* -----------------------------------------------
+FILE: _toolbar.scss
+
+DESCRIPTION:
+Style selectors used to style the fixed toolbar that is
+anchored to the bottom part of the navbar to the exstreme
+right.
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
 .toolbar {
 
-    width: 100%;
     position: fixed;
-    background-color: $dark-blue;  
-    height: 56px;
-    display:flex;
-    flex-wrap: wrap;
-
+    top:50px;
+    left:0;
+    width:100%;
 }
 
+.toolbar__flexcontainer{
+    display:flex;
+}
+
+.toolbar__flexgrow {
+    flex-grow: 1;
+
+}
 .toolbar__logo {
     height:56px;
 }

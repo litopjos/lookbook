@@ -12,17 +12,17 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import React from "react";
 
-
+import {PageTitleHeader} from "./pagetitleheader.js";
 import {startDeleteOutfit,deleteOutfit} from "../redux/actions/actionsoutfits";
 import FlexBox from "../playground/flexbox";
 
 class AllOutfitsPage extends React.Component {
  
     componentDidMount() {
-        alert(`AllOutfitsPage: componentdidmount`);
+//        alert(`AllOutfitsPage: componentdidmount`);
     }
     componentWillUnmount(){
-        alert(`AllOutfitsPage: componentWillUnmount`);
+//        alert(`AllOutfitsPage: componentWillUnmount`);
     }
 
     onDeleteOutfit = (outfit_id)=>{
@@ -36,17 +36,10 @@ class AllOutfitsPage extends React.Component {
         return (
             <div>
                 <div className="navbar__offset"/>
-                <div className="page-spec-header">
-                    <div className = "container">
-                        <Link className="button" to="/addnewoutfit">Add New Outfit</Link> 
-                        <Link className="button" to="/addtop">Add Top</Link> 
-                        <Link className="button" to="/addbottom">Add Bottom</Link> 
-                    </div>
-                </div>
 
                 <div className="container">
 
-                    <h2>All Outfits Page </h2>
+                    <PageTitleHeader  title='Show All Outfits'/>
 
                     <h3>Number of outfits: {this.props.outfits.length}</h3>
 

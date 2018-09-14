@@ -22,6 +22,8 @@ import AddBottomPage from "../components/addbottompage";
 import AllOutfitsPage from "../components/alloutfitspage";
 import AllPartsPage from "../components/allpartspage";
 import EditOutfitPage from "../components/editoutfitpage";
+import EditPartPage from "../components/editpartpage";
+
 import Header from "../components/header";
 import LoginPage from "../components/loginpage";
 import PageNotFoundPage from "../components/pagenotfoundpage";
@@ -79,7 +81,16 @@ const routes = ()=>{
                 exact={true} 
             />      
 
-            <PrivateRoute path="/editoutfit/:id" component={EditOutfitPage} />
+            <PrivateRoute 
+                path="/editoutfit/:id" 
+                component={EditOutfitPage} 
+            />
+
+            <PrivateRoute 
+                path="/editpart/:id" 
+                component={EditPartPage} 
+            />
+
             <Route component={PageNotFoundPage} />                
             
         </Switch>
