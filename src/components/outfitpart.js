@@ -31,6 +31,28 @@ export const outfitPartObj  = {
 
 class OutfitPart extends React.Component {
 
+    xlateListOfValuesToValueLabel = (values, options) => {
+        let valueLabelList = [];
+
+        values.map (
+            (value) => {
+                options.some (
+                    (option) => {
+                        alert(`value:${value}, option:${option.value}`);
+                        if (value === option.value) {
+                            alert('match2');
+                            valueLabelList.push(option);
+                            return true;
+                        }
+
+                    }
+                )
+            }
+        )
+
+        return valueLabelList;
+    }
+
     xlateValueToValueLabel =  (value,options) => {
         let valueLabel = {};
         console.log(value);
@@ -59,7 +81,11 @@ class OutfitPart extends React.Component {
         outfitPartObj.brand = this.xlateValueToValueLabel(outfitPartObj.brand, props.brandOptions);
         outfitPartObj.fabricDesign = this.xlateValueToValueLabel(outfitPartObj.fabricDesign, props.materialOptions);
         outfitPartObj.fabricType = this.xlateValueToValueLabel(outfitPartObj.fabricType, props.fabricTypeOptions);
+        outfitPartObj.category = this.xlateListOfValuesToValueLabel(outfitPartObj.category, props.categoryOptions);
 
+        console.log(props.categoryOptions);
+        console.log(outfitPartObj);
+        alert('here');
 
         this.state = outfitPartObj;
 
@@ -98,7 +124,7 @@ class OutfitPart extends React.Component {
 
 
                     <ImagesSlider 
-                        imageUrls = {[]}
+                        imageUrls = {this.state.imgUrls}
                         onImageUrlsChanged = {this.handleImgsChanged}
                     />
                    
@@ -109,6 +135,7 @@ class OutfitPart extends React.Component {
                                 onChange = {this.handleCategoryChange}
                                 options = {this.props.categoryOptions}
                                 isMulti = {true}
+                                defaultValue = {this.state.category}
                             />
                         </div>
                     </div>
