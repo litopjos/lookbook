@@ -10,7 +10,7 @@ import {startShowOutfitParts,showOutfitParts} from "../redux/actions/actionsoutf
 class AllPartsPage extends React.Component {
 
     handlerEditOutfitPart=(itemId)=>{
-        alert(`AllPartsPage:handlerEditOutfitPart(${itemId})`);
+//        alert(`AllPartsPage:handlerEditOutfitPart(${itemId})`);
         history.push(`/editpart/${itemId}`);
     }
 

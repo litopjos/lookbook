@@ -154,9 +154,9 @@ export const startLogout = (provider) => {
 }
 
 export const startLoginViaGoogle = () => {
-    alert(`AUTH Action Generator: startLoginViaGoogle`);
+//    alert(`AUTH Action Generator: startLoginViaGoogle`);
     return (dispatch)=>{
-        firebase.auth()
+        return firebase.auth()
             .signInWithPopup(googleAuthProvider)
             .then(
                 ()=>{

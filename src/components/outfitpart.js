@@ -31,16 +31,42 @@ export const outfitPartObj  = {
 
 class OutfitPart extends React.Component {
 
+    xlateValueToValueLabel =  (value,options) => {
+        let valueLabel = {};
+        console.log(value);
+        console.log (options);
+        options.some(
+            (option)=>{
+                if (option.value === value) {
+                    valueLabel = option;
+                    console.log(valueLabel);
+                    alert(`match label:${valueLabel}`)
+                    return true;
+                }
+            }
+        )
+
+        return valueLabel;
+    }
     constructor (props) {
         super (props);
 
-        this.state = props.outfitPartObj;
+        // Accomodating react-select control.
+        // cuz only value is persisted in database and not the label
+        // so we have to regen label-value in order to show default value 
+        // selection.
+        let outfitPartObj = props.outfitPartObj;
+        outfitPartObj.brand = this.xlateValueToValueLabel(outfitPartObj.brand, props.brandOptions);
+        outfitPartObj.fabricDesign = this.xlateValueToValueLabel(outfitPartObj.fabricDesign, props.materialOptions);
+        outfitPartObj.fabricType = this.xlateValueToValueLabel(outfitPartObj.fabricType, props.fabricTypeOptions);
+
+
+        this.state = outfitPartObj;
 
 
     }
 
     render() {
-
         return (
             <div>
                 <div className="navbar__offset"/>
@@ -91,6 +117,7 @@ class OutfitPart extends React.Component {
                     <label>Brand:</label>
                     <div class = "input-group__item-flex">
                         <Select
+                            defaultValue = {this.state.brand}
                             onChange = {this.handleBrandChange}
                             options = {this.props.brandOptions}
                             isMulti = {false}
@@ -102,6 +129,7 @@ class OutfitPart extends React.Component {
                         <label>Fabric Design:</label>
                         <div class = "input-group__item-flex">
                             <Select
+                                defaultValue = {this.state.fabricDesign}
                                 onChange = {this.handleFabricDesignChange}
                                 options = {this.props.materialOptions}
                             />    
@@ -112,6 +140,7 @@ class OutfitPart extends React.Component {
                         <label>Fabric Type:</label>
                         <div class = "input-group__item-flex">
                             <Select
+                                defaultValue = {this.state.fabricType}
                                 onChange = {this.handleFabricTypeChange}
                                 options = {this.props.fabricTypeOptions}
                             />    
@@ -128,13 +157,17 @@ class OutfitPart extends React.Component {
             
                     <div class = "input-group">
                         <label>Color Description</label>
-                        <input type='text' class = "input-group__item-flex"/>                           
+                        <input 
+                            type='text' 
+                            class = "input-group__item-flex"                        
+                        />
                     </div>
 
                     <div class = "input-group">
                         <label>Description:</label>
                         <textarea class = "input-group__item-flex"
                             onChange = {this.handleDescriptionChange}
+                            defaultValue={this.state.description}
                         />
                     </div>
 
