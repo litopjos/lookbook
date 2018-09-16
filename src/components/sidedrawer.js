@@ -31,7 +31,7 @@ class SideDrawer extends React.Component {
                         <DropdownContent>
                             <ul>
                                 <li><Link to='/allparts'>Show All Outfit Parts shoobeedoobe do</Link></li>
-                                <li><Link to='/addtop'>Add Top</Link></li>
+                                <li><Link to='/addpart'>Add Top</Link></li>
                                 <li>Add Bottom</li>
                                 <li>Add Footwear</li>
                                 <li>Add Accessories</li>

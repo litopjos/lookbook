@@ -50,10 +50,7 @@ class NavBar extends React.Component {
                         <li className="navbar__navitem"><Link to='#'>Outfit Parts</Link>
                             <ul className='dropdown-1'>
                                 <li><Link to='/allparts'>Show All</Link></li>
-                                <li><Link to='/addtop'>Add Top</Link></li>
-                                <li><Link to='#'>Add Bottom</Link></li>
-                                <li><Link to='#'>Add Footwear</Link></li>
-                                <li><Link to='#'>Add Accessories</Link></li>
+                                <li><Link to='/addpart'>Add Part</Link></li>
                             </ul>    
                         </li>           
                         

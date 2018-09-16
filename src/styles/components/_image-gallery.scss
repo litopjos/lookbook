@@ -11,15 +11,35 @@ DESCRIPTION:
     display:flex;
     border: 1px solid red;
     flex-wrap: wrap;
+    min-height: 200px;
 
     
 }
 
 .image-gallery-item {
+
     width: 150px;
-    
+    padding: 1rem;
+    box-shadow: 1px 2px 40px 2px rgba(160,160,160,.5);
+    margin: $s-size;
+    position: relative;
+
     img {
-        width: 150px;
+        width: 100%;
         height: 200px;
-    }
+
+
+    }    
+
+}
+
+.image-gallery__plus-container {
+    flex-grow:1;
+    padding:1rem;
+    margin: $s-size;
+    min-height:200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid blue;
 }

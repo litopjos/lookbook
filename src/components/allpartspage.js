@@ -32,6 +32,7 @@ class AllPartsPage extends React.Component {
                     <ImageGallery 
                         galleryItems = {this.props.outfitParts}
                         handlerOnDoubleClick = {this.handlerEditOutfitPart}
+                        handlerOnAddItem = {this.handlerOnAddPart}
                     />
 
                 </div>
@@ -40,7 +41,10 @@ class AllPartsPage extends React.Component {
         )
     }
 
-    //                     {this.props.ShowOutfitParts(undefined)}
+    handlerOnAddPart = () => {
+        alert('AllPartsPage:handlerOnAddPart()');
+        history.push('/addpart');
+    }
 
 
 }

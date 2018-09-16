@@ -7,6 +7,8 @@ DESCRIPTION:
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faPlusCircle, faTrash, faUpload, faExchangeAlt, faInverse, faCircle} from "@fortawesome/free-solid-svg-icons";
 
 export const ImageGallery = (props) => {
     return (
@@ -26,6 +28,14 @@ export const ImageGallery = (props) => {
                     }
                 )
             }
+
+            <div className="image-gallery__plus-container">
+                <a href='#' onClick={()=>props.handlerOnAddItem()}>
+                    <FontAwesomeIcon 
+                        className="fa-3x" 
+                        icon={faPlusCircle} />
+                </a>
+            </div>
         </div>        
 
     )

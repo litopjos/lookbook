@@ -17,8 +17,7 @@ import React from "react";
 import createHistory from "history/createBrowserHistory";
 
 import AddNewOutfitPage from  "../components/addoutfitpage";
-import AddTopPage from "../components/addtoppage";
-import AddBottomPage from "../components/addbottompage";
+import AddPartPage from "../components/addpartpage";
 import AllOutfitsPage from "../components/alloutfitspage";
 import AllPartsPage from "../components/allpartspage";
 import EditOutfitPage from "../components/editoutfitpage";
@@ -70,16 +69,11 @@ const routes = ()=>{
             />      
 
             <PrivateRoute 
-                path="/addtop" 
-                component={AddTopPage}
+                path="/addpart" 
+                component={AddPartPage}
                 exact={true} 
             />      
 
-            <PrivateRoute 
-                path="/addbottom" 
-                component={AddBottomPage}
-                exact={true} 
-            />      
 
             <PrivateRoute 
                 path="/editoutfit/:id" 
