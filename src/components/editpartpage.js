@@ -11,12 +11,12 @@ import React from "React";
 import {outfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
 import {PageTitleHeader} from "./pagetitleheader.js";
-import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions} from "./outfitpartoptions.js"
+import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
 
 
 export class EditPartPage extends React.Component {
     constructor(props) {
-        alert(`EditPartPage:constructor() - ${props.match.params.id}`);
+//        alert(`EditPartPage:constructor() - ${props.match.params.id}`);
         super(props)
 
         const editedPartId = props.match.params.id;
@@ -25,9 +25,9 @@ export class EditPartPage extends React.Component {
     //    alert(props.outfitParts.length);
         props.outfitParts.some(
             (part)=>{
-                alert(part.id);
+ //               alert(part.id);
                 if (part.id === editedPartId) {
-                    alert('match');
+ //                   alert('match');
                     this.state = {editPartObj: part};
                     return true;
                 }
@@ -38,7 +38,7 @@ export class EditPartPage extends React.Component {
 
     render() {
         console.log(this.state.editPartObj);
-        alert(`EditPartPage:render() state:`)
+//        alert(`EditPartPage:render() state:`)
         return (
             <div>
                     <OutfitPart 
@@ -50,6 +50,7 @@ export class EditPartPage extends React.Component {
                         materialOptions = {fabricDesignOptions}
                         fabricTypeOptions = {fabricTypeOptions}
                         brandOptions = {brandOptions}
+                        typeOptions = {typeOptions}
                     />
 
 

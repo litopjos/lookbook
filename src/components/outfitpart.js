@@ -38,9 +38,9 @@ class OutfitPart extends React.Component {
             (value) => {
                 options.some (
                     (option) => {
-                        alert(`value:${value}, option:${option.value}`);
+ //                       alert(`value:${value}, option:${option.value}`);
                         if (value === option.value) {
-                            alert('match2');
+ //                           alert('match2');
                             valueLabelList.push(option);
                             return true;
                         }
@@ -62,7 +62,7 @@ class OutfitPart extends React.Component {
                 if (option.value === value) {
                     valueLabel = option;
                     console.log(valueLabel);
-                    alert(`match label:${valueLabel}`)
+ //                   alert(`match label:${valueLabel}`)
                     return true;
                 }
             }
@@ -81,8 +81,10 @@ class OutfitPart extends React.Component {
         outfitPartObj.brand = this.xlateValueToValueLabel(outfitPartObj.brand, props.brandOptions);
         outfitPartObj.fabricDesign = this.xlateValueToValueLabel(outfitPartObj.fabricDesign, props.materialOptions);
         outfitPartObj.fabricType = this.xlateValueToValueLabel(outfitPartObj.fabricType, props.fabricTypeOptions);
+        outfitPartObj.type = this.xlateValueToValueLabel(outfitPartObj.type, props.typeOptions);
         outfitPartObj.category = this.xlateListOfValuesToValueLabel(outfitPartObj.category, props.categoryOptions);
 
+        
         console.log(props.categoryOptions);
         console.log(outfitPartObj);
         alert('here');
@@ -119,9 +121,19 @@ class OutfitPart extends React.Component {
                     <PageTitleHeader  title={this.props.pageTitle}/>
 
 
+                    <div class = "input-group">
+                        <label>Type:</label>
+                        <div class = "input-group__item-flex">
+                            <Select
+                                onChange = {this.handleTypeChange}
+                                options = {this.props.typeOptions}
+                                isMulti = {false}
+                                defaultValue = {this.state.type}
+                            />
+                        </div>
+                    </div>                    
 
-                    <div class = "page-section-header"> Top Images </div>
-
+                    <div class = "page-section-header"> Images </div>
 
                     <ImagesSlider 
                         imageUrls = {this.state.imgUrls}
@@ -298,6 +310,18 @@ class OutfitPart extends React.Component {
             }
         )        
     }       
+
+    handleTypeChange = (event) =>{
+        console.log(`event onChanged Type: ${event.value}`)
+
+        this.setState (
+            (prevState)=> {
+                return {
+                    type: event.value
+                }
+            }
+        )        
+    } 
 
     handleBrandChange = (event) =>{
         console.log(`event onChanged Brand: ${event.value}`)

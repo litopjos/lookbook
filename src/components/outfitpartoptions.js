@@ -42,4 +42,12 @@ export const brandOptions = [
     {label:'Eddie Bauer', value: 'Eddie Bauer'},
     {label:'Uniclo', value: 'Uniclo'},
     {label:'L.L.Bean', value: 'L.L.Bean'},
+    {label:'Polo / Ralph Lauren', value: 'polo / ralph_lauren'},
+];
+
+export const typeOptions = [
+    {label:'Top', value: 'top'},
+    {label:'Bottom', value: 'bottom'},
+    {label:'Footwear', value: 'footwear'},
+    {label:'Accessories', value: 'accessories'}
 ];

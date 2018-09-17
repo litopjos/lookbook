@@ -9,7 +9,7 @@ DESCRIPTION:
 import {connect} from "react-redux";
 import React from "react";
 
-import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions} from "./outfitpartoptions.js"
+import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
 import {outfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
 import {startAddOutfitPart,startShowOutfitParts} from "../redux/actions/actionsoutfitpart.js";
@@ -37,7 +37,8 @@ class AddPartPage extends React.Component {
                     categoryOptions = {topCategoryOptions}
                     materialOptions = {fabricDesignOptions}
                     fabricTypeOptions = {fabricTypeOptions}
-                    brandOptions = {brandOptions}
+                    brandOptions = {brandOptions} 
+                    typeOptions = {typeOptions}
                 />
             </div>
         )

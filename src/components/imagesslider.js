@@ -1,7 +1,17 @@
 /* -----------------------------------------------
-FILE: images.js
+FILE: imagesslider.js
 
 DESCRIPTION:
+
+- Abstracts a collection of images displayed horizontally.
+
+- The collection of images is abstracted by the ColImgObjs
+  collection class.
+
+- Each image can be stored locally or in the lookbook
+server. If stored locally, an 'upload' image overlay
+will be rendered on top of the image that when clicked
+will attempt to upload the image to the Lookbook server.
 
 Abstracts the logic needed to render a collection of images along with the ability
 to add, replace or delete a specific image. When an image is replaced or a new image is added, the new/edited image must be uploaded to the app's
@@ -14,62 +24,11 @@ import React from "react";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus, faPlusCircle, faTrash, faUpload, faExchangeAlt, faInverse, faCircle} from "@fortawesome/free-solid-svg-icons";
-
-import FilePicker from "./filepicker";
-import ModalImageViewer from "./modalimageviewer";
 import axios from "axios";
 
-const uuid = require('uuid/v1');
-
-
-
-class ColImgObjs {
-    constructor (arrImgObjs = []) {
-        this.arrImgObjs = arrImgObjs;
-    }
-
-    addImgUrl =  (img, filename = "") => {
-        const imgObj = this.genImgObj(img,filename,true);
-
-        this.arrImgObjs.push(imgObjs);
-    }
-
-    addImgBlob = (img, filename = "") =>{
-        alert(`addImgBlob()`);
-
-        const imgObj = this.genImgObj(img,filename,false);
-  
-        this.arrImgObjs.push(imgObj);
-
-    //    console.log(imgObjs);
-    //    console.log(this.arrImgObjs);
-    //    alert(`addImgBlob(): ${imgObjs}`);
-    }
-
-    addFileObj = (fileObj)=>{
-        let imgObj = this.genImgObj  (fileObj.preview, fileObj.name, fileObj);
-        
-        this.arrImgObjs.push(imgObj);    
-    }
-
-    genImgObj = (preview = "", filename = "", fileObj = undefined, isUploaded=false, fileUrl = undefined) =>{
-
-        let imgObj = {
-            id:  uuid(),
-            img: preview,
-            filename,
-            fileObj,
-            isUploaded,
-            fileUrl
-        };
-
-       return imgObj;
-    }
-
-    getArrImgObjs = ()=>this.arrImgObjs;
-
-
-}
+import {ColImgObjs} from "./colimgobjs";
+import FilePicker from "./filepicker";
+import ModalImageViewer from "./modalimageviewer";
 
 class ImagesSlider extends React.Component {
 
@@ -77,11 +36,14 @@ class ImagesSlider extends React.Component {
         super(props);
 
         this.state = {
-            imageUrls: [...props.imageUrls],
+            imageUrls: [...props.imageUrls], // Array of urls of the images, typically from the database.
             colImgObjs: new ColImgObjs,        
             showModalViewer: false,
             imgToView: undefined
         }
+
+        // Initialize the collection of imageObjs with the list of remote image urls.
+        this.state.colImgObjs.initWithListOfUrls(this.state.imageUrls);
     }
 
 
