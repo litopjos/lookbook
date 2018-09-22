@@ -18,7 +18,7 @@ export const clearOutfitParts = ()=>{
    }
 
 export const addOutfitPart = (outfitPart) => {
-    alert (`ACTION OUTFIT_PART: ADD_OUTFIT_PART ${outfitPart}`);
+//    alert (`ACTION OUTFIT_PART: ADD_OUTFIT_PART ${outfitPart}`);
     return {
         type: 'ADD_OUTFIT_PART',
         part: outfitPart
@@ -26,7 +26,7 @@ export const addOutfitPart = (outfitPart) => {
 }
 
 export const loadOutfitPartsAction = (outfitParts)=>{
-    alert (`ACTION OUTFIT_PART: LOAD_OUTFIT_PART ${outfitParts}`);
+//    alert (`ACTION OUTFIT_PART: LOAD_OUTFIT_PART ${outfitParts}`);
     return {
         type: 'LOAD_OUTFIT_PARTS',
         parts: outfitParts
@@ -36,7 +36,7 @@ export const loadOutfitPartsAction = (outfitParts)=>{
 
 export const startLoadOutfitPartsAction = (uid)=>{
     return (dispatch,getState)=>{
-        alert(`ACTION OUTFIT_PART: START_LOAD_OUTFITPARTS uid:${uid}`);
+//        alert(`ACTION OUTFIT_PART: START_LOAD_OUTFITPARTS uid:${uid}`);
 
         return database.ref(`users/${uid}/OUTFIT_PART`)
             .once('value')
@@ -85,7 +85,7 @@ export const startAddOutfitPart = (outfitPart) => {
 }
 
 export const showOutfitParts = () => {
-    alert(`ACTION OUTFIT_PART: SHOW_OUTTFIT_PARTS`);
+//    alert(`ACTION OUTFIT_PART: SHOW_OUTTFIT_PARTS`);
     return {
         type: 'SHOW_ALL_PARTS'
     }
@@ -97,7 +97,7 @@ export const startShowOutfitParts = (filter) => {
 
     return (dispatch) => {
 
-        alert(`ACTION OUTFIT_PART: START_SHOW_OUTTFIT_PARTS ${filter}`);
+//        alert(`ACTION OUTFIT_PART: START_SHOW_OUTTFIT_PARTS ${filter}`);
 
         // Inhale outfit parts from datatabase here.
 
@@ -110,3 +110,37 @@ export const startShowOutfitParts = (filter) => {
         */
     }
 } 
+
+export const editOutfitPart = (outfitPart) => {
+//    alert(`ACTION OUTFIT_PART: EDIT_OUTTFIT_PART ${outfitPart}`);
+    return (
+        {
+            type: 'EDIT_OUTFIT_PART',
+            outfitpart
+        }
+    )
+}
+
+export const startEditOutfitPart = (outfitPart) => {
+
+//    alert(`ACTION OUTFIT_PART: START_EDIT_OUTTFIT_PART ${outfitPart}`);
+    return (dispatch,getState)=> {
+
+        const uid = getState().auth.uid;
+        alert(`ACTION OUTFIT_PART: START_EDIT_OUTTFIT_PART thunk. ref=users/${uid}/OUTFIT_PART/${outfitPart.id}`);        
+
+        database.ref(`users/${uid}/OUTFIT_PART/${outfitPart.id}`)
+            .set(outfitPart)
+            .then(
+                ()=>{
+                    alert(`edit outfit part ok. ref=users/${uid}/OUTFIT_PART/${outfitPart.id}`)
+                    return dispatch(editOutfitPart(outfitPart));
+                }
+            )      
+            .catch(
+                (e)=>alert(`EDIT_OUTTFIT_PART database ERROR: ${e}`)
+            )  
+
+
+    }
+}

@@ -43,7 +43,9 @@ export const brandOptions = [
     {label:'Uniclo', value: 'Uniclo'},
     {label:'L.L.Bean', value: 'L.L.Bean'},
     {label:'Polo / Ralph Lauren', value: 'polo / ralph_lauren'},
+    {label:'Folded & Hung', value: 'Folded & Hung'},
 ];
+
 
 export const typeOptions = [
     {label:'Top', value: 'top'},
@@ -51,3 +53,12 @@ export const typeOptions = [
     {label:'Footwear', value: 'footwear'},
     {label:'Accessories', value: 'accessories'}
 ];
+
+/*
+export const typeOptions = [
+    {value: 'top'},
+    {value: 'bottom'},
+    {value: 'footwear'},
+    {value: 'accessories'}
+];
+*/

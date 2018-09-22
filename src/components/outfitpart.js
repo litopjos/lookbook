@@ -31,6 +31,11 @@ export const outfitPartObj  = {
 
 class OutfitPart extends React.Component {
 
+    handlePredomColorChange= (color) => {
+ //       alert(`color picker choice: ${color.hex}`);
+        this.setState ( ()=> ({predomColor: color.hex}) );
+    }
+
     xlateListOfValuesToValueLabel = (values, options) => {
         let valueLabelList = [];
 
@@ -71,35 +76,52 @@ class OutfitPart extends React.Component {
         return valueLabel;
     }
     constructor (props) {
+        alert('OutfitPart:constructor()');        
         super (props);
+
+        // Save the outfitpart to be edited as the component state.
+        this.state = props.outfitPartObj;
 
         // Accomodating react-select control.
         // cuz only value is persisted in database and not the label
         // so we have to regen label-value in order to show default value 
         // selection.
-        let outfitPartObj = props.outfitPartObj;
-        outfitPartObj.brand = this.xlateValueToValueLabel(outfitPartObj.brand, props.brandOptions);
-        outfitPartObj.fabricDesign = this.xlateValueToValueLabel(outfitPartObj.fabricDesign, props.materialOptions);
-        outfitPartObj.fabricType = this.xlateValueToValueLabel(outfitPartObj.fabricType, props.fabricTypeOptions);
-        outfitPartObj.type = this.xlateValueToValueLabel(outfitPartObj.type, props.typeOptions);
-        outfitPartObj.category = this.xlateListOfValuesToValueLabel(outfitPartObj.category, props.categoryOptions);
+        this.state.type 
+            ? this.state.typeDefaultValue = this.xlateValueToValueLabel(this.state.type, props.typeOptions)
+            : this.state.typeDefaultValue = '';
+        console.log(this.state.typeDefaultValue)
+        console.log('here0');
 
-        
-        console.log(props.categoryOptions);
-        console.log(outfitPartObj);
-        alert('here');
+        this.state.brand 
+            ? this.state.brandDefaultValue = this.xlateValueToValueLabel(this.state.brand, props.brandOptions)
+            : this.state.brandDefaultValue = '';
+        console.log(this.state.brandDefaultValue)
+        console.log('here1');
+//        alert('here2');
 
-        this.state = outfitPartObj;
+        this.state.fabricDesign
+            ? this.state.fabricDesignDefaultValue = this.xlateValueToValueLabel(this.state.fabricDesign, props.materialOptions)
+            : this.state.fabricDesignDefaultValue = '';
+        console.log(this.state.fabricDesignDefaultValue);
+        console.log('here2');
+//        alert('here2');
 
+        this.state.fabricType
+            ? this.state.fabricTypeDefaultValue = this.xlateValueToValueLabel(this.state.fabricType, props.fabricTypeOptions)
+            : this.state.fabricTypeDefaultValue = '';
+
+        this.state.category
+            ? this.state.categoryDefaultValue = this.xlateListOfValuesToValueLabel(this.state.category, props.categoryOptions)
+            : this.state.categoryDefaultValue = '';
 
     }
 
     render() {
+ //       alert('OutfitPart:render()');
         return (
             <div>
                 <div className="navbar__offset"/>
                 <div className="container">
-
 
                     <div className="toolbar">
                         <div className="container">
@@ -120,7 +142,6 @@ class OutfitPart extends React.Component {
 
                     <PageTitleHeader  title={this.props.pageTitle}/>
 
-
                     <div class = "input-group">
                         <label>Type:</label>
                         <div class = "input-group__item-flex">
@@ -128,7 +149,7 @@ class OutfitPart extends React.Component {
                                 onChange = {this.handleTypeChange}
                                 options = {this.props.typeOptions}
                                 isMulti = {false}
-                                defaultValue = {this.state.type}
+                                defaultValue = {this.state.typeDefaultValue}
                             />
                         </div>
                     </div>                    
@@ -147,7 +168,7 @@ class OutfitPart extends React.Component {
                                 onChange = {this.handleCategoryChange}
                                 options = {this.props.categoryOptions}
                                 isMulti = {true}
-                                defaultValue = {this.state.category}
+                                defaultValue = {this.state.categoryDefaultValue}
                             />
                         </div>
                     </div>
@@ -156,7 +177,7 @@ class OutfitPart extends React.Component {
                     <label>Brand:</label>
                     <div class = "input-group__item-flex">
                         <Select
-                            defaultValue = {this.state.brand}
+                            defaultValue = {this.state.brandDefaultValue}
                             onChange = {this.handleBrandChange}
                             options = {this.props.brandOptions}
                             isMulti = {false}
@@ -168,7 +189,7 @@ class OutfitPart extends React.Component {
                         <label>Fabric Design:</label>
                         <div class = "input-group__item-flex">
                             <Select
-                                defaultValue = {this.state.fabricDesign}
+                                defaultValue = {this.state.fabricDesignDefaultValue}
                                 onChange = {this.handleFabricDesignChange}
                                 options = {this.props.materialOptions}
                             />    
@@ -179,7 +200,7 @@ class OutfitPart extends React.Component {
                         <label>Fabric Type:</label>
                         <div class = "input-group__item-flex">
                             <Select
-                                defaultValue = {this.state.fabricType}
+                                defaultValue = {this.state.fabricTypeDefaultValue}
                                 onChange = {this.handleFabricTypeChange}
                                 options = {this.props.fabricTypeOptions}
                             />    
@@ -189,7 +210,10 @@ class OutfitPart extends React.Component {
                     <div class = "input-group">                    
                         <label>Predominant Color</label>
                         <div class = "input-group__item-flex">
-                            <Chrome/>
+                            <Chrome
+                                color={ this.state.predomColor }
+                                onChangeComplete={ this.handlePredomColorChange }                           
+                            />
                         </div>
                     </div>
            
@@ -198,7 +222,9 @@ class OutfitPart extends React.Component {
                         <label>Color Description</label>
                         <input 
                             type='text' 
-                            class = "input-group__item-flex"                        
+                            class = "input-group__item-flex"  
+                            onChange = {this.handleColorDescriptionChange}
+                            defaultValue={this.state.colorDescription}                                                 
                         />
                     </div>
 
@@ -237,6 +263,7 @@ class OutfitPart extends React.Component {
     // This handler is called when the user clicks on the 'Save' button.
     // It kicks off the Redux process of saving the newly defined outfit part.
     handleSaveOutfitPart = ()=>{
+        console.log(this.state);
         alert('clicked on Save button in outfitPart.');
         this.props.handleSaveButtonClick(this.state);
     }
@@ -270,7 +297,7 @@ class OutfitPart extends React.Component {
     handleSelectedFile(e) {
         console.log(e.target.files[0]);
         console.log(`SELECTED FILE: ${e.target.files[0]}`);
-         alert('here');
+         alert(`handleSelectedFile(${e.target.files[0]})`);
 
          const fd = new FormData();
          fd.append ("avatar", e.target.files[0]);
@@ -346,7 +373,19 @@ class OutfitPart extends React.Component {
             }
         )        
     }        
+    handleColorDescriptionChange = (event) =>{
+        const val = event.target.value;
+        console.log(event.target.value);
+        console.log(`event colorDescription onChange Description: ${event}`);
 
+        this.setState (
+            (prevstate)=> {
+                return {
+                    colorDescription: val
+                }
+            }
+        )           
+    }    
 
     handleDescriptionChange = (event) =>{
         const val = event.target.value;

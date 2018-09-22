@@ -12,33 +12,38 @@ import {outfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
 import {PageTitleHeader} from "./pagetitleheader.js";
 import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
+import {startEditOutfitPart} from "../redux/actions/actionsoutfitpart";
 
 
 export class EditPartPage extends React.Component {
+
     constructor(props) {
-//        alert(`EditPartPage:constructor() - ${props.match.params.id}`);
+        alert(`EditPartPage:constructor() - ${props.match.params.id}`);
         super(props)
 
         const editedPartId = props.match.params.id;
 
-        // Find the partObj to be edited.
+        // Find the partObj to be edited from the redux store.
+        // props.outfitParts is mapped to the redux store.
     //    alert(props.outfitParts.length);
-        props.outfitParts.some(
+        let edit_part = props.outfitParts.find(
             (part)=>{
- //               alert(part.id);
-                if (part.id === editedPartId) {
- //                   alert('match');
-                    this.state = {editPartObj: part};
-                    return true;
-                }
+                return part.id === editedPartId;
             }
         )
 
+        if (edit_part)
+            this.state = {editPartObj: edit_part};
+        else 
+            alert("Error: couldn't find outfit part to be edited.");
+        
+
     }
+
 
     render() {
         console.log(this.state.editPartObj);
-//        alert(`EditPartPage:render() state:`)
+        alert(`EditPartPage:render() state:`)
         return (
             <div>
                     <OutfitPart 
@@ -60,10 +65,12 @@ export class EditPartPage extends React.Component {
 
     handleSaveEditedPart = (item)=>{
         alert(`EditPartPage:handleSaveEditedPart(${item})`)
+        this.props.editOutfitPart(item);
     }
 
     handleCancelEditedPart = ()=> {
         alert(`EditPartPage:handleCancelEditedPart()`);
+
     }
 
 }
@@ -79,6 +86,7 @@ const MapStateToProps = (state)=>{
 
 const MapDispatchToProps = (dispatch)=>{
     return {
+        editOutfitPart: (outfitPart)=>dispatch(startEditOutfitPart(outfitPart)),
     }
 }
 

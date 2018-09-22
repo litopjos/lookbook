@@ -85,7 +85,7 @@ const loadGuestOutfits = () => {
 }
 
 export const login = (provider,uid) =>{
-    alert(`ACTION GENERATOR: LOGIN provider:${provider}, uid:${uid}`);
+//    alert(`ACTION GENERATOR: LOGIN provider:${provider}, uid:${uid}`);
     return {
         type: 'LOGIN',
         provider,

@@ -12,6 +12,7 @@ values reflect the new state.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 const footwearReducer =  (state = {},action)=>{
+//    alert(`footwearReducer state=${state}, action=${action}`);
     switch (action.type) {
         case "LOAD_FOOTWEAR":
  //           alert(`REDUCER: LOAD_FOOTWEAR`);

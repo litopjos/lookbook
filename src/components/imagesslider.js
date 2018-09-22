@@ -69,7 +69,7 @@ class ImagesSlider extends React.Component {
                     {arrImgObjs.length > 0 &&arrImgObjs.map((imgObj)=>{
 
                         const imgUrl = imgObj.isUploaded ? imgObj.fileUrl : imgObj.img;
-                        alert(`imgUrl: ${imgUrl}`);
+//                        alert(`imgUrl: ${imgUrl}`);
 
                         return (
                                 

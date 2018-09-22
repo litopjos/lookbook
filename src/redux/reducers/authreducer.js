@@ -12,6 +12,7 @@ values reflect the new state.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 const authReducer =  (state = {},action)=>{
+//    alert(`authReducer state=${state}, action=${action}`);
     switch (action.provider,action.type) {
         case "LOGIN":
 //            alert(`ACTION REDUCER: LOGIN ${action.uid}`);

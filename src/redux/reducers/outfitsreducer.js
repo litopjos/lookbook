@@ -12,6 +12,7 @@ values reflect the new state.
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
 const outfitsReducer =  (state = {},action)=>{
+//    alert(`outfitReducer state=${state}, action=${action}`);
     let allOutfits = [];
 
     switch (action.type) {

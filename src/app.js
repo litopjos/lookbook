@@ -62,7 +62,7 @@ firebase.auth().onAuthStateChanged(
             alert(`login via google ok. Loading outfit parts...`);
             store.dispatch(startLoadOutfitPartsAction(user.uid));
 
-            alert('redirect to alloutfits page');
+//            alert('redirect to alloutfits page');
             history.push('/alloutfits');
         } else {
             alert(`user logged out`);
