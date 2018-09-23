@@ -20,98 +20,115 @@ import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
+import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,
+         brandOptions,typeOptions,footwearCategoryOptions,footwearBrandOptions,footwearMaterialTypeOptions} from "./outfitpartoptions.js"
+
 export const outfitPartObj  = {
     type: "top",
     category: [],
     fabricDesign: "",
     fabricType: "",
-    description: "",
+    description: "", 
     imgUrls:[]
 };
 
 class OutfitPart extends React.Component {
 
-    handlePredomColorChange= (color) => {
- //       alert(`color picker choice: ${color.hex}`);
-        this.setState ( ()=> ({predomColor: color.hex}) );
-    }
+    handleTypeChange = (event) =>{
+        console.log(`event onChanged Type: ${event.value}`)
 
-    xlateListOfValuesToValueLabel = (values, options) => {
-        let valueLabelList = [];
 
-        values.map (
-            (value) => {
-                options.some (
-                    (option) => {
- //                       alert(`value:${value}, option:${option.value}`);
-                        if (value === option.value) {
- //                           alert('match2');
-                            valueLabelList.push(option);
-                            return true;
-                        }
 
-                    }
-                )
+        this.setState (
+            (prevState)=> {
+
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.type = event.value;    
+                
+                let state = this.generateStateObject(outfitPartObj)
+
+                return state;
             }
-        )
+        )        
+    }     
 
-        return valueLabelList;
-    }
+    generateStateObject = (outfitPartObj)=>{
+        console.log(outfitPartObj);
+//        alert('here');
 
-    xlateValueToValueLabel =  (value,options) => {
-        let valueLabel = {};
-        console.log(value);
-        console.log (options);
-        options.some(
-            (option)=>{
-                if (option.value === value) {
-                    valueLabel = option;
-                    console.log(valueLabel);
- //                   alert(`match label:${valueLabel}`)
-                    return true;
+        let state = {};
+        switch (outfitPartObj.type) {
+            case 'top':
+                state = {
+                    outfitPartObj: outfitPartObj,
+                    typeOptions: typeOptions,
+                    categoryOptions: topCategoryOptions,
+                    materialOptions: fabricDesignOptions,
+                    materialTypeOptions: fabricTypeOptions,
+                    brandOptions: brandOptions
                 }
-            }
-        )
+            break;
 
-        return valueLabel;
+            case 'footwear':
+                state = {
+                    outfitPartObj: outfitPartObj,
+                    typeOptions: typeOptions,                   
+                    categoryOptions: footwearCategoryOptions,
+                    materialOptions: fabricDesignOptions,
+                    materialTypeOptions: footwearMaterialTypeOptions,
+                    brandOptions: footwearBrandOptions
+                }
+            break;                
+
+            default:
+                alert('MISSING LOGIC!')
+        }
+
+        return state;
     }
+
     constructor (props) {
         alert('OutfitPart:constructor()');        
         super (props);
 
-        // Save the outfitpart to be edited as the component state.
-        this.state = props.outfitPartObj;
+
+ 
+        // Generate a state object containing the correct options
+        // based on the type of the outfitPart object.
+        let state = this.generateStateObject(props.outfitPartObj);
+
+        this.state = state;
 
         // Accomodating react-select control.
         // cuz only value is persisted in database and not the label
         // so we have to regen label-value in order to show default value 
         // selection.
-        this.state.type 
-            ? this.state.typeDefaultValue = this.xlateValueToValueLabel(this.state.type, props.typeOptions)
+        this.state.outfitPartObj.type 
+            ? this.state.typeDefaultValue = this.xlateValueToValueLabel(this.state.outfitPartObj.type, this.state.typeOptions)
             : this.state.typeDefaultValue = '';
-        console.log(this.state.typeDefaultValue)
-        console.log('here0');
+ //       console.log(this.state.typeDefaultValue)
+ //       console.log('here0');
 
-        this.state.brand 
-            ? this.state.brandDefaultValue = this.xlateValueToValueLabel(this.state.brand, props.brandOptions)
+        this.state.outfitPartObj.brand 
+            ? this.state.brandDefaultValue = this.xlateValueToValueLabel(this.state.outfitPartObj.brand, this.state.brandOptions)
             : this.state.brandDefaultValue = '';
         console.log(this.state.brandDefaultValue)
         console.log('here1');
 //        alert('here2');
 
-        this.state.fabricDesign
-            ? this.state.fabricDesignDefaultValue = this.xlateValueToValueLabel(this.state.fabricDesign, props.materialOptions)
+        this.state.outfitPartObj.fabricDesign
+            ? this.state.fabricDesignDefaultValue = this.xlateValueToValueLabel(this.state.outfitPartObj.fabricDesign, this.state.materialOptions)
             : this.state.fabricDesignDefaultValue = '';
         console.log(this.state.fabricDesignDefaultValue);
         console.log('here2');
 //        alert('here2');
 
-        this.state.fabricType
-            ? this.state.fabricTypeDefaultValue = this.xlateValueToValueLabel(this.state.fabricType, props.fabricTypeOptions)
+        this.state.outfitPartObj.fabricType
+            ? this.state.fabricTypeDefaultValue = this.xlateValueToValueLabel(this.state.outfitPartObj.fabricType, this.state.materialTypeOptions)
             : this.state.fabricTypeDefaultValue = '';
 
-        this.state.category
-            ? this.state.categoryDefaultValue = this.xlateListOfValuesToValueLabel(this.state.category, props.categoryOptions)
+        this.state.outfitPartObj.category
+            ? this.state.categoryDefaultValue = this.xlateListOfValuesToValueLabel(this.state.outfitPartObj.category, this.state.categoryOptions)
             : this.state.categoryDefaultValue = '';
 
     }
@@ -147,7 +164,7 @@ class OutfitPart extends React.Component {
                         <div class = "input-group__item-flex">
                             <Select
                                 onChange = {this.handleTypeChange}
-                                options = {this.props.typeOptions}
+                                options = {this.state.typeOptions}
                                 isMulti = {false}
                                 defaultValue = {this.state.typeDefaultValue}
                             />
@@ -157,7 +174,7 @@ class OutfitPart extends React.Component {
                     <div class = "page-section-header"> Images </div>
 
                     <ImagesSlider 
-                        imageUrls = {this.state.imgUrls}
+                        imageUrls = {this.state.outfitPartObj.imgUrls}
                         onImageUrlsChanged = {this.handleImgsChanged}
                     />
                    
@@ -166,7 +183,7 @@ class OutfitPart extends React.Component {
                         <div class = "input-group__item-flex">
                             <Select
                                 onChange = {this.handleCategoryChange}
-                                options = {this.props.categoryOptions}
+                                options = {this.state.categoryOptions}
                                 isMulti = {true}
                                 defaultValue = {this.state.categoryDefaultValue}
                             />
@@ -179,7 +196,7 @@ class OutfitPart extends React.Component {
                         <Select
                             defaultValue = {this.state.brandDefaultValue}
                             onChange = {this.handleBrandChange}
-                            options = {this.props.brandOptions}
+                            options = {this.state.brandOptions}
                             isMulti = {false}
                         />
                     </div>
@@ -191,7 +208,7 @@ class OutfitPart extends React.Component {
                             <Select
                                 defaultValue = {this.state.fabricDesignDefaultValue}
                                 onChange = {this.handleFabricDesignChange}
-                                options = {this.props.materialOptions}
+                                options = {this.state.materialOptions}
                             />    
                         </div>
                     </div>     
@@ -202,7 +219,7 @@ class OutfitPart extends React.Component {
                             <Select
                                 defaultValue = {this.state.fabricTypeDefaultValue}
                                 onChange = {this.handleFabricTypeChange}
-                                options = {this.props.fabricTypeOptions}
+                                options = {this.state.materialTypeOptions}
                             />    
                         </div>
                     </div>               
@@ -211,7 +228,7 @@ class OutfitPart extends React.Component {
                         <label>Predominant Color</label>
                         <div class = "input-group__item-flex">
                             <Chrome
-                                color={ this.state.predomColor }
+                                color={ this.state.outfitPartObj.predomColor }
                                 onChangeComplete={ this.handlePredomColorChange }                           
                             />
                         </div>
@@ -224,7 +241,7 @@ class OutfitPart extends React.Component {
                             type='text' 
                             class = "input-group__item-flex"  
                             onChange = {this.handleColorDescriptionChange}
-                            defaultValue={this.state.colorDescription}                                                 
+                            defaultValue={this.state.outfitPartObj.colorDescription}                                                 
                         />
                     </div>
 
@@ -232,7 +249,7 @@ class OutfitPart extends React.Component {
                         <label>Description:</label>
                         <textarea class = "input-group__item-flex"
                             onChange = {this.handleDescriptionChange}
-                            defaultValue={this.state.description}
+                            defaultValue={this.state.outfitPartObj.description}
                         />
                     </div>
 
@@ -244,28 +261,66 @@ class OutfitPart extends React.Component {
         )
     }
 
-/*
-                    <div class = "input-group">
-                    <button
-                        class="button"
-                        onClick={this.handleSaveOutfitPart}
-                    >
-                        Save
-                    </button>
+    handlePredomColorChange= (color) => {
+        //       alert(`color picker choice: ${color.hex}`);
+        this.setState ( 
+            (prevState)=>{
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.predomColor = color.hex;
 
-                    <button
-                        class="button"
-                        onClick={this.handleCancelOutfitPart}
-                    >
-                        Cancel
-                    </button>  
-*/
+                return {
+                    outfitPartObj: outfitPartObj
+                }                
+            }
+        );
+    }
+       
+    xlateListOfValuesToValueLabel = (values, options) => {
+        let valueLabelList = [];
+
+        values.map (
+            (value) => {
+                options.some (
+                    (option) => {
+//                       alert(`value:${value}, option:${option.value}`);
+                        if (value === option.value) {
+//                           alert('match2');
+                            valueLabelList.push(option);
+                            return true;
+                        }
+
+                    }
+                )
+            }
+        )
+        return valueLabelList;
+    }
+       
+    xlateValueToValueLabel =  (value,options) => {
+        let valueLabel = {};
+        console.log(value);
+        console.log (options);
+        options.some(
+            (option)=>{
+                if (option.value === value) {
+                    valueLabel = option;
+                    console.log(valueLabel);
+//                   alert(`match label:${valueLabel}`)
+                    return true;
+                }
+            }
+        )
+
+        return valueLabel;
+    }    
+
+
     // This handler is called when the user clicks on the 'Save' button.
     // It kicks off the Redux process of saving the newly defined outfit part.
     handleSaveOutfitPart = ()=>{
-        console.log(this.state);
+        console.log(this.state.outfitPartObj);
         alert('clicked on Save button in outfitPart.');
-        this.props.handleSaveButtonClick(this.state);
+        this.props.handleSaveButtonClick(this.state.outfitPartObj);
     }
 
     handleCancelOutfitPart = ()=>{
@@ -287,8 +342,12 @@ class OutfitPart extends React.Component {
 
         this.setState (
             (prevState)=> {
+
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.category = newArr;
+
                 return {
-                    category: newArr
+                    outfitPartObj: outfitPartObj
                 }
             }
         )
@@ -304,8 +363,8 @@ class OutfitPart extends React.Component {
 //         fd.append ("avatar", e.target.files[0], e.target.files[0].name);
  //         fd.append ("test-label", "test-value");
         
-         console.log(fd);
-         alert('here');
+ //        console.log(fd);
+ //        alert('here');
 
 
 
@@ -331,57 +390,59 @@ class OutfitPart extends React.Component {
 
         this.setState (
             (prevState)=> {
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.fabricDesign = event.value;
+
                 return {
-                    fabricDesign: event.value
+                    outfitPartObj: outfitPartObj
                 }
             }
         )        
     }       
-
-    handleTypeChange = (event) =>{
-        console.log(`event onChanged Type: ${event.value}`)
-
-        this.setState (
-            (prevState)=> {
-                return {
-                    type: event.value
-                }
-            }
-        )        
-    } 
-
-    handleBrandChange = (event) =>{
-        console.log(`event onChanged Brand: ${event.value}`)
-
-        this.setState (
-            (prevState)=> {
-                return {
-                    brand: event.value
-                }
-            }
-        )        
-    } 
 
     handleFabricTypeChange = (event) =>{
         console.log(`event onChanged FabricType: ${event.value}`)
 
         this.setState (
             (prevState)=> {
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.fabricType = event.value;
+
                 return {
-                    fabricType: event.value
+                    outfitPartObj: outfitPartObj
                 }
             }
         )        
-    }        
+    }         
+
+
+    handleBrandChange = (event) =>{
+        console.log(`event onChanged Brand: ${event.value}`)
+
+        this.setState (
+            (prevState)=> {
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.brand = event.value;
+
+                return {
+                    outfitPartObj: outfitPartObj
+                }
+            }
+        )        
+    } 
+
     handleColorDescriptionChange = (event) =>{
         const val = event.target.value;
         console.log(event.target.value);
         console.log(`event colorDescription onChange Description: ${event}`);
 
         this.setState (
-            (prevstate)=> {
+            (prevState)=> {
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.colorDescription = val;
+
                 return {
-                    colorDescription: val
+                    outfitPartObj: outfitPartObj
                 }
             }
         )           
@@ -393,9 +454,12 @@ class OutfitPart extends React.Component {
         console.log(`event onChange Description: ${event}`);
 
         this.setState (
-            (prevstate)=> {
+            (prevState)=> {
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.description = val;
+
                 return {
-                    description: val
+                    outfitPartObj: outfitPartObj
                 }
             }
         )           
@@ -410,9 +474,13 @@ class OutfitPart extends React.Component {
         console.log (`Images: ${imgUrls}`);
 
         this.setState (
-            ()=> {
+            (prevState)=> {
+
+                let outfitPartObj = {...prevState.outfitPartObj};
+                outfitPartObj.imgUrls = imgUrls;
+
                 return {
-                    imgUrls: imgUrls
+                    outfitPartObj: outfitPartObj
                 }
             }
         )               

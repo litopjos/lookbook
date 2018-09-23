@@ -11,24 +11,24 @@ DESCRIPTION:
     display:flex;
     border: 1px solid red;
     flex-wrap: wrap;
-    min-height: 200px;
+    min-height: 250px;
 
     
 }
 
 .image-gallery-item {
+    width: 170px;
+    height: 220px;
 
-    width: 150px;
+
     padding: 1rem;
     box-shadow: 1px 2px 40px 2px rgba(160,160,160,.5);
     margin: $s-size;
     position: relative;
 
     img {
-        width: 100%;
-        height: 200px;
-
-
+        width: 200px;
+        height: 150px;
     }    
 
 }
@@ -37,7 +37,7 @@ DESCRIPTION:
     flex-grow:1;
     padding:1rem;
     margin: $s-size;
-    min-height:200px;
+    min-height:150px;
     display:flex;
     justify-content: center;
     align-items: center;

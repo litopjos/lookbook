@@ -34,11 +34,6 @@ class AddPartPage extends React.Component {
                     pageTitle = "Add Outfit Part: Top"
                     handleSaveButtonClick = {this.handleSaveOutfitPart}
                     handleCancelButtonClick = {this.handleCancelOutfitPart}
-                    categoryOptions = {topCategoryOptions}
-                    materialOptions = {fabricDesignOptions}
-                    fabricTypeOptions = {fabricTypeOptions}
-                    brandOptions = {brandOptions} 
-                    typeOptions = {typeOptions}
                 />
             </div>
         )

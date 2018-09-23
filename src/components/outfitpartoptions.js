@@ -19,6 +19,33 @@ export const bottomCategoryOptions = [
     { label:'Capris', value: 'capris'},
 ];
 
+export const footwearCategoryOptions = [
+    { label:'Sneakers', value: 'sneaker'},
+    { label:'Dress Shoes', value: 'dress_shoes'},
+    { label:'Casual Shoes', value: 'casual_shoes'},
+    { label:'Low Rise', value: 'low_rise'},
+    { label:'High Rise', value: 'high_rise'},
+    { label:'Boots', value: 'boots'},
+    { label:'Sandals', value: 'sandals'}
+];
+
+export const footwearBrandOptions = [
+    {label:'n/a', value: 'not_available'},
+    {label:'Addidas', value: 'Addidas'},
+    {label:'Nike', value: 'Nike'},
+    {label:'Puma', value: 'Puma'},
+    {label:'Rockport', value: 'Rockport'},
+    {label:'Sperry', value: 'Sperry'},
+    {label:'Hush Puppies', value: 'Hush Puppies'},
+    {label:'Yeezys', value: 'Yeezys'},
+];
+
+export const footwearMaterialTypeOptions = [
+    {label:'Canvas', value: 'canvas'},
+    {label:'Leather', value: 'leather'},
+    {label:'Vinyl', value: 'Vinyl'},
+    {label:'Linen ', value: 'linen'},
+];
 
 export const fabricDesignOptions = [
     {label:'Solid', value: 'solid'},

@@ -25,6 +25,7 @@ import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus, faPlusCircle, faTrash, faUpload, faExchangeAlt, faInverse, faCircle} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import ExifOrientationImg from 'react-exif-orientation-img';
 
 import {ColImgObjs} from "./colimgobjs";
 import FilePicker from "./filepicker";
@@ -36,7 +37,7 @@ class ImagesSlider extends React.Component {
         super(props);
 
         this.state = {
-            imageUrls: [...props.imageUrls], // Array of urls of the images, typically from the database.
+            imageUrls: props.imageUrls?[...props.imageUrls]:[], // Array of urls of the images, typically from the database.
             colImgObjs: new ColImgObjs,        
             showModalViewer: false,
             imgToView: undefined
@@ -66,7 +67,7 @@ class ImagesSlider extends React.Component {
                 <div className="image-slider-container">
 
                     {/* Iterate through the arrImgObj */}
-                    {arrImgObjs.length > 0 &&arrImgObjs.map((imgObj)=>{
+                    {(arrImgObjs && arrImgObjs.length > 0) && arrImgObjs.map((imgObj)=>{
 
                         const imgUrl = imgObj.isUploaded ? imgObj.fileUrl : imgObj.img;
 //                        alert(`imgUrl: ${imgUrl}`);
@@ -75,7 +76,7 @@ class ImagesSlider extends React.Component {
                                 
                             <div className="image-slider-item">
 
-                                <img 
+                                <ExifOrientationImg
                                     src={imgUrl} 
                                     onDoubleClick = {()=>this.launchImageViewer(imgUrl)}
                                     onClick = {()=>this.launchImageViewer(imgUrl)}

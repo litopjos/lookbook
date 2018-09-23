@@ -9,7 +9,7 @@ DESCRIPTION:
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus, faPlusCircle, faTrash, faUpload, faExchangeAlt, faInverse, faCircle} from "@fortawesome/free-solid-svg-icons";
-
+import ExifOrientationImg from 'react-exif-orientation-img';
 
 export const ImageGallery = (props) => {
     return (
@@ -18,11 +18,12 @@ export const ImageGallery = (props) => {
             { 
                 props.galleryItems.map(
                     (item)=>{
+                       
                         return (
                             <div className="image-gallery-item">
-                                    <img 
+                                    <ExifOrientationImg
                                         onDoubleClick= {()=>props.handlerOnDoubleClick(item.id)} 
-                                        src={item.imgUrls[0]}
+                                        src={item.imgUrls?item.imgUrls[0]:""}
                                     />
                             </div>
                         )

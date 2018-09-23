@@ -11,7 +11,7 @@ import React from "React";
 import {outfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
 import {PageTitleHeader} from "./pagetitleheader.js";
-import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
+
 import {startEditOutfitPart} from "../redux/actions/actionsoutfitpart";
 
 
@@ -32,10 +32,11 @@ export class EditPartPage extends React.Component {
             }
         )
 
-        if (edit_part)
-            this.state = {editPartObj: edit_part};
+        if (edit_part) {
+            this.state = {editPartObj:edit_part}
+        }
         else 
-            alert("Error: couldn't find outfit part to be edited.");
+            alert("Error: couldn't find outfit part to be edited.");``
         
 
     }
@@ -51,11 +52,6 @@ export class EditPartPage extends React.Component {
                         pageTitle = "Edit Outfit Part"
                         handleSaveButtonClick = {this.handleSaveEditedPart}
                         handleCancelButtonClick = {this.handleCancelEditedPart}
-                        categoryOptions = {topCategoryOptions}
-                        materialOptions = {fabricDesignOptions}
-                        fabricTypeOptions = {fabricTypeOptions}
-                        brandOptions = {brandOptions}
-                        typeOptions = {typeOptions}
                     />
 
 

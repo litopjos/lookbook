@@ -50,6 +50,7 @@
     "react-colorpickr": "^4.3.0",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",
+    "react-exif-orientation-img": "^0.1.5",
     "react-grid-gallery": "^0.5.1",
     "react-image-gallery": "^0.8.9",
     "react-image-viewer-zoom": "^1.0.36",
