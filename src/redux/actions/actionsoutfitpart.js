@@ -26,7 +26,8 @@ export const addOutfitPart = (outfitPart) => {
 }
 
 export const loadOutfitPartsAction = (outfitParts)=>{
-//    alert (`ACTION OUTFIT_PART: LOAD_OUTFIT_PART ${outfitParts}`);
+    console.log(outfitParts);
+    alert (`ACTION OUTFIT_PART: LOAD_OUTFIT_PART ${outfitParts}`);
     return {
         type: 'LOAD_OUTFIT_PARTS',
         parts: outfitParts

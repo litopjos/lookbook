@@ -23,6 +23,25 @@ import Toolbar from "./toolbar";
 import {outfitCategoryOptions} from "./outfitpartoptions";
 
 class Outfit extends React.Component {
+
+    handleDescriptionChange = (event) =>{
+        const val = event.target.value;
+        console.log(event.target.value);
+        console.log(`event onChange Description: ${event}`);
+
+        this.setState (
+            (prevState)=> {
+                let outfitObj = {...prevState.outfitObj};
+                outfitObj.description = val;
+
+                return {
+                    outfitObj: outfitObj
+                }
+            }
+        )           
+    }    
+
+
     handleCategoryChange = (selectedOptions)=>{
         console.log (selectedOptions);
 
@@ -83,6 +102,15 @@ class Outfit extends React.Component {
                             />
                         </div>
                     </div>
+
+                    <div class = "input-group">
+                        <label>Description:</label>
+                        <textarea class = "input-group__item-flex"
+                            onChange = {this.handleDescriptionChange}
+                            defaultValue={this.state.outfitObj.description}
+                        />
+                    </div>                    
+
 
                     <div class = "page-section-header"> Outfit Images: </div>
                     <ImagesSlider

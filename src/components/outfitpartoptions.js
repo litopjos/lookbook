@@ -50,8 +50,9 @@ export const footwearBrandOptions = [
 export const footwearMaterialTypeOptions = [
     {label:'Canvas', value: 'canvas'},
     {label:'Leather', value: 'leather'},
-    {label:'Vinyl', value: 'Vinyl'},
-    {label:'Linen ', value: 'linen'},
+    {label:'Vinyl', value: 'vinyl'},
+    {label:'Linen', value: 'linen'},
+    {label:'Nylon', value: 'nylon'}  
 ];
 
 export const fabricDesignOptions = [

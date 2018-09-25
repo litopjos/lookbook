@@ -14,6 +14,11 @@ import {clearOutfits} from "../../redux/actions/actionsoutfits.js";
 import {clearOutfitParts} from "../../redux/actions/actionsoutfitpart.js";
 import {loadFootwearAction} from "./actionsfootwear";
 import {loadOutfitsAction} from "./actionsoutfits";
+import {loadOutfitPartsAction} from "./actionsoutfitpart";
+
+
+
+
 
 const loadGuestFootwear = ()=>{
     const footwear = [];
@@ -21,20 +26,53 @@ const loadGuestFootwear = ()=>{
     footwear.push (
         {
             id: "footwear_1",
-            notes: "",
-            imageUrls: 
-            [
-                "/images/footwear/20180711_044454.jpg"             
-            ]             
+            type: "footwear",
+            imgUrls: 
+                [
+                    "/images/footwear/20180711_044454.jpg"             
+                ],
+            brand: 
+                [
+                    "nike"             
+                ],
+            category: 
+                [
+                    "sneaker",
+                    "low_rise"
+                ],
+            fabrictype:
+                [
+                    "nylon"
+                ],
+            description: "nike cross trainers",     
+                        
+
+            notes: ""            
         },
 
         {
             id: "footwear_2",
-            notes: "",
-            imageUrls: 
-            [
-                "/images/footwear/20180711_051515.jpg"    
-            ]             
+            type: "footwear",            
+            imgUrls: 
+                [
+                    "/images/footwear/20180925_201354.jpg"    
+                ],
+            brand: 
+                [
+                    "nike"             
+                ],
+            category: 
+                [
+                    "sneaker",
+                    "low_rise"
+                ],    
+            fabrictype:
+                [
+                    "nylon"
+                ],
+            description: "nike cross trainers",                    
+
+            notes: ""                           
         }        
     )
 
@@ -53,19 +91,21 @@ const loadGuestOutfits = () => {
                 ],
             description: "casual outfit",
             imgUrls: 
-            [
-                "/images/outfits/20180516_152108.jpg"               
-            ], 
+                [
+                    "/images/outfits/20180516_152108.jpg"               
+                ], 
+            footwearPartIDs:
+                [
+                    "footwear_1"
+                ],
 
             title: 'formal wear',
             notes: "wore april 2005",
-         
-            
+
             footwearParts:
-            [
-                "footwear_1"
-            ]
-    
+                [
+                    "footwear_1"
+                ]
         }
     )
 
@@ -78,15 +118,17 @@ const loadGuestOutfits = () => {
             ],
             description: "casual outfit",
             imgUrls: 
-            [
-                "/images/outfits/20180423_122730.jpg"                    
-            ],
+                [
+                    "/images/outfits/20180423_122730.jpg"                    
+                ],
+            footwearPartIDs:
+                [
+                    "footwear_1"
+                ],
 
             title: 'favorite lineup',
             notes: 'business casual',
 
-
- 
             outfitFootwear:
             [
                 "footwear_2"
@@ -94,6 +136,34 @@ const loadGuestOutfits = () => {
             
         }
     )
+
+    outfits.push (
+        {
+            id: "3",
+            category: 
+                [
+                    "casual",
+                    "summer"
+                ],
+            description: "basketball shorts + graphic T outfit",
+            imgUrls: 
+                [
+                    "/images/outfits/20180925_164452.jpg"               
+                ], 
+            footwearPartIDs:
+            [
+                "footwear_2"
+            ],
+
+            title: 'formal wear',
+            notes: "wore april 2005",
+                       
+            footwearParts:
+                [
+                    "footwear_1"
+                ]
+        }
+    )    
 
     return outfits
 }
@@ -125,7 +195,9 @@ export const startLoginAsGuest = () => {
         let footwear = loadGuestFootwear();
         
         dispatch(loadOutfitsAction(outfits));
-        dispatch(loadFootwearAction(footwear));        
+
+        //Load the outfit parts
+        dispatch(loadOutfitPartsAction(footwear));        
 
         history.push('/alloutfits');
     }
