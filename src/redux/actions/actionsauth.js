@@ -47,14 +47,21 @@ const loadGuestOutfits = () => {
     outfits.push (
         {
             id: "1",
-            title: 'formal wear',
-            notes: "wore april 2005",
-            outfitImageUrls: 
+            category: 
+                [
+                    "casual"
+                ],
+            description: "casual outfit",
+            imgUrls: 
             [
                 "/images/outfits/20180516_152108.jpg"               
-            ],          
+            ], 
+
+            title: 'formal wear',
+            notes: "wore april 2005",
+         
             
-            outfitFootwear:
+            footwearParts:
             [
                 "footwear_1"
             ]
@@ -65,13 +72,20 @@ const loadGuestOutfits = () => {
     outfits.push (
         {
             id: "2",
-            title: 'favorite lineup',
-            notes: 'business casual',
-
-            outfitImageUrls: 
+            category: 
+            [
+                "casual"
+            ],
+            description: "casual outfit",
+            imgUrls: 
             [
                 "/images/outfits/20180423_122730.jpg"                    
             ],
+
+            title: 'favorite lineup',
+            notes: 'business casual',
+
+
  
             outfitFootwear:
             [
@@ -102,11 +116,12 @@ export const logout = ()=>{
 
 
 export const startLoginAsGuest = () => {
-    alert(`ACTION GENERATOR: Start Login As Guest`);
+//    alert(`ACTION GENERATOR: Start Login As Guest`);
     return (dispatch) => {
         dispatch(login('guest','guest'));   
 
         let outfits = loadGuestOutfits();
+ //       alert (`guest outfits: ${outfits.length}`)
         let footwear = loadGuestFootwear();
         
         dispatch(loadOutfitsAction(outfits));

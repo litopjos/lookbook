@@ -1,5 +1,5 @@
 /* -----------------------------------------------
-FILE: EditOutfitsPage.js
+FILE: editoutfitspage.js
 
 DESCRIPTION:
 This file implements a stateless functional React component
@@ -16,51 +16,77 @@ import {history} from "../routes/routes";
 import {PageTitleHeader} from "./pagetitleheader.js";
 import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
 import Images from "./imagesslider";
-import OutfitPage from "./outfitpage";
 
-const EditOutfitPage = (props)=>{
-    console.log(props);
-    return (
-        <div>
-            <Button>Bootstrap</Button>
-            <div className="page-spec-header">
-                <div className = "container">
-                    <h2>Edit Outfit <span>{`(ID: ${props.match.params.id})`} </span> </h2>
-                </div>
-            </div>
+import Outfit from "./outfit";
 
-            <div className="container">
-                <OutfitPage 
-                    defaultOutfit={props.defaultOutfit}
+class EditOutfitPage extends React.Component {
 
-                    onSubmit = {(outfit)=>{
+    handleSaveEditedOutfit = ()=>{alert('save')}
+    
+    handleCancelEditedOutfit = ()=>{alert('cancel')}    
 
-                        props.EditOutfit(props.match.params.id,outfit);
-                        history.push('/');    // Redirect to root which should redirect to AllOutfits page.
-                        }}                
+    constructor (props) {
+        alert(`EditOutfitPage:constructor()- id:${props.match.params.id}`);
+        super (props);
+
+        // Find the outfit Obj to be edited from the redux store.
+        // props.outfitObjs is mapped to the redux store.
+        let outfit_id = props.match.params.id;
+ //       alert(props.outfitObjs.length);
+
+        let outfit_obj = props.outfitObjs.find(
+            (outfit)=>{
+                if (outfit.id === outfit_id)
+                    return true;
+            }
+        )       
+
+        if (outfit_obj) {
+            alert('ok');
+            this.state = {editOutfitObj:outfit_obj};
+        } else {
+            alert ('EditOutfitPage: Error! Could not find outfit to be edited.')
+        }
+        
+    }
+
+    render() {
+        alert(`EditOutfitPage:render()`);
+
+        return (
+            <div>
+                <Outfit
+                    outfitObj = {this.state.editOutfitObj}
+                    pageTitle = "Edit Outfit"
+                    handleSaveButtonClick = {this.handleSaveEditedOutfit}
+                    handleCancelButtonClick = {this.handleCancelEditedOutfit}
                 />
             </div>
-        </div>
-    );
+        )
+    }
 }
+/*
+                    <OutfitPage 
+                        outfitObj = {this.state.editOutfitObj}
+                        pageTitle = "Edit Outfit Part"
+                        handleSaveButtonClick = {this.handleSaveEditedOutift}
+                        handleCancelButtonClick = {this.handleCancelEditedOutfit}
+
+
+                        defaultOutfit={this.props.defaultOutfit}
+
+                        onSubmit = {(outfit)=>{
+
+                            this.props.EditOutfit(props.match.params.id,outfit);
+                            history.push('/');    // Redirect to root which should redirect to AllOutfits page.
+                            }}                
+                    />
+*/
 
 const MapStateToProps = (state,props)=>{
  //   console.log(state);
- //   alert(`edit id: ${props.match.params.id}`);
-
-    const outfit = state.outfits.find((outfit)=>{
-//        alert (props.match.params.id);
-//        alert(outfit.id);
-        if(outfit.id === props.match.params.id) {
-//            alert('outfit to be edited found!');
-            return true;
-        }
-    })    
-
-    console.log ('edit outfit');
-    console.log(outfit);
     return {
-        defaultOutfit: outfit
+        outfitObjs: state.outfits
     }
 }
 

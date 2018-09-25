@@ -1,3 +1,9 @@
+export const outfitCategoryOptions = [
+    {label:'Casual', value:'casual'},
+    {label:'Formal', value:'formal'},
+    {label:'Business-Casual', value:'business_casual'},
+    {label:'Summer', value:'summer'}
+];
 export const topCategoryOptions = [
     {label:'Dress Shirt', value: 'dress shirt'},
     {label:'Polo', value: 'polo'},
@@ -9,13 +15,14 @@ export const topCategoryOptions = [
 
 export const bottomCategoryOptions = [
     { label:'Pants', value: 'pants'},
-    { label:'Shorts', value: 'shorts'},
+    { label:'Dress Shorts', value: 'dress_shorts'},
     { label:'Jeans', value: 'jeans'},
     { label:'Chinos', value: 'chinos'},
     { label:'Khakis', value: 'khakis'},
     { label:'Linen', value: 'linen'},
-    { label:'Athletic Shorts', value: 'athletic shorts'},
-    { label:'Board Shorts', value: 'board shorts'},
+    { label:'Jean Shorts', value: 'jean_shorts'},
+    { label:'Athletic Shorts', value: 'athletic_shorts'},
+    { label:'Board Shorts', value: 'board_shorts'},
     { label:'Capris', value: 'capris'},
 ];
 

@@ -21,8 +21,8 @@ const outfitsReducer =  (state = {},action)=>{
         break;
 
         case "LOAD_OUTFITS":
- //           console.log(action.outfits);
- //           alert(`OUTFITS REDUCER: SET_OUTFITS ${action.outfits}`);
+            console.log(action.outfits);
+            alert(`OUTFITS REDUCER: SET_OUTFITS ${action.outfits}`);
             return action.outfits;
         break;
 

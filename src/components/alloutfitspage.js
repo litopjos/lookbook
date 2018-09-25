@@ -30,9 +30,14 @@ class AllOutfitsPage extends React.Component {
 //        alert(outfit_id);
     } 
 
+    constructor(props) {
+        super(props);
+        alert('AllOutfitsPage:constructor()');
+    }
+
     render() {
 //        console.log(this.props.outfits);
-//        alert('render');
+        alert('AllOutfitsPage:render()');
         return (
             <div>
                 <div className="navbar__offset"/>
@@ -45,29 +50,33 @@ class AllOutfitsPage extends React.Component {
 
                     <div className="image-gallery-container">
 
-                        {this.props.outfits.map((outfit)=>{
-                            console.log(outfit);
-                            const outfit_id = outfit.id;
-                            return(
-                                <div className="image-gallery-item">
-                                    <Link to={`/editoutfit/${outfit.id}`}>                                  
-                                        <img src = {outfit.outfitImageUrls[0]} />
-                                    </Link>
-                                    
-                                    <button 
-                                        onClick = {
-                                            ()=>{
-                                                alert(outfit.id);
-                                                this.props.DeleteOutfit(outfit.id);
-                                            }
-                                        } 
-                                    >
-                                        Delete Outfit
-                                    </button>
+                        {this.props.outfits.map(
+                            (outfit)=>{
+                                console.log(outfit);
+                                alert(`here: ${outfit.imgUrls.length}`);
+                                const outfit_id = outfit.id;
+                                return(
+                                    <div className="image-gallery-item">
+                                        <Link to={`/editoutfit/${outfit.id}`}>                                  
+                                            <img src = {outfit.imgUrls[0]} />
+                                        </Link>
+                                        
+                                        <button 
+                                            onClick = {
+                                                ()=>{
+                                                    alert(outfit.id);
+                                                    this.props.DeleteOutfit(outfit.id);
+                                                }
+                                            } 
+                                        >
+                                            Delete Outfit
+                                        </button>
 
-                                </div>
+                                    </div>
                                 );
-                        })}
+                            }
+                        )
+                    }
 
                     </div>    
                 </div>

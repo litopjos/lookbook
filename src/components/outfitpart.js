@@ -21,7 +21,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
 import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,
-         brandOptions,typeOptions,footwearCategoryOptions,footwearBrandOptions,footwearMaterialTypeOptions} from "./outfitpartoptions.js"
+         brandOptions,typeOptions,footwearCategoryOptions,footwearBrandOptions,footwearMaterialTypeOptions,
+         bottomCategoryOptions} from "./outfitpartoptions.js"
 
 export const outfitPartObj  = {
     type: "top",
@@ -78,7 +79,18 @@ class OutfitPart extends React.Component {
                     materialTypeOptions: footwearMaterialTypeOptions,
                     brandOptions: footwearBrandOptions
                 }
-            break;                
+            break;
+
+            case 'bottom':
+                state = {
+                    outfitPartObj: outfitPartObj,
+                    typeOptions: typeOptions,
+                    categoryOptions: bottomCategoryOptions,
+                    materialOptions: fabricDesignOptions,
+                    materialTypeOptions: fabricTypeOptions,
+                    brandOptions: brandOptions
+                }
+            break;
 
             default:
                 alert('MISSING LOGIC!')

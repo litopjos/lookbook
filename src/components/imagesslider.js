@@ -13,6 +13,13 @@ server. If stored locally, an 'upload' image overlay
 will be rendered on top of the image that when clicked
 will attempt to upload the image to the Lookbook server.
 
+Input props:
+------------
+.imageUrls -> array of URLs where each URL refers to an image.
+.onImageUrlsChanged -> callback function that indicates that the array 
+                    of images has changed.
+                    
+Misc:
 Abstracts the logic needed to render a collection of images along with the ability
 to add, replace or delete a specific image. When an image is replaced or a new image is added, the new/edited image must be uploaded to the app's
 Express server's images folder. User will also be given the option to optimize the image for size before uploading

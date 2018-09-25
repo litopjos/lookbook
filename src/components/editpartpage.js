@@ -36,7 +36,7 @@ export class EditPartPage extends React.Component {
             this.state = {editPartObj:edit_part}
         }
         else 
-            alert("Error: couldn't find outfit part to be edited.");``
+            alert("Error: couldn't find outfit part to be edited.");
         
 
     }
