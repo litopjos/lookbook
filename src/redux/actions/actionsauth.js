@@ -16,9 +16,70 @@ import {loadFootwearAction} from "./actionsfootwear";
 import {loadOutfitsAction} from "./actionsoutfits";
 import {loadOutfitPartsAction} from "./actionsoutfitpart";
 
+const loadGuestTop = ()=>{
+    const topList = [];
 
+    topList.push (
+        {
+            id: "top_1",
+            type: "top",
+            imgUrls: 
+                [
+                    "/images/top/20180925_201907.jpg"             
+                ],
+            brand: 
+                [
+                    "not_available"             
+                ],
+            category: 
+                [
+                    "t-shirt",
+                    "short_sleeves"
+                ],
+            fabrictype:
+                [
+                    "cotton"
+                ],
+            description: "Hunter green graphic T",     
+                        
+            notes: ""            
+        }
+    )
 
+    return topList;
+}
 
+const loadGuestBottom = ()=>{
+    const bottomList = [];
+
+    bottomList.push (
+        {
+            id: "bottom_1",
+            type: "bottom",
+            imgUrls: 
+                [
+                    "/images/bottom/20180925_202052_001.jpg"             
+                ],
+            brand: 
+                [
+                    "reebok"             
+                ],
+            category: 
+                [
+                    "athletic_shorts",
+                ],
+            fabrictype:
+                [
+                    "satin"
+                ],
+            description: "Cherry red basketball shorts",     
+                        
+            notes: ""            
+        }
+    )
+
+    return bottomList;
+}
 
 const loadGuestFootwear = ()=>{
     const footwear = [];
@@ -150,6 +211,14 @@ const loadGuestOutfits = () => {
                 [
                     "/images/outfits/20180925_164452.jpg"               
                 ], 
+            topPartIDs:
+            [
+                "top_1"
+            ],    
+            bottomPartIDs:
+            [
+                "bottom_1"
+            ],                
             footwearPartIDs:
             [
                 "footwear_2"
@@ -191,13 +260,20 @@ export const startLoginAsGuest = () => {
         dispatch(login('guest','guest'));   
 
         let outfits = loadGuestOutfits();
- //       alert (`guest outfits: ${outfits.length}`)
+
+        // Build the outfit parts array
+        let outfit_parts = [];
+        let topParts = loadGuestTop();
+        let bottomParts = loadGuestBottom();
         let footwear = loadGuestFootwear();
-        
+
+        outfit_parts = topParts.concat(bottomParts,footwear);
+
+        //Load the outfits
         dispatch(loadOutfitsAction(outfits));
 
         //Load the outfit parts
-        dispatch(loadOutfitPartsAction(footwear));        
+        dispatch(loadOutfitPartsAction(outfit_parts));        
 
         history.push('/alloutfits');
     }

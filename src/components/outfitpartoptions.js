@@ -5,12 +5,12 @@ export const outfitCategoryOptions = [
     {label:'Summer', value:'summer'}
 ];
 export const topCategoryOptions = [
-    {label:'Dress Shirt', value: 'dress shirt'},
+    {label:'Dress Shirt', value: 'dress_shirt'},
     {label:'Polo', value: 'polo'},
     {label:'T-Shirt', value: 't-shirt'},
-    {label:'Tank Top', value: 'tank top'},
-    { label:'short sleeves', value: 'shirt sleeves'},
-    {label:'long sleeves', value: 'long sleeves'}
+    {label:'Tank Top', value: 'tank_top'},
+    { label:'short sleeves', value: 'short_sleeves'},
+    {label:'long sleeves', value: 'long_sleeves'}
 ];
 
 export const bottomCategoryOptions = [
@@ -68,6 +68,7 @@ export const fabricTypeOptions = [
     {label:'Polyester Blend', value: 'polyester blend'},
     {label:'Denim', value: 'denim'},
     {label:'Linen ', value: 'linen'},
+    {label:'Satin ', value: 'satin'}
 ];
 
 export const brandOptions = [
@@ -79,6 +80,8 @@ export const brandOptions = [
     {label:'L.L.Bean', value: 'L.L.Bean'},
     {label:'Polo / Ralph Lauren', value: 'polo / ralph_lauren'},
     {label:'Folded & Hung', value: 'Folded & Hung'},
+    {label:'Reebok', value: 'reebok'}
+
 ];
 
 
