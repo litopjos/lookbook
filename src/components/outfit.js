@@ -28,31 +28,6 @@ import Toolbar from "./toolbar";
 import {outfitCategoryOptions} from "./outfitpartoptions";
 
 class Outfit extends React.Component {
-
-    buildListOfSelPartObjs = (selPartIDs,listParts)=>{
-        let selPartsObjs = [];
-        selPartIDs.forEach(
-            (id)=>{
-                alert(`Outfit:buildListOfSelPartObjs(): id=${id}`);
-                let part_obj = listParts.find(
-                    (obj)=>{
-                        alert(`listParts id = ${obj.id}`);
-                        if (obj.id === id)
-                            return true;
-                    }
-                )   
-                
-                if (part_obj) {
-                    console.log(part_obj);
-                    alert('here3');
-                    selPartsObjs.push(part_obj);
-                }
-                else
-                    alert('LOGIC ERROR: couldnt find part obj');
-            }
-        )  
-        return selPartsObjs;     
-    }
     constructor(props){
         super(props);
 //        alert('Outfit:constructor()');
@@ -139,6 +114,31 @@ class Outfit extends React.Component {
                 </div>
            </div>
         )
+    }
+
+    buildListOfSelPartObjs = (selPartIDs,listParts)=>{
+        let selPartsObjs = [];
+        selPartIDs.forEach(
+            (id)=>{
+ //               alert(`Outfit:buildListOfSelPartObjs(): id=${id}`);
+                let part_obj = listParts.find(
+                    (obj)=>{
+//                        alert(`listParts id = ${obj.id}`);
+                        if (obj.id === id)
+                            return true;
+                    }
+                )   
+                
+                if (part_obj) {
+                //    console.log(part_obj);
+                //    alert('here3');
+                    selPartsObjs.push(part_obj);
+                }
+                else
+                    alert('LOGIC ERROR: couldnt find part obj');
+            }
+        )  
+        return selPartsObjs;     
     }
 
     xlateListOfValuesToValueLabel = (values, options) => {

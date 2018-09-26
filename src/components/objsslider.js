@@ -17,9 +17,11 @@ onObjsListChanged =
 
 (c) 2018 Joselito Pe 
 -------------------------------------------------- */
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHandPointUp,faMousePointer,faPlus, faPlusCircle, faTrash, faUpload, faExchangeAlt, faInverse, faCircle} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import ExifOrientationImg from 'react-exif-orientation-img';
 
+import ExifOrientationImg from 'react-exif-orientation-img';
 
 class ObjsSlider extends React.Component {
     constructor(props){
@@ -31,7 +33,7 @@ class ObjsSlider extends React.Component {
     }
 
     render() {
-        alert(`ObjsSlider:render()`);
+ //       alert(`ObjsSlider:render()`);
         return (
             <div>
                 <div className="image-slider-container">
@@ -49,6 +51,10 @@ class ObjsSlider extends React.Component {
                             }
                         )
                     }
+                    <div className="image-slider-item-icon">
+                        <a><FontAwesomeIcon className="fa-3x" icon={faHandPointUp} /></a>
+                    </div>
+                    
                 </div>
             </div>
         )

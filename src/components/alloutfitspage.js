@@ -10,20 +10,27 @@ that renders the AllOutfitsPage.
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+
 import React from "react";
 
+import ImageGallery from "./imagegallery";
+import {history} from "../routes/routes";
 import {PageTitleHeader} from "./pagetitleheader.js";
 import {startDeleteOutfit,deleteOutfit} from "../redux/actions/actionsoutfits";
 import FlexBox from "../playground/flexbox";
 
 class AllOutfitsPage extends React.Component {
- 
-    componentDidMount() {
-//        alert(`AllOutfitsPage: componentdidmount`);
+
+    handlerEditOutfit = (id)=>{
+        alert('edit');
+        history.push(`/editoutfit/${id}`)
     }
-    componentWillUnmount(){
-//        alert(`AllOutfitsPage: componentWillUnmount`);
+
+    handlerAddOutfit = ()=>{
+        alert('add');
+        history.push('/addnewoutfit');
     }
+
 
     onDeleteOutfit = (outfit_id)=>{
 //        console.log(outfit_id);
@@ -32,12 +39,12 @@ class AllOutfitsPage extends React.Component {
 
     constructor(props) {
         super(props);
-        alert('AllOutfitsPage:constructor()');
+ //       alert('AllOutfitsPage:constructor()');
     }
 
     render() {
 //        console.log(this.props.outfits);
-        alert('AllOutfitsPage:render()');
+//        alert('AllOutfitsPage:render()');
         return (
             <div>
                 <div className="navbar__offset"/>
@@ -48,41 +55,23 @@ class AllOutfitsPage extends React.Component {
 
                     <h3>Number of outfits: {this.props.outfits.length}</h3>
 
-                    <div className="image-gallery-container">
-
-                        {this.props.outfits.map(
-                            (outfit)=>{
-                                console.log(outfit);
-                                alert(`here: ${outfit.imgUrls.length}`);
-                                const outfit_id = outfit.id;
-                                return(
-                                    <div className="image-gallery-item">
-                                        <Link to={`/editoutfit/${outfit.id}`}>                                  
-                                            <img src = {outfit.imgUrls[0]} />
-                                        </Link>
-                                        
-                                        <button 
-                                            onClick = {
-                                                ()=>{
-                                                    alert(outfit.id);
-                                                    this.props.DeleteOutfit(outfit.id);
-                                                }
-                                            } 
-                                        >
-                                            Delete Outfit
-                                        </button>
-
-                                    </div>
-                                );
-                            }
-                        )
-                    }
-
-                    </div>    
+                    <ImageGallery 
+                        galleryItems = {this.props.outfits}
+                        handlerOnDoubleClick = {this.handlerEditOutfit}
+                        handlerOnAddItem = {this.handlerAddOutfit}
+                    />                    
+   
                 </div>
             </div>
         )
     }
+    componentDidMount() {
+        //        alert(`AllOutfitsPage: componentdidmount`);
+    }
+
+    componentWillUnmount(){
+//        alert(`AllOutfitsPage: componentWillUnmount`);
+    }    
 };
 
 const MapStateToProps = (state)=>{

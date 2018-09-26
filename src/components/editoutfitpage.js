@@ -26,7 +26,7 @@ class EditOutfitPage extends React.Component {
     handleCancelEditedOutfit = ()=>{alert('cancel')}    
 
     constructor (props) {
-        alert(`EditOutfitPage:constructor()- id:${props.match.params.id}`);
+ //       alert(`EditOutfitPage:constructor()- id:${props.match.params.id}`);
         super (props);
 
         // Find the outfit Obj to be edited from the redux store.
@@ -51,7 +51,7 @@ class EditOutfitPage extends React.Component {
     }
 
     render() {
-        alert(`EditOutfitPage:render()`);
+ //       alert(`EditOutfitPage:render()`);
 
         return (
             <div>
