@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import React from "react";
 
 import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
-import {outfitPartObj} from "./outfitpart.js";
+import {defaultOutfitPartObj} from "./outfitpart.js";
 import OutfitPart from "./outfitpart.js";
 import {startAddOutfitPart,startShowOutfitParts} from "../redux/actions/actionsoutfitpart.js";
 
@@ -30,7 +30,7 @@ class AddPartPage extends React.Component {
               {this.props.ShowOutfitParts(undefined)}
 
                 <OutfitPart 
-                    outfitPartObj = {outfitPartObj}
+                    outfitPartObj = {defaultOutfitPartObj}
                     pageTitle = "Add Outfit Part: Top"
                     handleSaveButtonClick = {this.handleSaveOutfitPart}
                     handleCancelButtonClick = {this.handleCancelOutfitPart}

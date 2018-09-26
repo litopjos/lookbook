@@ -1,5 +1,5 @@
 /* -----------------------------------------------
-FILE: AddNewOutfitsPage.js
+FILE: addoutfitpage.js
 
 DESCRIPTION:
 This file implements a stateless functional React component
@@ -11,36 +11,39 @@ that renders the AddNewOutfitPage page.
 import {connect} from "react-redux";
 import React from "react";
 
+import {defaultOutfitObj} from "./outfit";
 import {history} from "../routes/routes";
 import {startAddOutfitAction} from "../redux/actions/actionsoutfits.js"
-import Outfit from "./outfitpage";
+import Outfit from "./outfit";
 
 
-const AddNewOutfitPage = (props)=>{
 
-    return (
+class AddOutfitPage extends React.Component {
+    constructor(props){
+        super(props);
 
-        <div>
-            <div className="navbar__offset"/>   
-            <div className="page-spec-header">
-                <div className = "container">
-                    <h2>Add New Outfit</h2>                    
-                </div>
-            </div>
+    }
+    handleSaveNewOutfit = ()=>{
+        alert('save');
+    }
 
-            <div className = "container">
-                <Outfit 
-                    onSubmit = {(outfit)=>{
-    //                   console.log(outfit);
-    //                   alert('submit');
-                        props.AddOutfit(outfit);
-                        history.push('/');    // Redirect to root which should redirect to AllOutfits page.
-                    }} 
+    handleCancelNewOutfit = ()=>{
+        alert('cancel');
+    }    
+
+    render() {
+        return (
+            <div>
+                <Outfit
+                    outfitObj = {defaultOutfitObj}
+                    pageTitle = "Add Outfit"
+                    handleSaveButtonClick = {this.handleSaveEditedOutfit}
+                    handleCancelButtonClick = {this.handleCancelEditedOutfit}
                 />
             </div>
-            
-        </div>
-    );
+
+        )
+    }
 }
 
 const MapDispatchToProps = (dispatch) => {
@@ -49,7 +52,7 @@ const MapDispatchToProps = (dispatch) => {
     }
 }
 
-const connectedAddNewOutfitPage = connect( undefined, MapDispatchToProps)(AddNewOutfitPage);
+const connectedAddOutfitPage = connect( undefined, MapDispatchToProps)(AddOutfitPage);
 
 
-export default connectedAddNewOutfitPage;
+export default connectedAddOutfitPage;

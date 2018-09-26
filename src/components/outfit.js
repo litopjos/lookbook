@@ -27,6 +27,16 @@ import Toolbar from "./toolbar";
 
 import {outfitCategoryOptions} from "./outfitpartoptions";
 
+export const defaultOutfitObj = {
+    id: "",
+    category: [],
+    description: "",
+    imgUrls: [], 
+    topPartIDs: [],    
+    bottomPartIDs:[],                
+    footwearPartIDs:[],
+};
+
 class Outfit extends React.Component {
     constructor(props){
         super(props);
@@ -53,7 +63,7 @@ class Outfit extends React.Component {
     }
 
     render() {
-//        alert('Outfit:render()');
+        alert('Outfit:render()');
 
         return (
             <div>

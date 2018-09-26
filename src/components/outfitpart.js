@@ -24,7 +24,7 @@ import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,
          brandOptions,typeOptions,footwearCategoryOptions,footwearBrandOptions,footwearMaterialTypeOptions,
          bottomCategoryOptions} from "./outfitpartoptions.js"
 
-export const outfitPartObj  = {
+export const defaultOutfitPartObj  = {
     type: "top",
     category: [],
     fabricDesign: "",

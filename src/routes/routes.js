@@ -16,7 +16,7 @@ import {Provider} from "react-redux";
 import React from "react";
 import createHistory from "history/createBrowserHistory";
 
-import AddNewOutfitPage from  "../components/addoutfitpage";
+import AddOutfitPage from  "../components/addoutfitpage";
 import AddPartPage from "../components/addpartpage";
 import AllOutfitsPage from "../components/alloutfitspage";
 import AllPartsPage from "../components/allpartspage";
@@ -64,7 +64,7 @@ const routes = ()=>{
             />       
             <PrivateRoute 
                 path="/addnewoutfit" 
-                component={AddNewOutfitPage}
+                component={AddOutfitPage}
                 exact={true} 
             />      
 
