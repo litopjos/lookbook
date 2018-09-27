@@ -27,8 +27,8 @@ const outfitsReducer =  (state = {},action)=>{
         break;
 
         case "ADD_OUTFIT":   
- //           console.log(state);
- //           alert(`OUTFITS REDUCER: ADD_OUTFIT`);  
+            console.log(state);
+            alert(`OUTFITS REDUCER: ADD_OUTFIT`);  
 
                 // Copy the current array of outfits and add the new outfit at the end of it.
                 allOutfits = [...state, action.outfit];

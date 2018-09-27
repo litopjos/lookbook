@@ -19,7 +19,7 @@ import ReactDOM from "react-dom";
 import createStore from "./redux/createstore";
 import Routes from "./routes/routes";
 import {firebase} from "./firebase/firebase";
-import {clearOutfits, loadOutfitsAction} from "./redux/actions/actionsoutfits.js";
+import {clearOutfits, loadOutfitsAction,startLoadOutfitsAction} from "./redux/actions/actionsoutfits.js";
 import {clearOutfitParts,startLoadOutfitPartsAction} from "./redux/actions/actionsoutfitpart.js";
 import {login,logout} from "./redux/actions/actionsauth";
 
@@ -59,7 +59,8 @@ firebase.auth().onAuthStateChanged(
             // Store login credentials in redux store and redirect to all outfits page.
             store.dispatch(login('google',user.uid));
 
-            alert(`login via google ok. Loading outfit parts...`);
+            alert(`login via google ok. Loading outfits and parts...`);
+            store.dispatch(startLoadOutfitsAction(user.uid));
             store.dispatch(startLoadOutfitPartsAction(user.uid));
 
 //            alert('redirect to alloutfits page');

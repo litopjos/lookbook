@@ -1,3 +1,11 @@
+/* -----------------------------------------------
+FILE: .js
+
+DESCRIPTION:
+
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faTimesCircle,faFilter} from "@fortawesome/free-solid-svg-icons";

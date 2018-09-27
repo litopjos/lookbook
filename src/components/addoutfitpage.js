@@ -13,18 +13,30 @@ import React from "react";
 
 import {defaultOutfitObj} from "./outfit";
 import {history} from "../routes/routes";
+import {isUserGuest} from "./utils";
 import {startAddOutfitAction} from "../redux/actions/actionsoutfits.js"
 import Outfit from "./outfit";
 
-
+const uuid = require('uuid/v1');
 
 class AddOutfitPage extends React.Component {
     constructor(props){
         super(props);
 
     }
-    handleSaveNewOutfit = ()=>{
-        alert('save');
+    handleSaveNewOutfit = (outfitObj)=>{
+        console.log(outfitObj);
+        alert(`AddOutfitPage:handleSaveNewOutfit(${outfitObj})`);
+
+        if (isUserGuest(this.props.auth.provider)) {
+            // This means user is logged in as guest.
+            // and the outfit obj needs an id.
+            alert('logged in as guest!!');
+
+            outfitObj.id = uuid();
+        }
+
+        this.props.AddOutfit(outfitObj);
     }
 
     handleCancelNewOutfit = ()=>{
@@ -37,12 +49,18 @@ class AddOutfitPage extends React.Component {
                 <Outfit
                     outfitObj = {defaultOutfitObj}
                     pageTitle = "Add Outfit"
-                    handleSaveButtonClick = {this.handleSaveEditedOutfit}
-                    handleCancelButtonClick = {this.handleCancelEditedOutfit}
+                    handleSaveButtonClick = {this.handleSaveNewOutfit}
+                    handleCancelButtonClick = {this.handleCancelNewOutfit}
                 />
             </div>
 
         )
+    }
+}
+
+const MapStateToProps = (state)=>{
+    return {
+        auth: state.auth
     }
 }
 
@@ -52,7 +70,7 @@ const MapDispatchToProps = (dispatch) => {
     }
 }
 
-const connectedAddOutfitPage = connect( undefined, MapDispatchToProps)(AddOutfitPage);
+const connectedAddOutfitPage = connect( MapStateToProps, MapDispatchToProps)(AddOutfitPage);
 
 
 export default connectedAddOutfitPage;

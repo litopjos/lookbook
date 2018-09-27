@@ -19,13 +19,14 @@ import React from "react";
 import Select from "react-select";
 import ExifOrientationImg from 'react-exif-orientation-img';
 
-
+import {outfitCategoryOptions} from "./outfitpartoptions";
 import {PageTitleHeader} from "./pagetitleheader";
+import {isUserGuest,xlateListOfValuesToValueLabel} from "./utils";
 import ImagesSlider from "./imagesslider";
 import ObjsSlider from "./objsslider";
 import Toolbar from "./toolbar";
 
-import {outfitCategoryOptions} from "./outfitpartoptions";
+
 
 export const defaultOutfitObj = {
     id: "",
@@ -38,20 +39,49 @@ export const defaultOutfitObj = {
 };
 
 class Outfit extends React.Component {
+
+    handleImgsChanged = (imgUrls) => {
+        console.log (`Images: ${imgUrls}`);
+        alert('Outfit:handleImgsChanged()');
+
+        this.setState (
+            (prevState)=> {
+
+                let outfitObj = {...prevState.outfitObj};
+                outfitObj.imgUrls = imgUrls;
+
+                return {
+                    outfitObj: outfitObj
+                }
+            }
+        )               
+    }
+
+    handleSaveButtonClick= ()=>{
+        alert(`Outfit:handleSaveButtonClick()`);
+        this.props.handleSaveButtonClick(this.state.outfitObj);
+    }
+
     constructor(props){
         super(props);
 //        alert('Outfit:constructor()');
 
-        let categoryDefaultValue = this.xlateListOfValuesToValueLabel (props.outfitObj.category,outfitCategoryOptions);
+        let categoryDefaultValue = xlateListOfValuesToValueLabel (props.outfitObj.category,outfitCategoryOptions);
 
         // Search for the top objs
-        let topObjs = this.buildListOfSelPartObjs(props.outfitObj.topPartIDs,props.partObjs);
+        let topObjs = [];
+        if(props.outfitObj.topPartIDs)
+            topObjs= this.buildListOfSelPartObjs(props.outfitObj.topPartIDs,props.partObjs);
 
         // Search for the bottom objs
-        let bottomObjs = this.buildListOfSelPartObjs(props.outfitObj.bottomPartIDs,props.partObjs);
+        let bottomObjs = [];
+        if(props.outfitObj.bottomPartIDs)
+            bottomObjs=this.buildListOfSelPartObjs(props.outfitObj.bottomPartIDs,props.partObjs);
 
         // Search for the footwear objs
-        let footwearObjs = this.buildListOfSelPartObjs(props.outfitObj.footwearPartIDs,props.partObjs);
+        let footwearObjs = [];
+        if(props.outfitObj.footwearPartIDs)
+            footwearObjs=this.buildListOfSelPartObjs(props.outfitObj.footwearPartIDs,props.partObjs);
 
         this.state = {
             outfitObj: props.outfitObj,
@@ -63,7 +93,7 @@ class Outfit extends React.Component {
     }
 
     render() {
-        alert('Outfit:render()');
+ //       alert('Outfit:render()');
 
         return (
             <div>
@@ -72,7 +102,7 @@ class Outfit extends React.Component {
                     <PageTitleHeader  title={this.props.pageTitle}/>
 
                     <Toolbar
-                        handleSaveButtonClick = {this.props.handleSaveButtonClick}
+                        handleSaveButtonClick = {this.handleSaveButtonClick}
                         handleCancelButtonClick = {this.props.handleCancelButtonClick}
                     />
 
@@ -100,7 +130,7 @@ class Outfit extends React.Component {
                     <div class = "page-section-header"> Outfit Images: </div>
                     <ImagesSlider
                         imageUrls = {this.state.outfitObj.imgUrls} 
-                        onImageUrlsChanged = {this.onOutfitImageUrlsChanged}
+                        onImageUrlsChanged = {this.handleImgsChanged}
                     />
 
                     <div class = "page-section-header"> Selected Top: </div>
@@ -151,44 +181,8 @@ class Outfit extends React.Component {
         return selPartsObjs;     
     }
 
-    xlateListOfValuesToValueLabel = (values, options) => {
-        let valueLabelList = [];
 
-        values.map (
-            (value) => {
-                options.some (
-                    (option) => {
-//                       alert(`value:${value}, option:${option.value}`);
-                        if (value === option.value) {
-//                           alert('match2');
-                            valueLabelList.push(option);
-                            return true;
-                        }
 
-                    }
-                )
-            }
-        )
-        return valueLabelList;
-    }
-
-    xlateValueToValueLabel =  (value,options) => {
-        let valueLabel = {};
-        console.log(value);
-        console.log (options);
-        options.some(
-            (option)=>{
-                if (option.value === value) {
-                    valueLabel = option;
-                    console.log(valueLabel);
-//                   alert(`match label:${valueLabel}`)
-                    return true;
-                }
-            }
-        )
-
-        return valueLabel;
-    }   
     handleDescriptionChange = (event) =>{
         const val = event.target.value;
         console.log(event.target.value);

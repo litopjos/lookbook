@@ -1,3 +1,11 @@
+/* -----------------------------------------------
+FILE: .js
+
+DESCRIPTION:
+
+
+(c) 2018 Joselito Pe 
+-------------------------------------------------- */
 import {Link} from "react-router-dom";
 import onClickOutside from "react-onclickoutside";
 
