@@ -9,12 +9,16 @@ DESCRIPTION:
 import {connect} from "react-redux";
 import React from "react";
 
-import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
+import {isUserGuest} from "./utils";
 import {defaultOutfitPartObj} from "./outfitpart.js";
+import {startAddOutfitPart} from "../redux/actions/actionsoutfitpart.js"
+import {topCategoryOptions,fabricDesignOptions,fabricTypeOptions,brandOptions,typeOptions} from "./outfitpartoptions.js"
 import OutfitPart from "./outfitpart.js";
-import {startAddOutfitPart,startShowOutfitParts} from "../redux/actions/actionsoutfitpart.js";
 
 import {history} from "../routes/routes.js";
+
+const uuid = require('uuid/v1');
+
 
 class AddPartPage extends React.Component {
 
@@ -27,8 +31,6 @@ class AddPartPage extends React.Component {
 
         return (
             <div>
-              {this.props.ShowOutfitParts(undefined)}
-
                 <OutfitPart 
                     outfitPartObj = {defaultOutfitPartObj}
                     pageTitle = "Add Outfit Part: Top"
@@ -45,6 +47,14 @@ class AddPartPage extends React.Component {
         console.log(outfitPartObj);
         alert('clicked on Save button in AddToPage');
 
+        if (isUserGuest(this.props.auth.provider)) {
+            // This means user is logged in as guest.
+            // and the outfit obj needs an id.
+            alert('logged in as guest!!');
+
+            outfitPartObj.id = uuid();
+        }
+
         this.props.addOutfitPart(outfitPartObj);
     }
 
@@ -55,14 +65,19 @@ class AddPartPage extends React.Component {
 
 }
 
+const MapStateToProps = (state)=>{
+    return {
+        auth: state.auth
+    }
+}
+
 const MapDispatchToProps = (dispatch)=>{
     return {
         addOutfitPart: (outfitPart)=>dispatch(startAddOutfitPart(outfitPart)),
-        ShowOutfitParts: (filter)=>dispatch(startShowOutfitParts(filter))
     }
 
 }
 
-const connectedAddPartPage = connect(undefined,MapDispatchToProps)(AddPartPage);
+const connectedAddPartPage = connect(MapStateToProps,MapDispatchToProps)(AddPartPage);
 
 export default connectedAddPartPage;

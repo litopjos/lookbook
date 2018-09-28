@@ -7,7 +7,23 @@ const outfitPartsReducer =  (state = {},action)=>{
 
         case 'EDIT_OUTFIT_PART':
             alert(`OUTFITS_PARTS REDUCER: EDIT_OUTFIT_PART`); 
-            return state;
+
+            // Find the outfit part to be edited from the state. Generate a new array of outfits
+            // based on the old array of outfits. With the found outfit to be edited, 
+            // replace that element with the new outfit parameters passed in the action object.
+            let allOutfitParts = [];
+            allOutfitParts = state.map(
+                (outfitPart)=>{
+                    if(outfitPart.id === action.outfitpart.id) {
+                        console.log(action.outfitpart);
+                        alert('match');
+                        return action.outfitpart;
+                    } else
+                        return outfitPart;
+                }
+            )
+            console.log(allOutfitParts);
+            return allOutfitParts;
         break;
 
         case 'LOAD_OUTFIT_PARTS':

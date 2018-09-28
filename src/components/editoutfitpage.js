@@ -14,15 +14,21 @@ import {Button} from "react-bootstrap";
 import {history} from "../routes/routes";
 
 import {PageTitleHeader} from "./pagetitleheader.js";
-import {startEditOutfitAction} from "../redux/actions/actionsoutfits";
+import {startEditOutfit} from "../redux/actions/actionsoutfits";
 import Images from "./imagesslider";
 
 import Outfit from "./outfit";
 
 class EditOutfitPage extends React.Component {
 
-    handleSaveEditedOutfit = ()=>{alert('save')}
+    handleSaveEditedOutfit = (item)=>{
+        console.log(item);
+        alert(`EditPartPage:handleSaveEditedOutfit(${item})`)
+        this.props.editOutfit(item);
+    }
     
+
+
     handleCancelEditedOutfit = ()=>{alert('cancel')}    
 
     constructor (props) {
@@ -92,8 +98,8 @@ const MapStateToProps = (state,props)=>{
 
 const MapDispatchToProps = (dispatch)=>{
     return {
-        EditOutfit: (id,outfit)=>{
-            dispatch(startEditOutfitAction(id,outfit))
+        editOutfit: (outfit)=>{
+            dispatch(startEditOutfit(outfit))
         }
     }
 }

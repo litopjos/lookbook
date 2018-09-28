@@ -19,6 +19,7 @@ import {loadOutfitPartsAction} from "./actionsoutfitpart";
 const loadGuestTop = ()=>{
     const topList = [];
 
+    // Hunter Green Owl TShirt
     topList.push (
         {
             id: "top_1",
@@ -46,7 +47,62 @@ const loadGuestTop = ()=>{
         }
     )
 
-    return topList;
+    // Red Striped T Shirt
+    topList.push (
+        {
+            id: "top_2",
+            type: "top",
+            imgUrls: 
+                [
+                    "/images/top/20180928_152431.jpg"             
+                ],
+            brand: 
+                [
+                    "not_available"             
+                ],
+            category: 
+                [
+                    "t-shirt",
+                    "short_sleeves"
+                ],
+            fabrictype:
+                [
+                    "cotton"
+                ],
+            description: "Hunter green graphic T",     
+                        
+            notes: ""            
+        }
+    )    
+
+    // Green Checkered Short Sleeves
+    topList.push (
+        {
+            id: "top_3",
+            type: "top",
+            imgUrls: 
+                [
+                    "/images/top/20180928_152319.jpg"             
+                ],
+            brand: 
+                [
+                    "not_available"             
+                ],
+            category: 
+                [
+                    "t-shirt",
+                    "short_sleeves"
+                ],
+            fabrictype:
+                [
+                    "cotton"
+                ],
+            description: "Hunter green graphic T",     
+                        
+            notes: ""            
+        }
+    )    
+    return topList;    
 }
 
 const loadGuestBottom = ()=>{
@@ -84,13 +140,14 @@ const loadGuestBottom = ()=>{
 const loadGuestFootwear = ()=>{
     const footwear = [];
 
+    // Red Nikes
     footwear.push (
         {
             id: "footwear_1",
             type: "footwear",
             imgUrls: 
                 [
-                    "/images/footwear/20180711_044454.jpg"             
+                    "/images/footwear/20180927_165626.jpg"             
                 ],
             brand: 
                 [
@@ -109,14 +166,75 @@ const loadGuestFootwear = ()=>{
                         
 
             notes: ""            
-        },
+        }
+    );
 
+    // Red Nikes
+    footwear.push (
+            {
+                id: "footwear_2",
+                type: "footwear",            
+                imgUrls: 
+                    [
+                        "/images/footwear/20180925_201354.jpg"    
+                    ],
+                brand: 
+                    [
+                        "nike"             
+                    ],
+                category: 
+                    [
+                        "sneaker",
+                        "low_rise"
+                    ],    
+                fabrictype:
+                    [
+                        "nylon"
+                    ],
+                description: "nike cross trainers",                    
+
+                notes: ""                           
+            }        
+        );
+
+    // Black & yellow Nike Air Max
+    footwear.push (
+            {
+                id: "footwear_3",
+                type: "footwear",            
+                imgUrls: 
+                    [
+                        "/images/footwear/20180928_152106.jpg",
+                        "/images/footwear/20180928_152136.jpg"    
+
+                    ],
+                brand: 
+                    [
+                        "nike"             
+                    ],
+                category: 
+                    [
+                        "sneaker",
+                        "low_rise"
+                    ],    
+                fabrictype:
+                    [
+                        "nylon"
+                    ],
+                description: "nike cross trainers",                    
+
+                notes: ""                           
+            }        
+        );    
+
+    // Tan Boat Shoes
+    footwear.push (
         {
-            id: "footwear_2",
+            id: "footwear_4",
             type: "footwear",            
             imgUrls: 
                 [
-                    "/images/footwear/20180925_201354.jpg"    
+                    "/images/footwear/20180928_152210.jpg"    
                 ],
             brand: 
                 [
@@ -135,7 +253,7 @@ const loadGuestFootwear = ()=>{
 
             notes: ""                           
         }        
-    )
+    );      
 
     return footwear;
 }
@@ -209,7 +327,7 @@ const loadGuestOutfits = () => {
             description: "basketball shorts + graphic T outfit",
             imgUrls: 
                 [
-                    "/images/outfits/20180925_164452.jpg"               
+                    "/images/outfits/20180527_122059.jpg"               
                 ], 
             topPartIDs:
             [

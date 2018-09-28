@@ -36,20 +36,23 @@ const outfitsReducer =  (state = {},action)=>{
         break;
 
         case "EDIT_OUTFIT":
- //           alert(`OUTFITS REDUCER: EDIT_OUTFIT`);  
+            alert(`OUTFITS REDUCER: EDIT_OUTFIT`);  
 
             // Find the outfit to be edited from the state. Generate a new array of outfits
             // based on the old array of outfits. With the found outfit to be edited, 
             // replace that element with the new outfit parameters passed in the action object.
-
-            allOutfits = state.map((outfit)=>{
-                if(outfit.id === action.id) {
-                    const editedOutfit = {...outfit, ...action.outfit};
-                    return editedOutfit;
-                } else
-                    return outfit;
-            })
-
+            allOutfits = state.map(
+                (outfit)=>{
+                    if(outfit.id === action.outfit.id) {
+                        console.log(action.outfit);
+                        alert('match');
+                        return action.outfit;
+                    } else
+                        return outfit;
+                }
+            )
+            console.log(allOutfits);
+            alert('match2');
             return allOutfits;
         break;
 

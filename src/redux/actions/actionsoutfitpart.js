@@ -10,6 +10,9 @@ DESCRIPTION:
 import database from "../../firebase/firebase";
 import { auth } from "firebase";
 
+import {isUserGuest} from "../../components/utils";
+
+
 export const clearOutfitParts = ()=>{
     //   alert('ACTION OUTFITS: CLEAR_OUTFITPARTS');
        return {
@@ -64,24 +67,31 @@ export const startLoadOutfitPartsAction = (uid)=>{
     }
 }
 export const startAddOutfitPart = (outfitPart) => {
+
     return (dispatch,getState)=> {
         alert (`ACTION OUTFIT_PART: START_ADD_OUTFIT_PART ${outfitPart}`);
  //       console.log(`database: ${database}`);
 
-        const uid = getState().auth.uid;
+        let auth_provider = getState().auth.provider;
+        if (isUserGuest(auth_provider)) {
+            // This means user is logged in as guest.
+            alert('logged in as guest');
+            dispatch  (addOutfitPart(outfitPart));
+        } else {
 
-        database.ref(`users/${uid}/OUTFIT_PART`)
-            .push(outfitPart)
-            .then(
-                ()=>{
-                    //                alert("firebase push ok")
-                    dispatch(addOutfitPart(outfitPart));
-                }
-            )
-            .catch(
-                (e)=>alert(`ERROR: ${e}`)
-            )
-        
+            const uid = getState().auth.uid;
+
+            database.ref(`users/${uid}/OUTFIT_PART`)
+                .push(outfitPart)
+                .then(
+                    ()=>{
+                        alert("firebase push ok")
+                    }
+                )
+                .catch(
+                    (e)=>alert(`ERROR: ${e}`)
+                )            
+        }        
     }
 }
 
@@ -117,7 +127,7 @@ export const editOutfitPart = (outfitPart) => {
     return (
         {
             type: 'EDIT_OUTFIT_PART',
-            outfitpart
+            outfitpart:outfitPart
         }
     )
 }
@@ -130,17 +140,32 @@ export const startEditOutfitPart = (outfitPart) => {
         const uid = getState().auth.uid;
         alert(`ACTION OUTFIT_PART: START_EDIT_OUTTFIT_PART thunk. ref=users/${uid}/OUTFIT_PART/${outfitPart.id}`);        
 
-        database.ref(`users/${uid}/OUTFIT_PART/${outfitPart.id}`)
+        let auth_provider = getState().auth.provider;
+        if (isUserGuest(auth_provider)) {
+            // This means user is logged in as guest.
+            alert('logged in as guest');
+            dispatch  (editOutfitPart(outfitPart));
+        } else {
+           // This means user logged in via google.
+            // We must first deposit the new outfitpart in the database.
+
+            database.ref(`users/${uid}/OUTFIT_PART/${outfitPart.id}`)
             .set(outfitPart)
             .then(
                 ()=>{
                     alert(`edit outfit part ok. ref=users/${uid}/OUTFIT_PART/${outfitPart.id}`)
-                    return dispatch(editOutfitPart(outfitPart));
+                    // We are not going to call dispatch(addOutfitPart())
+                    // here. We are just going to wait for firebase to inform
+                    // us of the new outfit part before calling it
+
                 }
             )      
             .catch(
                 (e)=>alert(`EDIT_OUTTFIT_PART database ERROR: ${e}`)
-            )  
+            )              
+            
+
+        }
 
 
     }

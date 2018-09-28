@@ -68,8 +68,6 @@ export const startAddOutfitAction = (outfit) => {
     return (dispatch,getState)=>{
 
         let auth_provider = getState().auth.provider;
-        alert (auth_provider);
-
         if (isUserGuest(auth_provider)) {
             // This means user is logged in as guest.
             alert('logged in as guest');
@@ -98,19 +96,44 @@ export const startAddOutfitAction = (outfit) => {
     }
 }
 
-export const editOutfitAction = (id,outfit)=>{
-//        alert('ACTION OUTFITS: EDIT_OUTFIT');
-        return {
-            type: 'EDIT_OUTFIT',
-            id,
-            outfit
-        }
+export const editOutfitAction = (outfit)=>{
+    alert('ACTION OUTFITS: EDIT_OUTFIT');
+    return {
+        type: 'EDIT_OUTFIT',
+        outfit
     }
+}
     
-export const startEditOutfitAction = (id,outfit) => {
-//   alert(`ACTION OUTFITS: START_EDIT_OUTFIT ${outfit}`);          
-    return (dispatch)=>{
-        dispatch  (editOutfitAction(id,outfit));
+export const startEditOutfit = (outfit) => {
+   alert(`ACTION OUTFITS: START_EDIT_OUTFIT ${outfit}`);          
+
+    return (dispatch,getState)=>{
+
+        let auth_provider = getState().auth.provider;
+        if (isUserGuest(auth_provider)) {
+            // This means user is logged in as guest.
+            alert('logged in as guest');
+            dispatch  (editOutfitAction(outfit));
+        } else {
+            // This means user logged in via google.
+            // We must first deposit the new outfit in the database.
+            const uid = getState().auth.uid;
+
+                database.ref(`users/${uid}/OUTFITS/${outfit.id}`)
+                .set(outfit)            
+                .then(
+                    ()=>{
+                        alert("firebase push ok");
+                        // We are not going to call dispatch(addOutfit())
+                        // here. We are just going to wait for firebase to inform
+                        // us of the new outfit before calling it
+
+                    }
+                )
+                .catch(
+                    (e)=>alert(`ERROR: ${e}`)
+                )
+        }
 
     }
 }
